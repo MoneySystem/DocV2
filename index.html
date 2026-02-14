@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneySystem — Documentação de Desenvolvimento</title>
+    <meta name="description" content="Documentação completa do MoneySystem ERP/CRM brasileiro.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="logo-icon">M$</div>
+                    <div class="logo-text">
+                        <h1>MoneySystem</h1>
+                        <span>Documentação v2.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-search">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Buscar na documentação...">
+                    <span class="search-shortcut">⌘K</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <!-- INÍCIO -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Início <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item active" data-section="visao-geral"><span class="nav-icon">🏠</span><span
+                                class="nav-label">Visão Geral</span></div>
+                        <div class="nav-item" data-section="arquitetura"><span class="nav-icon">🏗️</span><span
+                                class="nav-label">Arquitetura do Sistema</span></div>
+                        <div class="nav-item" data-section="roadmap"><span class="nav-icon">🗺️</span><span
+                                class="nav-label">Roadmap</span></div>
+                    </div>
+                </div>
+                <!-- ONBOARDING -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Onboarding <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="criacao-conta"><span class="nav-icon">📝</span><span
+                                class="nav-label">Criação de Conta</span></div>
+                        <div class="nav-item" data-section="pagina-dinamica"><span class="nav-icon">🔄</span><span
+                                class="nav-label">Página Dinâmica</span></div>
+                        <div class="nav-item" data-section="dashboard"><span class="nav-icon">📊</span><span
+                                class="nav-label">Dashboard</span></div>
+                    </div>
+                </div>
+                <!-- MÓDULOS -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Módulos <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="pedidos"><span class="nav-icon">📦</span><span
+                                class="nav-label">Pedidos</span></div>
+                        <div class="nav-item" data-section="clientes"><span class="nav-icon">👥</span><span
+                                class="nav-label">Clientes</span></div>
+                        <div class="nav-item" data-section="produtos"><span class="nav-icon">🏷️</span><span
+                                class="nav-label">Produtos</span></div>
+                        <div class="nav-item" data-section="servicos"><span class="nav-icon">⚙️</span><span
+                                class="nav-label">Serviços</span></div>
+                        <div class="nav-item" data-section="financeiro"><span class="nav-icon">💰</span><span
+                                class="nav-label">Financeiro</span></div>
+                        <div class="nav-item" data-section="pdv"><span class="nav-icon">🖥️</span><span
+                                class="nav-label">PDV</span></div>
+                        <div class="nav-item" data-section="nota-fiscal"><span class="nav-icon">📄</span><span
+                                class="nav-label">Nota Fiscal</span></div>
+                        <div class="nav-item" data-section="relatorios"><span class="nav-icon">📈</span><span
+                                class="nav-label">Relatórios</span></div>
+                    </div>
+                </div>
+                <!-- GESTÃO -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Gestão <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="usuarios"><span class="nav-icon">👤</span><span
+                                class="nav-label">Usuários e Permissões</span></div>
+                        <div class="nav-item" data-section="funcionarios"><span class="nav-icon">💼</span><span
+                                class="nav-label">Funcionários</span></div>
+                    </div>
+                </div>
+                <!-- PLANOS -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Planos <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="planos"><span class="nav-icon">💎</span><span
+                                class="nav-label">Planos e Preços</span></div>
+                        <div class="nav-item" data-section="faturamento"><span class="nav-icon">💳</span><span
+                                class="nav-label">Faturamento</span></div>
+                        <div class="nav-item" data-section="inadimplencia"><span class="nav-icon">⚠️</span><span
+                                class="nav-label">Inadimplência</span></div>
+                        <div class="nav-item" data-section="drf"><span class="nav-icon">👤</span><span
+                                class="nav-label">DRF Pessoal</span></div>
+                    </div>
+                </div>
+                <!-- API -->
+                <div class="nav-category">
+                    <div class="nav-category-label">API e Integrações <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="api"><span class="nav-icon">🔌</span><span
+                                class="nav-label">API REST</span></div>
+                        <div class="nav-item" data-section="integracoes"><span class="nav-icon">🔗</span><span
+                                class="nav-label">Integrações Nativas</span></div>
+                        <div class="nav-item" data-section="bancos"><span class="nav-icon">🏦</span><span
+                                class="nav-label">Integrações Bancárias</span></div>
+                        <div class="nav-item" data-section="webhooks"><span class="nav-icon">📡</span><span
+                                class="nav-label">Webhooks</span></div>
+                    </div>
+                </div>
+                <!-- i18n -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Internacionalização <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="idiomas"><span class="nav-icon">🌐</span><span
+                                class="nav-label">Idiomas e Moedas</span></div>
+                    </div>
+                </div>
+                <!-- SEGURANÇA -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Segurança <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="seguranca"><span class="nav-icon">🔒</span><span
+                                class="nav-label">Segurança</span></div>
+                    </div>
+                </div>
+                <!-- MOBILE -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Mobile e PWA <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="mobile"><span class="nav-icon">📱</span><span
+                                class="nav-label">Mobile e PWA</span></div>
+                    </div>
+                </div>
+                <!-- INFRA -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Infraestrutura <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="infraestrutura"><span class="nav-icon">☁️</span><span
+                                class="nav-label">Infraestrutura</span></div>
+                        <div class="nav-item" data-section="migracao"><span class="nav-icon">🔀</span><span
+                                class="nav-label">Migração de Dados</span></div>
+                    </div>
+                </div>
+                <!-- EMAIL -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Comunicação <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="emails"><span class="nav-icon">📧</span><span
+                                class="nav-label">E-mails e Notificações</span></div>
+                    </div>
+                </div>
+                <!-- LANÇAMENTO -->
+                <div class="nav-category">
+                    <div class="nav-category-label">Lançamento <span class="chevron">▼</span></div>
+                    <div class="nav-items">
+                        <div class="nav-item" data-section="lancamento"><span class="nav-icon">🚀</span><span
+                                class="nav-label">Lançamento</span></div>
+                    </div>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="sidebar-version">
+                    <span class="version-dot"></span>
+                    MoneySystem Docs — v2.0.0
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay"></div>
+
+        <!-- MAIN -->
+        <div class="main-wrapper">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn">☰</button>
+                    <div class="breadcrumb">
+                        <span>Docs</span>
+                        <span class="separator">/</span>
+                        <span class="current">Visão Geral</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <a href="#" class="header-btn">⬆️ <span>v2.0</span></a>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <div class="content-container">
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>Nenhum resultado encontrado</h3>
+                        <p>Tente buscar por outro termo.</p>
+                    </div>
+
+                    <!-- ═══ VISÃO GERAL ═══ -->
+                    <section id="visao-geral" class="doc-section active content">
+                        <div class="section-hero">
+                            <div class="section-badge blue">📖 Início</div>
+                            <h1>Visão Geral do MoneySystem</h1>
+                            <p class="section-desc">Sistema ERP/CRM brasileiro completo, projetado para pequenas e
+                                médias empresas. Multi-idioma (PT/ES/EN), multi-moeda (BRL/Peso/USD), com foco em
+                                segurança,
+                                escalabilidade e experiência mobile.</p>
+                        </div>
+
+                        <p>O <strong>MoneySystem</strong> é um sistema ERP/CRM completo desenvolvido em PHP, voltado
+                            para empresas brasileiras e latino-americanas. Ele unifica gestão de pedidos, clientes,
+                            produtos, financeiro, emissão de notas fiscais e relatórios em uma única plataforma segura e
+                            escalável.</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📦</div>
+                                <h3>Pedidos</h3>
+                                <p>Criação, edição, faturamento e impressão de pedidos com comissões por funcionário.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">👥</div>
+                                <h3>Clientes</h3>
+                                <p>Cadastro completo com dados fiscais, histórico de compras e interações.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">💰</div>
+                                <h3>Financeiro</h3>
+                                <p>Contas a pagar/receber, DRE, fluxo de caixa e controle de parcelas.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📄</div>
+                                <h3>Nota Fiscal</h3>
+                                <p>Emissão direta de NF-e, NFS-e e NFC-e sem intermediário.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📈</div>
+                                <h3>Relatórios</h3>
+                                <p>Tela única com filtros dinâmicos e exportação em PDF, Excel e CSV.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔌</div>
+                                <h3>API REST</h3>
+                                <p>API completa para integração com sistemas de terceiros.</p>
+                            </div>
+                        </div>
+
+                        <h2>Público-Alvo</h2>
+                        <p>O MoneySystem atende diversos setores de mercado. Na criação da conta, o usuário seleciona o
+                            setor da empresa:</p>
+                        <div class="sector-list">
+                            <div class="sector-item"><span class="sector-icon">🖨️</span> Gráfica</div>
+                            <div class="sector-item"><span class="sector-icon">🚗</span> Película Automotiva</div>
+                            <div class="sector-item"><span class="sector-icon">🔧</span> Mecânica</div>
+                            <div class="sector-item"><span class="sector-icon">📋</span> Outro</div>
+                        </div>
+
+                        <div class="alert-box warning">
+                            <span class="alert-icon">⚠️</span>
+                            <p>O setor selecionado na criação da conta <strong>não poderá ser alterado</strong>
+                                posteriormente. Essa escolha determina personalizações no sistema.</p>
+                        </div>
+
+                        <h2>Stack Tecnológico</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Camada</th>
+                                        <th>Tecnologia</th>
+                                        <th>Detalhes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Backend</strong></td>
+                                        <td>PHP mais atual</td>
+                                        <td>Framework MVC customizado, API REST</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Banco de Dados</strong></td>
+                                        <td>MySQL mais atual</td>
+                                        <td>Schema modular, particionamento, índices otimizados</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Frontend</strong></td>
+                                        <td>HTML5 / CSS3 / JS</td>
+                                        <td>Responsivo, PWA, Service Workers</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cache</strong></td>
+                                        <td>Redis</td>
+                                        <td>Sessões, cache de queries, rate limiting</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>E-mail</strong></td>
+                                        <td>SMTP / Amazon SES</td>
+                                        <td>Cobranças, notificações, confirmações</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>NF-e</strong></td>
+                                        <td>SEFAZ Direto</td>
+                                        <td>Sem intermediário, comunicação direta</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tradução</strong></td>
+                                        <td>i18n (Arquivos JSON)</td>
+                                        <td>PT-BR, Espanhol, Inglês — cache no navegador</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Licença</strong></td>
+                                        <td>Proprietary</td>
+                                        <td>Código 100% proprietário, todos os direitos reservados</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- ═══ ARQUITETURA ═══ -->
+                    <section id="arquitetura" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge purple">🏗️ Arquitetura</div>
+                            <h1>Arquitetura do Sistema</h1>
+                            <p class="section-desc">Visão técnica da arquitetura do MoneySystem, projetada para
+                                escalabilidade, segurança e manutenibilidade.</p>
+                        </div>
+
+                        <h2>Visão Geral da Arquitetura</h2>
+                        <p>O MoneySystem segue uma arquitetura <strong>MVC (Model-View-Controller)</strong> modular com
+                            separação clara de responsabilidades. O sistema é projetado para suportar <strong>50.000+
+                                usuários ativos</strong> simultaneamente.</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🖥️</div>
+                                <h3>Camada de Apresentação</h3>
+                                <p>Interface responsiva com PWA, Service Workers para offline, e design adaptativo
+                                    mobile-first.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <h3>Camada de Aplicação</h3>
+                                <p>Controllers PHP com middleware de autenticação, rate limiting e validação de dados.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🗄️</div>
+                                <h3>Camada de Dados</h3>
+                                <p>MySQL com sharding por empresa, Redis para cache, backups automáticos geográficos.
+                                </p>
+                            </div>
+                        </div>
+
+                        <h2>Padrões de Projeto</h2>
+                        <ul>
+                            <li><strong>Repository Pattern</strong> — Abstração do acesso ao banco de dados</li>
+                            <li><strong>Service Layer</strong> — Lógica de negócio encapsulada em serviços</li>
+                            <li><strong>Middleware Pipeline</strong> — Autenticação, CORS, rate limiting, logging</li>
+                            <li><strong>Observer Pattern</strong> — Sistema de eventos para webhooks e notificações</li>
+                            <li><strong>Strategy Pattern</strong> — Cálculos de impostos por região/setor</li>
+                            <li><strong>Multi-Tenancy</strong> — Isolamento de dados por empresa no mesmo banco</li>
+                        </ul>
+
+                        <h2>Diagrama de Componentes</h2>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">Arquitetura</span></div>
+                            <pre><code>┌─────────────────────────────────────────────────────┐
+│                    CLIENTE                          │
+│   Browser (PWA) │ App Mobile (WebView) │ API REST  │
+└────────────────────────┬────────────────────────────┘
+                         │ HTTPS
+┌────────────────────────▼────────────────────────────┐
+│                   LOAD BALANCER                     │
+│               (Nginx / CloudFlare)                  │
+└────────────────────────┬────────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────────┐
+│                APLICAÇÃO PHP 8.2+                   │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────────────┐│
+│  │  Router  │→│Middleware │→│    Controllers       ││
+│  └──────────┘ └──────────┘ └──────────┬───────────┘│
+│                                       │            │
+│  ┌──────────────────┐  ┌──────────────▼──────────┐ │
+│  │  Services Layer  │  │   Repository Layer      │ │
+│  └──────────────────┘  └──────────────┬──────────┘ │
+└────────────────────────────────────────┬────────────┘
+                         │               │
+          ┌──────────────▼──┐   ┌────────▼──────────┐
+          │     Redis       │   │   MySQL 8.0       │
+          │ (Cache/Session) │   │ (Multi-Tenant)    │
+          └─────────────────┘   └───────────────────┘</code></pre>
+                        </div>
+
+                        <h2>Banco de Dados</h2>
+                        <p>O schema é desenhado para ser <strong>modular, escalável e preparado para 50.000+ usuários
+                                ativos simultâneos</strong>. Todo o banco de dados é escrito em <strong>inglês</strong>
+                            (tabelas, colunas, constraints, índices) para padronização internacional e facilitar a
+                            colaboração com desenvolvedores de qualquer país.</p>
+
+                        <p>Cada empresa possui dados isolados via <code class="inline">company_id</code> em todas as
+                            tabelas, seguindo o padrão de <strong>multi-tenancy compartilhado</strong> — um único banco
+                            de dados serve todas as empresas, mas com isolamento rigoroso por chave.</p>
+
+                        <h3>Convenções de Naming</h3>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Elemento</th>
+                                        <th>Convenção</th>
+                                        <th>Exemplo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tabelas</td>
+                                        <td>snake_case, plural</td>
+                                        <td><code class="inline">companies</code>, <code class="inline">orders</code>,
+                                            <code class="inline">order_items</code>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colunas</td>
+                                        <td>snake_case, singular</td>
+                                        <td><code class="inline">company_name</code>, <code
+                                                class="inline">created_at</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Primary Key</td>
+                                        <td><code class="inline">id</code> (BIGINT UNSIGNED AUTO_INCREMENT)</td>
+                                        <td><code class="inline">companies.id</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Foreign Key</td>
+                                        <td><code class="inline">{tabela_singular}_id</code></td>
+                                        <td><code class="inline">company_id</code>, <code
+                                                class="inline">customer_id</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timestamps</td>
+                                        <td><code class="inline">created_at</code>, <code
+                                                class="inline">updated_at</code>, <code class="inline">deleted_at</code>
+                                        </td>
+                                        <td>Em todas as tabelas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Booleanos</td>
+                                        <td>Prefixo <code class="inline">is_</code> ou <code class="inline">has_</code>
+                                        </td>
+                                        <td><code class="inline">is_active</code>, <code class="inline">has_nfe</code>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Índices</td>
+                                        <td><code class="inline">idx_{tabela}_{colunas}</code></td>
+                                        <td><code class="inline">idx_orders_company_status</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Estratégia de Escalabilidade (50k+ Usuários)</h3>
+                        <p>Para suportar mais de 50.000 usuários ativos sem lentidão, o banco de dados utiliza uma
+                            combinação de técnicas:</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🔗</div>
+                                <h3>Connection Pooling</h3>
+                                <p>Pool de conexões gerenciado evita overhead de abrir/fechar conexões a cada request.
+                                    Máximo de conexões configurável por instância.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📖</div>
+                                <h3>Read Replicas</h3>
+                                <p>Réplicas de leitura distribuem a carga de SELECT queries. O master recebe apenas
+                                    escritas (INSERT/UPDATE/DELETE). Leituras vão para réplicas.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h3>Particionamento</h3>
+                                <p>Tabelas grandes (transactions, audit_logs, notifications) são particionadas por data
+                                    (mês/ano), mantendo cada partição com tamanho gerenciável.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <h3>Índices Compostos</h3>
+                                <p>Cada tabela tem índice composto <code class="inline">(company_id, ...)</code> como
+                                    primeiro campo, garantindo que queries filtradas por empresa sejam instantâneas.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🗄️</div>
+                                <h3>Redis Cache</h3>
+                                <p>Resultados de queries frequentes (dashboard, relatórios) ficam em cache Redis com TTL
+                                    configurável, reduzindo drasticamente a carga no MySQL.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🔍</div>
+                                <h3>Query Optimization</h3>
+                                <p>Slow Query Log ativo, EXPLAIN obrigatório em code review, queries com JOIN limitado e
+                                    paginação obrigatória em listagens.</p>
+                            </div>
+                        </div>
+
+                        <h3>Regras de Integridade</h3>
+                        <ul>
+                            <li><strong>Índices Compostos</strong> — Todas as tabelas possuem índice em <code
+                                    class="inline">(company_id, campo_principal)</code> para queries eficientes por
+                                empresa</li>
+                            <li><strong>Soft Delete</strong> — Registros nunca são excluídos fisicamente. Usam <code
+                                    class="inline">deleted_at</code> (NULL = ativo, TIMESTAMP = excluído)</li>
+                            <li><strong>Auditoria</strong> — Tabela <code class="inline">audit_logs</code> registra
+                                TODAS as alterações com usuário, IP, ação, tabela, valores antes/depois e timestamp</li>
+                            <li><strong>Foreign Keys</strong> — Constraints de FK garantem integridade referencial, com
+                                <code class="inline">ON DELETE RESTRICT</code> para evitar exclusões em cascata
+                                acidentais
+                            </li>
+                            <li><strong>Enum via Lookup Tables</strong> — Em vez de ENUM no MySQL, usamos tabelas de
+                                lookup para valores fixos (status, tipos), facilitando manutenção</li>
+                        </ul>
+
+                        <h3>Exemplo: Tabela <code class="inline">companies</code></h3>
+                        <p>Esta é a tabela principal onde ficam cadastradas todas as empresas do sistema. Cada registro
+                            representa uma empresa cliente do MoneySystem:</p>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">SQL</span></div>
+                            <pre><code>CREATE TABLE companies (
+    id              BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    uuid            CHAR(36)        NOT NULL UNIQUE,
+
+    <span class="comment">-- Dados da empresa</span>
+    company_name    VARCHAR(255)    NOT NULL,              <span class="comment">-- Razão social</span>
+    trade_name      VARCHAR(255)    DEFAULT NULL,          <span class="comment">-- Nome fantasia</span>
+    document_number VARCHAR(20)     NOT NULL UNIQUE,       <span class="comment">-- CNPJ ou equivalente</span>
+    state_registration VARCHAR(30)  DEFAULT NULL,          <span class="comment">-- Inscrição estadual</span>
+    municipal_registration VARCHAR(30) DEFAULT NULL,       <span class="comment">-- Inscrição municipal</span>
+
+    <span class="comment">-- Contato</span>
+    email           VARCHAR(255)    NOT NULL,
+    phone           VARCHAR(20)     DEFAULT NULL,
+    website         VARCHAR(255)    DEFAULT NULL,
+
+    <span class="comment">-- Endereço</span>
+    address_street  VARCHAR(255)    DEFAULT NULL,
+    address_number  VARCHAR(20)     DEFAULT NULL,
+    address_complement VARCHAR(100) DEFAULT NULL,
+    address_neighborhood VARCHAR(100) DEFAULT NULL,
+    address_city    VARCHAR(100)    DEFAULT NULL,
+    address_state   CHAR(2)         DEFAULT NULL,
+    address_zip_code VARCHAR(10)    DEFAULT NULL,
+    address_country VARCHAR(3)      DEFAULT 'BRA',
+
+    <span class="comment">-- Configurações do sistema</span>
+    sector          VARCHAR(50)     NOT NULL,              <span class="comment">-- grafica|pelicula|mecanica|outro</span>
+    currency        CHAR(3)         NOT NULL DEFAULT 'BRL',<span class="comment">-- BRL | ARS | USD</span>
+    language        VARCHAR(5)      NOT NULL DEFAULT 'pt-BR',
+    timezone        VARCHAR(50)     NOT NULL DEFAULT 'America/Sao_Paulo',
+
+    <span class="comment">-- Plano e faturamento</span>
+    plan_id         BIGINT UNSIGNED DEFAULT NULL,
+    storage_used_mb BIGINT UNSIGNED DEFAULT 0,
+    is_active       TINYINT(1)      NOT NULL DEFAULT 1,
+    is_suspended    TINYINT(1)      NOT NULL DEFAULT 0,
+    suspended_at    TIMESTAMP       NULL DEFAULT NULL,
+    days_overdue    INT UNSIGNED    DEFAULT 0,
+
+    <span class="comment">-- NF-e (apenas BRL)</span>
+    has_nfe         TINYINT(1)      NOT NULL DEFAULT 0,
+    nfe_environment TINYINT(1)      DEFAULT 1,            <span class="comment">-- 1=Produção, 2=Homologação</span>
+    nfe_series      INT UNSIGNED    DEFAULT 1,
+    nfe_last_number INT UNSIGNED    DEFAULT 0,
+    digital_certificate_path VARCHAR(255) DEFAULT NULL,
+    digital_certificate_password VARCHAR(255) DEFAULT NULL,
+
+    <span class="comment">-- White Label</span>
+    is_white_label  TINYINT(1)      NOT NULL DEFAULT 0,
+    custom_logo_path VARCHAR(255)   DEFAULT NULL,
+    custom_primary_color VARCHAR(7) DEFAULT NULL,
+
+    <span class="comment">-- Controle</span>
+    created_at      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at      TIMESTAMP       NULL DEFAULT NULL,
+
+    <span class="comment">-- Índices</span>
+    INDEX idx_companies_sector (sector),
+    INDEX idx_companies_plan (plan_id),
+    INDEX idx_companies_active (is_active, is_suspended),
+    INDEX idx_companies_deleted (deleted_at),
+
+    <span class="comment">-- Foreign Keys</span>
+    CONSTRAINT fk_companies_plan
+        FOREIGN KEY (plan_id) REFERENCES plans(id) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;</code></pre>
+                        </div>
+
+                        <div class="alert-box info">
+                            <span class="alert-icon">💡</span>
+                            <p>Repare que todos os nomes de colunas e tabelas estão em <strong>inglês</strong>, com
+                                <code class="inline">snake_case</code>. Campos como <code
+                                    class="inline">deleted_at</code> permitem soft delete, e o <code
+                                    class="inline">uuid</code> é usado para exposição pública (API), nunca o <code
+                                    class="inline">id</code> numérico.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ ROADMAP ═══ -->
+                    <section id="roadmap" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">🗺️ Roadmap</div>
+                            <h1>Roadmap de Desenvolvimento</h1>
+                            <p class="section-desc">Fases planejadas para o desenvolvimento e lançamento do MoneySystem
+                                v2.0.</p>
+                        </div>
+
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Fase 1 — Fundação (Mês 1)</h3>
+                                    <p>Arquitetura base, banco de dados, autenticação, multi-tenancy, sistema de
+                                        permissões, estrutura MVC.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Fase 2 — Módulos Core (Mês 2-3)</h3>
+                                    <p>Pedidos, Clientes, Produtos, Serviços, Dashboard, Calendário de eventos.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Fase 3 — Financeiro e NF (Mês 4-5)</h3>
+                                    <p>Módulo financeiro, DRE, contas a pagar/receber, emissão de NF-e/NFS-e/NFC-e
+                                        direto com SEFAZ. (Contratar um dev nessa fase especialista em SEFAZ)</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Fase 4 — Integrações e API (Mês 6-7)</h3>
+                                    <p>API REST pública, integrações com ERPs (Tiny, Bling), RD Station, webhooks.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h3>Fase 5 — White Label e Planos (Mês 8)</h3>
+                                    <p>Sistema de planos pós-pago, cobrança automática, White Label, armazenamento por
+                                        plano.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h3>Fase 6 — Migração e Testes (Mês 9)</h3>
+                                    <p>Migração do banco antigo, testes de carga 50k+ usuários, testes de segurança,
+                                        pentest.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">7</div>
+                                <div class="step-content">
+                                    <h3>Fase 7 — Beta Fechado (Mês 10)</h3>
+                                    <p>Deploy em <code class="inline">beta.moneysystem.com.br</code> para empresas
+                                        selecionadas testarem o sistema. Coleta de feedback, correção de bugs e
+                                        validação em ambiente real durante 1 mês.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">8</div>
+                                <div class="step-content">
+                                    <h3>Fase 8 — Lançamento v2.0 (Mês 11)</h3>
+                                    <p>Deploy oficial para todos os usuários, aviso de instabilidades, banner "cara
+                                        nova" nos primeiros 7 dias, vídeo de apresentação e correção de bugs.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">9</div>
+                                <div class="step-content">
+                                    <h3>Fase 9 — v2.1 Pós-Lançamento (Mês 12+)</h3>
+                                    <p>Integrações bancárias (BB, Itaú, Bradesco, Inter), PWA com Service Workers, modo
+                                        offline, app via WebView para App Store e Google Play.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ═══ CRIAÇÃO DE CONTA ═══ -->
+                    <section id="criacao-conta" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge blue">📝 Onboarding</div>
+                            <h1>Criação de Conta</h1>
+                            <p class="section-desc">Fluxo completo de registro de novas empresas no MoneySystem,
+                                incluindo seleção de moeda, idioma e setor.</p>
+                        </div>
+
+                        <div class="alert-box info"><span class="alert-icon">🎁</span>
+                            <p>Toda nova conta recebe <strong>7 dias grátis</strong> no plano Enterprise para testar o
+                                sistema completo, sem necessidade de cartão de crédito. Após o período de teste, a
+                                empresa deve escolher um plano para continuar usando.</p>
+                        </div>
+
+                        <h2>Campos do Registro</h2>
+                        <p>Ao criar uma conta no MoneySystem, o usuário da empresa deverá preencher:</p>
+                        <ul>
+                            <li><strong>Nome da empresa</strong> — Razão social</li>
+                            <li><strong>CNPJ</strong> — Validação em tempo real</li>
+                            <li><strong>Nome do responsável</strong> — Administrador principal</li>
+                            <li><strong>E-mail</strong> — Será usado para cobranças e notificações</li>
+                            <li><strong>Telefone/WhatsApp</strong> — Para comunicação de inadimplência</li>
+                            <li><strong>Senha</strong> — Mínimo 8 caracteres, letra maiúscula, número e caractere
+                                especial</li>
+                        </ul>
+
+                        <h2>Seleção de Moeda</h2>
+                        <p>Uma caixa de seleção exibe as opções de moeda. O <strong>Real Brasileiro (R$)</strong> vem
+                            pré-selecionado:</p>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Moeda</th>
+                                        <th>Símbolo</th>
+                                        <th>Nota Fiscal</th>
+                                        <th>Padrão</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Real Brasileiro</strong></td>
+                                        <td>R$</td>
+                                        <td>✅ NF-e, NFS-e, NFC-e</td>
+                                        <td><span class="tag green">Padrão</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Peso</strong></td>
+                                        <td>$</td>
+                                        <td>❌ Indisponível</td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dólar Americano</strong></td>
+                                        <td>$</td>
+                                        <td>❌ Indisponível</td>
+                                        <td>—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert-box danger">
+                            <span class="alert-icon">🚨</span>
+                            <p>A moeda selecionada <strong>não pode ser alterada</strong> após a criação da conta. Nota
+                                Fiscal só está disponível para contas em Real Brasileiro (R$).</p>
+                        </div>
+
+                        <h2>Seleção de Idioma</h2>
+                        <p>O idioma padrão é <strong>Português (PT-BR)</strong>. A tradução para Espanhol e Inglês é
+                            feita via <strong>arquivos de idioma (i18n)</strong> — JSONs estáticos carregados uma vez e
+                            armazenados no cache do navegador. Nas configurações do sistema, o usuário pode alterar o
+                            idioma a qualquer momento.</p>
+                        <ul>
+                            <li>🇧🇷 <strong>Português</strong> — Padrão (nativo)</li>
+                            <li>🇪🇸 <strong>Espanhol</strong> — Arquivo <code class="inline">es.json</code></li>
+                            <li>🇺🇸 <strong>Inglês</strong> — Arquivo <code class="inline">en.json</code></li>
+                        </ul>
+
+                        <h2>Seleção de Setor</h2>
+                        <p>O campo de setor vem <strong>sem nada selecionado</strong>. O usuário deve obrigatoriamente
+                            selecionar um setor para conseguir criar a conta. Após criação, <strong>não há como
+                                alterar</strong>.</p>
+                        <div class="sector-list">
+                            <div class="sector-item"><span class="sector-icon">🖨️</span> Gráfica</div>
+                            <div class="sector-item"><span class="sector-icon">🚗</span> Película Automotiva</div>
+                            <div class="sector-item"><span class="sector-icon">🔧</span> Mecânica</div>
+                            <div class="sector-item"><span class="sector-icon">📋</span> Outro</div>
+                        </div>
+                    </section>
+
+                    <!-- ═══ PÁGINA DINÂMICA ═══ -->
+                    <section id="pagina-dinamica" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge blue">🔄 Onboarding</div>
+                            <h1>Página Dinâmica</h1>
+                            <p class="section-desc">Comportamento dinâmico da URL principal, inspirado no GitHub: site
+                                institucional para visitantes, dashboard para usuários logados.</p>
+                        </div>
+
+                        <h2>Comportamento</h2>
+                        <p>O mesmo endereço <code class="inline">moneysystem.com.br</code> exibe conteúdo diferente
+                            dependendo do estado de autenticação:</p>
+
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🌐</div>
+                                <h3>Visitante (Deslogado)</h3>
+                                <p>Site institucional com landing page, informações sobre planos, funcionalidades,
+                                    depoimentos e CTA de registro.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🏠</div>
+                                <h3>Usuário (Logado)</h3>
+                                <p>Dashboard personalizado com KPIs, calendário, eventos, últimos pedidos, faturamento
+                                    mensal e atividade recente.</p>
+                            </div>
+                        </div>
+
+                        <h2>Implementação Técnica</h2>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">PHP</span></div>
+                            <pre><code><span class="comment">// index.php — Roteamento dinâmico</span>
+<span class="keyword">if</span> (<span class="function">Auth</span>::<span class="method">check</span>()) {
+    <span class="comment">// Usuário logado → Dashboard</span>
+    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="function">DashboardController</span>)-><span class="method">index</span>();
+} <span class="keyword">else</span> {
+    <span class="comment">// Visitante → Site Institucional</span>
+    <span class="keyword">return</span> <span class="function">view</span>(<span class="string">'landing.index'</span>);
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- ═══ DASHBOARD ═══ -->
+                    <section id="dashboard" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge blue">📊 Onboarding</div>
+                            <h1>Dashboard</h1>
+                            <p class="section-desc">Tela inicial do sistema para usuários logados. Exibe KPIs,
+                                calendário, eventos, gráficos e atividade recente.</p>
+                        </div>
+
+                        <h2>Referência Visual</h2>
+                        <div class="screenshot-wrapper">
+                            <img src="assets/images/dashboard.png" alt="Dashboard MoneySystem">
+                        </div>
+                        <p class="screenshot-caption">Dashboard do MoneySystem — design dark mode com cards informativos
+                        </p>
+
+                        <h2>Componentes do Dashboard</h2>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">💵</div>
+                                <h3>Cards de KPI</h3>
+                                <p>Faturamento total, quantidade de pedidos, clientes ativos e valores pendentes, com
+                                    comparativo ao mês anterior.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📅</div>
+                                <h3>Calendário Mensal</h3>
+                                <p>Indicadores de entregas, pagamentos, aniversários e reuniões com pontos coloridos nos
+                                    dias.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📋</div>
+                                <h3>Próximos Eventos</h3>
+                                <p>Lista cronológica de entregas de pedidos, vencimentos de parcelas, aniversários e
+                                    reuniões.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📈</div>
+                                <h3>Gráfico de Faturamento</h3>
+                                <p>Gráfico de linha com faturamento mensal ao longo do ano. Expansível para tela cheia.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚡</div>
+                                <h3>Acesso Rápido</h3>
+                                <p>Botões de atalho: Novo Pedido, Novo Cliente, Novo Produto.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🕐</div>
+                                <h3>Atividade Recente</h3>
+                                <p>Feed em tempo real de ações no sistema: pedidos faturados, clientes cadastrados, NF-e
+                                    emitidas, pagamentos confirmados.</p>
+                            </div>
+                        </div>
+
+                        <h2>Dados Offline (PWA)</h2>
+                        <div class="alert-box info">
+                            <span class="alert-icon">ℹ️</span>
+                            <p>Com o PWA ativado, o Dashboard exibirá os dados em cache mesmo quando offline, junto com
+                                um banner informando <strong>"Você está offline"</strong>.</p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ PEDIDOS ═══ -->
+                    <section id="pedidos" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">📦 Módulo</div>
+                            <h1>Pedidos</h1>
+                            <p class="section-desc">Gestão completa de pedidos de venda: criação, edição, faturamento,
+                                impressão e acompanhamento.</p>
+                        </div>
+                        <h2>Funcionalidades</h2>
+                        <ul>
+                            <li><strong>Criação de Pedido</strong> — Selecionar cliente, adicionar produtos/serviços,
+                                definir quantidades, preços, descontos</li>
+                            <li><strong>Nome Fantasia</strong> — Campo opcional que substitui o nome do produto na
+                                impressão do pedido</li>
+                            <li><strong>Complemento</strong> — Campo de texto livre para informações adicionais (visível
+                                em setores como Gráfica)</li>
+                            <li><strong>Faturamento</strong> — Converter pedido em faturado, gerando parcelas
+                                financeiras</li>
+                            <li><strong>Parcelas</strong> — Divisão do valor em parcelas com datas de vencimento</li>
+                            <li><strong>Comissões</strong> — Atribuição automática de comissão ao funcionário
+                                responsável</li>
+                            <li><strong>Impressão</strong> — Layout otimizado para impressão (58mm e 80mm para
+                                etiquetas)</li>
+                            <li><strong>Status</strong> — Pendente, Em Andamento, Faturado, Cancelado</li>
+                        </ul>
+                        <h2>Fluxo do Pedido</h2>
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Criação</h3>
+                                    <p>Funcionário cria o pedido selecionando cliente e itens.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Aprovação</h3>
+                                    <p>Pedido fica como "Pendente" até ser aprovado.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Execução</h3>
+                                    <p>Status muda para "Em Andamento" durante a produção/preparação.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Faturamento</h3>
+                                    <p>Pedido é faturado, gerando registros financeiros e parcelas.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h3>Entrega</h3>
+                                    <p>Pedido concluído aparece no calendário e no feed de atividade.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ═══ CLIENTES ═══ -->
+                    <section id="clientes" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">👥 Módulo</div>
+                            <h1>Clientes</h1>
+                            <p class="section-desc">Cadastro completo de clientes com dados fiscais, histórico de
+                                compras e gestão de relacionamento.</p>
+                        </div>
+                        <h2>Dados do Cliente</h2>
+                        <ul>
+                            <li><strong>Dados Pessoais</strong> — Nome, CPF/CNPJ, RG, data de nascimento</li>
+                            <li><strong>Contato</strong> — E-mail, telefone, WhatsApp, redes sociais</li>
+                            <li><strong>Endereço</strong> — CEP com autopreenchimento, cidade, estado, bairro</li>
+                            <li><strong>Dados Fiscais</strong> — Inscrição estadual, municipal, regime tributário</li>
+                            <li><strong>Histórico</strong> — Todos os pedidos, valores totais, última compra</li>
+                            <li><strong>Observações</strong> — Campo livre para anotações internas</li>
+                        </ul>
+                        <h2>Funcionalidades</h2>
+                        <ul>
+                            <li>Busca por nome, CPF/CNPJ, e-mail ou telefone</li>
+                            <li>Filtros por estado, cidade, valor total gasto</li>
+                            <li>Importação de clientes via CSV/Excel</li>
+                            <li>Exportação da base de clientes</li>
+                            <li>Aniversariantes do mês no calendário do Dashboard</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ PRODUTOS ═══ -->
+                    <section id="produtos" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">🏷️ Módulo</div>
+                            <h1>Produtos</h1>
+                            <p class="section-desc">Cadastro e gestão de produtos com controle de estoque, tributação e
+                                importação via XML.</p>
+                        </div>
+                        <h2>Campos do Produto</h2>
+                        <ul>
+                            <li><strong>Básico</strong> — Nome, descrição, código interno, código de barras</li>
+                            <li><strong>Preço</strong> — Preço de custo, preço de venda, margem de lucro</li>
+                            <li><strong>Estoque</strong> — Quantidade atual, estoque mínimo, unidade de medida</li>
+                            <li><strong>Tributação</strong> — NCM, CFOP, CST, origem, alíquotas (ICMS, PIS, COFINS)</li>
+                            <li><strong>Categoria</strong> — Agrupamento por categoria para organização</li>
+                        </ul>
+                        <h2>Importação</h2>
+                        <p>Produtos podem ser importados via <strong>XML de NF-e</strong> ou via
+                            <strong>CSV/Excel</strong>. Na importação XML, dados tributários (origem, NCM, CFOP) são
+                            extraídos automaticamente.
+                        </p>
+                    </section>
+
+                    <!-- ═══ SERVIÇOS ═══ -->
+                    <section id="servicos" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">⚙️ Módulo</div>
+                            <h1>Serviços</h1>
+                            <p class="section-desc">Gestão de serviços prestados pela empresa, com preços e vinculação a
+                                pedidos.</p>
+                        </div>
+                        <h2>Funcionalidades</h2>
+                        <ul>
+                            <li>Cadastro de serviços com nome, descrição e preço</li>
+                            <li>Vinculação de serviços a pedidos junto com produtos</li>
+                            <li>Código de serviço para NFS-e (quando aplicável)</li>
+                            <li>Histórico de serviços prestados por cliente</li>
+                            <li>Relatórios de serviços mais prestados</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ FINANCEIRO ═══ -->
+                    <section id="financeiro" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">💰 Módulo</div>
+                            <h1>Financeiro</h1>
+                            <p class="section-desc">Controle financeiro: contas a pagar/receber, DRE,
+                                transações, parcelas e fluxo de caixa.</p>
+                        </div>
+                        <h2>Módulos Financeiros</h2>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📥</div>
+                                <h3>Contas a Receber</h3>
+                                <p>Parcelas de pedidos faturados, recebimentos, baixas manuais e automáticas.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📤</div>
+                                <h3>Contas a Pagar</h3>
+                                <p>Despesas fixas e variáveis, fornecedores, impostos, salários.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h3>DRE</h3>
+                                <p>Demonstrativo de Resultados do Exercício com lucro bruto e líquido.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">💳</div>
+                                <h3>Transações</h3>
+                                <p>Registro de todas as movimentações, com filtros por período, tipo e status.</p>
+                            </div>
+                        </div>
+                        <h2>Cálculos do DRE</h2>
+                        <ul>
+                            <li><strong>Lucro Bruto</strong> = Pedidos de Venda Faturados − Despesas Pagas</li>
+                            <li><strong>Lucro Líquido</strong> = Receitas Financeiras − Despesas Pagas</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ PDV ═══ -->
+                    <section id="pdv" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">🖥️ Módulo</div>
+                            <h1>Ponto de Venda (PDV)</h1>
+                            <p class="section-desc">Módulo de venda rápida no balcão, acessível a todos os usuários com
+                                permissão de criar pedidos.</p>
+                        </div>
+                        <h2>Características</h2>
+                        <ul>
+                            <li>Interface simplificada para vendas rápidas</li>
+                            <li>Leitor de código de barras integrado</li>
+                            <li>Busca rápida de produtos por nome ou código</li>
+                            <li>Múltiplas formas de pagamento (dinheiro, cartão, PIX)</li>
+                            <li>Impressão de cupom em impressoras térmicas (58mm / 80mm)</li>
+                            <li>Emissão de NFC-e diretamente pelo PDV (contas BRL)</li>
+                        </ul>
+                        <div class="alert-box success"><span class="alert-icon">✅</span>
+                            <p>O PDV está disponível para <strong>todos os planos</strong>. Qualquer usuário com
+                                permissão de criar pedidos pode acessar.</p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ NOTA FISCAL ═══ -->
+                    <section id="nota-fiscal" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">📄 Módulo</div>
+                            <h1>Nota Fiscal</h1>
+                            <p class="section-desc">Emissão direta de NF-e, NFS-e e NFC-e sem intermediário, comunicando
+                                diretamente com a SEFAZ.</p>
+                        </div>
+                        <div class="alert-box warning"><span class="alert-icon">⚠️</span>
+                            <p>A emissão de Nota Fiscal está disponível <strong>apenas para contas em Real Brasileiro
+                                    (R$)</strong>.</p>
+                        </div>
+                        <h2>Tipos de Nota Fiscal</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Nome Completo</th>
+                                        <th>Uso</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>NF-e</strong></td>
+                                        <td>Nota Fiscal Eletrônica</td>
+                                        <td>Venda de produtos (mercadorias)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>NFS-e</strong></td>
+                                        <td>Nota Fiscal de Serviços Eletrônica</td>
+                                        <td>Prestação de serviços</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>NFC-e</strong></td>
+                                        <td>Nota Fiscal de Consumidor Eletrônica</td>
+                                        <td>Venda direta ao consumidor (PDV)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h2>Características</h2>
+                        <ul>
+                            <li><strong>Sem intermediário</strong> — Comunicação direta com SEFAZ</li>
+                            <li><strong>Importação de XML</strong> — Importar NF-e de fornecedores</li>
+                            <li><strong>DANFE</strong> — Geração automática do documento auxiliar</li>
+                            <li><strong>Cancelamento</strong> — Cancelar NF-e dentro do prazo legal</li>
+                            <li><strong>Carta de Correção</strong> — CC-e para ajustes na nota</li>
+                            <li><strong>Inutilização</strong> — Inutilizar faixas de numeração</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ RELATÓRIOS ═══ -->
+                    <section id="relatorios" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">📈 Módulo</div>
+                            <h1>Relatórios</h1>
+                            <p class="section-desc">Tela única de relatórios com seleção de tipo, filtros avançados e
+                                múltiplos formatos de exportação.</p>
+                        </div>
+                        <div class="alert-box info"><span class="alert-icon">ℹ️</span>
+                            <p>O sistema possui <strong>apenas uma única tela de relatórios</strong>. Nela, o usuário
+                                primeiro seleciona o tipo, depois aplica filtros e escolhe o formato de download.</p>
+                        </div>
+                        <h2>Fluxo</h2>
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Tipo do Relatório</h3>
+                                    <p>Selecionar: Vendas, Clientes, Produtos, Financeiro, Comissões, Estoque, NF-e.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Filtros</h3>
+                                    <p>Período, status, cliente, funcionário, categoria, valor mínimo/máximo, e mais.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Formato</h3>
+                                    <p>Escolher entre PDF, Excel (.xlsx) ou CSV para download.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Tipos de Relatório</h2>
+                        <ul>
+                            <li><strong>Vendas</strong> — Pedidos por período, por funcionário, por cliente</li>
+                            <li><strong>Clientes</strong> — Cadastros, aniversariantes, ranking por faturamento</li>
+                            <li><strong>Produtos</strong> — Mais vendidos, estoque baixo, margem de lucro</li>
+                            <li><strong>Financeiro</strong> — DRE, fluxo de caixa, contas a pagar/receber</li>
+                            <li><strong>Comissões</strong> — Valores devidos por funcionário por período</li>
+                            <li><strong>NF-e</strong> — Notas emitidas, canceladas, valores totais</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ USUÁRIOS ═══ -->
+                    <section id="usuarios" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge orange">👤 Gestão</div>
+                            <h1>Usuários e Permissões</h1>
+                            <p class="section-desc">Sistema de permissões granulares por usuário, com limites definidos
+                                por plano contratado.</p>
+                        </div>
+                        <h2>Limites por Plano</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plano</th>
+                                        <th>Usuários</th>
+                                        <th>Armazenamento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Essencial (R$240)</td>
+                                        <td>3</td>
+                                        <td>2 GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Profissional (R$350)</td>
+                                        <td>8</td>
+                                        <td>10 GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enterprise (R$800)</td>
+                                        <td>25</td>
+                                        <td>30 GB</td>
+                                    </tr>
+                                    <tr>
+                                        <td>White Label (R$1.200)</td>
+                                        <td>Ilimitado</td>
+                                        <td>50 GB + extra</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h2>Permissões Disponíveis</h2>
+                        <ul>
+                            <li>Criar/editar/excluir pedidos</li>
+                            <li>Visualizar/editar clientes</li>
+                            <li>Gerenciar produtos e estoque</li>
+                            <li>Acessar módulo financeiro</li>
+                            <li>Emitir notas fiscais</li>
+                            <li>Gerar relatórios</li>
+                            <li>Acessar PDV</li>
+                            <li>Gerenciar configurações do sistema</li>
+                            <li>Gerenciar outros usuários</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ FUNCIONÁRIOS ═══ -->
+                    <section id="funcionarios" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge orange">💼 Gestão</div>
+                            <h1>Funcionários</h1>
+                            <p class="section-desc">Tela de gestão de funcionários com comissões, valores a receber e
+                                relatórios de desempenho.</p>
+                        </div>
+                        <h2>Tela de Funcionários</h2>
+                        <ul>
+                            <li><strong>Lista de funcionários</strong> com foto, nome, cargo e status</li>
+                            <li><strong>Comissões acumuladas</strong> — Total de comissões geradas por pedidos</li>
+                            <li><strong>Valores a receber</strong> — Quanto cada funcionário tem direito no período</li>
+                            <li><strong>Relatório individual</strong> — Pedidos criados, valores faturados, comissões
+                            </li>
+                            <li><strong>Histórico mensal</strong> — Comparativo de desempenho mês a mês</li>
+                        </ul>
+                        <h2>Comissões</h2>
+                        <p>Ao criar um pedido, o funcionário responsável pode ser atribuído. A comissão pode ser:</p>
+                        <ul>
+                            <li><strong>Percentual fixo</strong> — Ex: 5% sobre o valor do pedido</li>
+                            <li><strong>Valor fixo</strong> — Ex: R$50 por pedido</li>
+                            <li><strong>Por produto</strong> — Percentual diferente por categoria/produto</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ PLANOS ═══ -->
+                    <section id="planos" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge purple">💎 Planos</div>
+                            <h1>Planos e Preços</h1>
+                            <p class="section-desc">4 planos para atender desde micro empresas até organizações com
+                                filiais e marca própria. <strong>7 dias grátis</strong> para todas as novas contas.</p>
+                        </div>
+                        <div class="plans-grid">
+                            <div class="plan-card">
+                                <div class="plan-name">Essencial</div>
+                                <div class="plan-price">R$240<span>/mês</span></div>
+                                <div class="plan-period">Pós-pago</div>
+                                <ul class="plan-features">
+                                    <li>3 usuários</li>
+                                    <li>2 GB armazenamento</li>
+                                    <li>Pedidos e Clientes</li>
+                                    <li>Financeiro</li>
+                                    <li>PDV</li>
+                                    <li>Relatórios</li>
+                                    <li class="disabled">NF-e (apenas BRL)</li>
+                                    <li class="disabled">API REST</li>
+                                    <li class="disabled">Integrações</li>
+                                    <li class="disabled">White Label</li>
+                                </ul>
+                            </div>
+                            <div class="plan-card featured">
+                                <div class="plan-popular">Popular</div>
+                                <div class="plan-name">Profissional</div>
+                                <div class="plan-price">R$350<span>/mês</span></div>
+                                <div class="plan-period">Pós-pago</div>
+                                <ul class="plan-features">
+                                    <li>8 usuários</li>
+                                    <li>10 GB armazenamento</li>
+                                    <li>Pedidos e Clientes</li>
+                                    <li>Financeiro + DRE</li>
+                                    <li>PDV</li>
+                                    <li>Relatórios avançados</li>
+                                    <li>NF-e, NFS-e, NFC-e</li>
+                                    <li>API REST</li>
+                                    <li class="disabled">Integrações bancárias</li>
+                                    <li class="disabled">White Label</li>
+                                </ul>
+                            </div>
+                            <div class="plan-card">
+                                <div class="plan-name">Enterprise</div>
+                                <div class="plan-price">R$800<span>/mês</span></div>
+                                <div class="plan-period">Pós-pago</div>
+                                <ul class="plan-features">
+                                    <li>25 usuários</li>
+                                    <li>30 GB armazenamento</li>
+                                    <li>Todos os módulos</li>
+                                    <li>Financeiro + DRE</li>
+                                    <li>PDV</li>
+                                    <li>Relatórios avançados</li>
+                                    <li>NF-e, NFS-e, NFC-e</li>
+                                    <li>API REST completa</li>
+                                    <li>Integrações bancárias</li>
+                                    <li class="disabled">White Label</li>
+                                </ul>
+                            </div>
+                            <div class="plan-card">
+                                <div class="plan-name">White Label</div>
+                                <div class="plan-price">R$1.200<span>/mês</span></div>
+                                <div class="plan-period">Empresa principal · Pós-pago</div>
+                                <ul class="plan-features">
+                                    <li>Usuários ilimitados</li>
+                                    <li>50 GB + R$2,50/GB extra</li>
+                                    <li>Todos os módulos</li>
+                                    <li>Financeiro + DRE</li>
+                                    <li>PDV</li>
+                                    <li>Logo e marca própria</li>
+                                    <li>NF-e, NFS-e, NFC-e</li>
+                                    <li>API REST completa</li>
+                                    <li>Integrações bancárias</li>
+                                    <li>Filiais: +R$300/mês cada</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h2>Comparativo Completo</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Funcionalidade</th>
+                                        <th>Essencial</th>
+                                        <th class="highlight">Profissional</th>
+                                        <th>Enterprise</th>
+                                        <th>White Label</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Usuários</td>
+                                        <td>3</td>
+                                        <td class="highlight">8</td>
+                                        <td>25</td>
+                                        <td>Ilimitado</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Armazenamento</td>
+                                        <td>2 GB</td>
+                                        <td class="highlight">10 GB</td>
+                                        <td>30 GB</td>
+                                        <td>50 GB + extra</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pedidos</td>
+                                        <td><span class="check">✓</span></td>
+                                        <td class="highlight"><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clientes</td>
+                                        <td><span class="check">✓</span></td>
+                                        <td class="highlight"><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Produtos</td>
+                                        <td><span class="check">✓</span></td>
+                                        <td class="highlight"><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PDV</td>
+                                        <td><span class="check">✓</span></td>
+                                        <td class="highlight"><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Financeiro</td>
+                                        <td>Básico</td>
+                                        <td class="highlight">Completo</td>
+                                        <td>Completo + DRE</td>
+                                        <td>Completo + DRE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nota Fiscal</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight">NF-e/NFS-e/NFC-e</td>
+                                        <td>NF-e/NFS-e/NFC-e</td>
+                                        <td>NF-e/NFS-e/NFC-e</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Relatórios</td>
+                                        <td>Básico</td>
+                                        <td class="highlight">Avançado</td>
+                                        <td>Avançado</td>
+                                        <td>Avançado</td>
+                                    </tr>
+                                    <tr>
+                                        <td>API REST</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight"><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Integrações Bancárias</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight"><span class="cross">✗</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Integrações ERP</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight"><span class="cross">✗</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Comissões</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight"><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>White Label</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight"><span class="cross">✗</span></td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Filiais</td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td class="highlight"><span class="cross">✗</span></td>
+                                        <td><span class="cross">✗</span></td>
+                                        <td><span class="check">✓</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suporte</td>
+                                        <td>E-mail</td>
+                                        <td class="highlight">E-mail + Chat</td>
+                                        <td>Prioritário</td>
+                                        <td>Dedicado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert-box info"><span class="alert-icon">ℹ️</span>
+                            <p>Armazenamento além do limite do plano é cobrado a <strong>R$2,50 por GB
+                                    extra/mês</strong>.</p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ DRF ═══ -->
+                    <section id="drf" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge purple">👤 Planos</div>
+                            <h1>DRF — Finanças Pessoais</h1>
+                            <p class="section-desc">Demonstrativo de Resultados Familiar. Um plano separado para
+                                controle financeiro pessoal dos funcionários.</p>
+                        </div>
+
+                        <h2>O que é o DRF?</h2>
+                        <p>O <strong>DRF (Demonstrativo de Resultados Familiar)</strong> é inspirado no DRE empresarial,
+                            mas voltado para o <strong>controle financeiro pessoal</strong> do funcionário. Ao assinar o
+                            plano DRF, o usuário acessa exclusivamente a tela de finanças pessoais — sem acesso aos
+                            módulos empresariais.</p>
+
+                        <h3>Como Funciona</h3>
+                        <ul>
+                            <li><strong>Plano independente</strong> — O DRF é um plano separado dos planos empresariais
+                                (Essencial, Profissional, etc.)</li>
+                            <li><strong>Acesso exclusivo</strong> — Ao entrar com o plano DRF, o usuário vê apenas a
+                                tela de finanças pessoais</li>
+                            <li><strong>Sem módulos empresariais</strong> — Não tem acesso a Pedidos, Clientes,
+                                Produtos, NF-e, etc.</li>
+                            <li><strong>Conta individual</strong> — Cada pessoa cria sua própria conta DRF</li>
+                        </ul>
+
+                        <h3>Funcionalidades</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">💰</div>
+                                <h3>Receitas</h3>
+                                <p>Cadastro de salário, freelances, rendimentos e outras fontes de renda pessoal.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🧾</div>
+                                <h3>Despesas</h3>
+                                <p>Controle de gastos mensais por categoria: moradia, alimentação, transporte, lazer,
+                                    etc.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📊</div>
+                                <h3>Demonstrativo</h3>
+                                <p>Visão clara de receitas vs despesas, com saldo mensal e evolução ao longo do tempo.
+                                </p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎯</div>
+                                <h3>Metas</h3>
+                                <p>Definição de metas de economia, acompanhamento de progresso e alertas de gastos
+                                    excessivos.</p>
+                            </div>
+                        </div>
+
+                        <div class="alert-box info"><span class="alert-icon">💡</span>
+                            <p>O DRF é uma ferramenta <strong>pessoal e privada</strong> — a empresa do funcionário
+                                <strong>não tem acesso</strong> aos dados financeiros pessoais cadastrados no DRF.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ FATURAMENTO ═══ -->
+                    <section id="faturamento" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge purple">💳 Planos</div>
+                            <h1>Modelo de Faturamento</h1>
+                            <p class="section-desc">Sistema pós-pago: o cliente usa durante o mês e recebe a cobrança
+                                por e-mail ao final do período.</p>
+                        </div>
+                        <h2>Como Funciona</h2>
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Uso Mensal</h3>
+                                    <p>A empresa utiliza o sistema normalmente durante todo o mês.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Geração da Fatura</h3>
+                                    <p>No final do período, o sistema gera a fatura com o valor do plano + extras
+                                        (armazenamento adicional).</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Envio por E-mail</h3>
+                                    <p>A fatura é enviada automaticamente para o e-mail cadastrado da empresa.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Pagamento</h3>
+                                    <p>A empresa realiza o pagamento via boleto, PIX ou cartão de crédito.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>E-mails de Cobrança</h2>
+                        <p>O MoneySystem envia e-mails automáticos em momentos-chave:</p>
+                        <ul>
+                            <li><strong>Fatura gerada</strong> — E-mail com PDF da fatura e link de pagamento</li>
+                            <li><strong>3 dias antes do vencimento</strong> — Lembrete de pagamento</li>
+                            <li><strong>Dia do vencimento</strong> — Aviso de vencimento</li>
+                            <li><strong>1 dia após vencimento</strong> — Primeiro aviso de atraso</li>
+                            <li><strong>3 dias de atraso</strong> — Segundo aviso (urgente)</li>
+                            <li><strong>5 dias de atraso</strong> — Último aviso antes da suspensão</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ INADIMPLÊNCIA ═══ -->
+                    <section id="inadimplencia" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge red">⚠️ Planos</div>
+                            <h1>Política de Inadimplência</h1>
+                            <p class="section-desc">Regras de suspensão e exclusão de contas inadimplentes, com
+                                múltiplos avisos por e-mail e WhatsApp.</p>
+                        </div>
+                        <div class="alert-box danger"><span class="alert-icon">🚨</span>
+                            <p><strong>7 dias de atraso</strong> — A empresa perde o acesso ao sistema. Os dados são
+                                mantidos.</p>
+                        </div>
+                        <div class="alert-box danger"><span class="alert-icon">💀</span>
+                            <p><strong>365 dias sem pagamento</strong> — O cadastro e todo o banco de dados da empresa
+                                são <strong>excluídos permanentemente</strong>.</p>
+                        </div>
+                        <h2>Cronograma de Avisos</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Dia</th>
+                                        <th>Ação</th>
+                                        <th>Canal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>D+1</td>
+                                        <td>Aviso de atraso</td>
+                                        <td>📧 E-mail</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+3</td>
+                                        <td>Aviso urgente</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+5</td>
+                                        <td>Último aviso antes da suspensão</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+7</td>
+                                        <td><strong>Suspensão do acesso</strong></td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+30</td>
+                                        <td>Lembrete mensal</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+90</td>
+                                        <td>Aviso de exclusão em 275 dias</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+180</td>
+                                        <td>Aviso de exclusão em 185 dias</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+330</td>
+                                        <td>Aviso final: exclusão em 35 dias</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+350</td>
+                                        <td>Aviso final: exclusão em 15 dias</td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D+365</td>
+                                        <td><strong>Exclusão permanente</strong></td>
+                                        <td>📧 E-mail + 📱 WhatsApp</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- ═══ API ═══ -->
+                    <section id="api" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge cyan">🔌 API</div>
+                            <h1>API REST</h1>
+                            <p class="section-desc">API completa para integração do MoneySystem com sistemas de
+                                terceiros. Disponível a partir do plano Profissional.</p>
+                        </div>
+                        <h2>Autenticação</h2>
+                        <p>A API utiliza <strong>Bearer Token (JWT)</strong> para autenticação. Tokens são gerados via
+                            endpoint de login e possuem expiração configurável.</p>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">HTTP</span></div>
+                            <pre><code>POST /api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@empresa.com",
+  "password": "sua_senha_segura"
+}
+
+<span class="comment">// Resposta</span>
+{
+  "token": "eyJhbGciOiJIUzI1NiIs...",
+  "expires_in": 3600,
+  "type": "Bearer"
+}</code></pre>
+                        </div>
+                        <h2>Endpoints Principais</h2>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method get">GET</span><span
+                                    class="endpoint-path">/api/v1/pedidos</span><span class="endpoint-desc">Listar
+                                    pedidos</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method post">POST</span><span
+                                    class="endpoint-path">/api/v1/pedidos</span><span class="endpoint-desc">Criar novo
+                                    pedido</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method get">GET</span><span
+                                    class="endpoint-path">/api/v1/clientes</span><span class="endpoint-desc">Listar
+                                    clientes</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method post">POST</span><span
+                                    class="endpoint-path">/api/v1/clientes</span><span class="endpoint-desc">Criar novo
+                                    cliente</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method get">GET</span><span
+                                    class="endpoint-path">/api/v1/produtos</span><span class="endpoint-desc">Listar
+                                    produtos</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method get">GET</span><span
+                                    class="endpoint-path">/api/v1/financeiro/transacoes</span><span
+                                    class="endpoint-desc">Listar transações</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method get">GET</span><span
+                                    class="endpoint-path">/api/v1/relatorios/{tipo}</span><span
+                                    class="endpoint-desc">Gerar relatório</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method put">PUT</span><span
+                                    class="endpoint-path">/api/v1/pedidos/{id}</span><span
+                                    class="endpoint-desc">Atualizar pedido</span></div>
+                        </div>
+                        <div class="endpoint">
+                            <div class="endpoint-header"><span class="endpoint-method delete">DELETE</span><span
+                                    class="endpoint-path">/api/v1/pedidos/{id}</span><span class="endpoint-desc">Excluir
+                                    pedido</span></div>
+                        </div>
+                        <h2>Rate Limiting</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Plano</th>
+                                        <th>Requests/minuto</th>
+                                        <th>Requests/dia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Profissional</td>
+                                        <td>60</td>
+                                        <td>10.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enterprise</td>
+                                        <td>120</td>
+                                        <td>50.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>White Label</td>
+                                        <td>300</td>
+                                        <td>100.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- ═══ INTEGRAÇÕES ═══ -->
+                    <section id="integracoes" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge cyan">🔗 Integrações</div>
+                            <h1>Integrações Nativas</h1>
+                            <p class="section-desc">3 sistemas integrados nativamente. Basta clicar, fazer login e os
+                                sistemas se comunicam automaticamente.</p>
+                        </div>
+                        <div class="integration-grid">
+                            <div class="integration-card">
+                                <div class="integration-logo">📦</div>
+                                <h4>Tiny ERP</h4>
+                                <p>Sincronize pedidos, produtos e estoque entre MoneySystem e Tiny automaticamente.</p>
+                                <span class="integration-status planned">Planejado</span>
+                            </div>
+                            <div class="integration-card">
+                                <div class="integration-logo">📊</div>
+                                <h4>Bling</h4>
+                                <p>Integração de NF-e, produtos, pedidos e estoque com o Bling ERP.</p><span
+                                    class="integration-status planned">Planejado</span>
+                            </div>
+                            <div class="integration-card">
+                                <div class="integration-logo">📈</div>
+                                <h4>RD Station</h4>
+                                <p>Envie leads e clientes do MoneySystem para campanhas de marketing no RD Station.</p>
+                                <span class="integration-status planned">Planejado</span>
+                            </div>
+                        </div>
+                        <h2>Como Funciona</h2>
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Selecionar Sistema</h3>
+                                    <p>Na tela de integrações, o usuário escolhe qual sistema deseja conectar.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Autenticação OAuth</h3>
+                                    <p>O usuário faz login no sistema externo via OAuth2, autorizando a comunicação.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Sincronização</h3>
+                                    <p>Os dados são sincronizados automaticamente em tempo real ou por intervalos
+                                        configuráveis.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ═══ BANCOS ═══ -->
+                    <section id="bancos" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge cyan">🏦 Integrações</div>
+                            <h1>Integrações Bancárias</h1>
+                            <p class="section-desc">Integração com 4 principais bancos brasileiros para conciliação,
+                                boletos e PIX automático. <strong>Disponível na v2.1</strong> (1 mês após o lançamento).
+                            </p>
+                        </div>
+                        <div class="alert-box warning"><span class="alert-icon">📅</span>
+                            <p>As integrações bancárias <strong>não estarão disponíveis no lançamento da v2.0</strong>.
+                                Serão implementadas na <strong>v2.1</strong>, após o primeiro mês com o sistema em
+                                produção.</p>
+                        </div>
+                        <div class="integration-grid">
+                            <div class="integration-card">
+                                <div class="integration-logo">🏦</div>
+                                <h4>Banco do Brasil</h4>
+                                <p>Boletos registrados, conciliação automática, extrato via API BB.</p><span
+                                    class="integration-status planned">Planejado</span>
+                            </div>
+                            <div class="integration-card">
+                                <div class="integration-logo">🏦</div>
+                                <h4>Itaú</h4>
+                                <p>Geração de boletos Itaú, conciliação de recebimentos, Iti PIX.</p><span
+                                    class="integration-status planned">Planejado</span>
+                            </div>
+                            <div class="integration-card">
+                                <div class="integration-logo">🏦</div>
+                                <h4>Bradesco</h4>
+                                <p>Boletos Bradesco, conciliação bancária, consulta de extratos.</p><span
+                                    class="integration-status planned">Planejado</span>
+                            </div>
+                            <div class="integration-card">
+                                <div class="integration-logo">🏦</div>
+                                <h4>Inter</h4>
+                                <p>PIX automático, consulta de saldos e transações via Open Banking.</p><span
+                                    class="integration-status planned">Planejado</span>
+                            </div>
+                        </div>
+                        <h2>Funcionalidades Bancárias</h2>
+                        <ul>
+                            <li><strong>Boleto Registrado</strong> — Geração de boletos com registro automático no banco
+                            </li>
+                            <li><strong>PIX Automático</strong> — Geração de QR Code PIX para pagamentos instantâneos
+                            </li>
+                            <li><strong>Conciliação</strong> — Baixa automática de pagamentos quando confirmados pelo
+                                banco</li>
+                            <li><strong>Extrato</strong> — Consulta de extrato bancário direto no sistema</li>
+                            <li><strong>Open Banking</strong> — Acesso seguro via APIs bancárias padronizadas</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ WEBHOOKS ═══ -->
+                    <section id="webhooks" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge cyan">📡 API</div>
+                            <h1>Webhooks</h1>
+                            <p class="section-desc">Receba notificações em tempo real quando eventos ocorrem no
+                                MoneySystem.</p>
+                        </div>
+                        <h2>Eventos Disponíveis</h2>
+                        <ul>
+                            <li><code class="inline">pedido.criado</code> — Quando um novo pedido é criado</li>
+                            <li><code class="inline">pedido.faturado</code> — Quando um pedido é faturado</li>
+                            <li><code class="inline">pedido.cancelado</code> — Quando um pedido é cancelado</li>
+                            <li><code class="inline">cliente.criado</code> — Quando um novo cliente é cadastrado</li>
+                            <li><code class="inline">pagamento.confirmado</code> — Quando um pagamento é confirmado</li>
+                            <li><code class="inline">nfe.emitida</code> — Quando uma NF-e é emitida com sucesso</li>
+                            <li><code class="inline">nfe.cancelada</code> — Quando uma NF-e é cancelada</li>
+                        </ul>
+                        <h2>Formato do Payload</h2>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">JSON</span></div>
+                            <pre><code>{
+  "event": "pedido.faturado",
+  "timestamp": "2026-02-13T23:00:00-03:00",
+  "data": {
+    "id": 1847,
+    "cliente": "João Silva",
+    "valor": 2450.00,
+    "moeda": "BRL"
+  }
+}</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- ═══ IDIOMAS ═══ -->
+                    <section id="idiomas" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge blue">🌐 i18n</div>
+                            <h1>Idiomas e Moedas</h1>
+                            <p class="section-desc">Suporte a 3 idiomas e 3 moedas, com sistema de tradução via
+                                arquivos i18n (JSON) com cache no navegador.</p>
+                        </div>
+                        <h2>Idiomas</h2>
+                        <p>O MoneySystem utiliza <strong>arquivos de idioma estáticos (JSON)</strong> para tradução.
+                            Cada idioma possui um arquivo contendo todas as labels, botões e textos do sistema. O
+                            arquivo é <strong>carregado uma única vez</strong> e fica salvo no cache do navegador
+                            (localStorage + Service Worker), garantindo velocidade instantânea nas próximas visitas
+                            — inclusive <strong>offline</strong>.</p>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Idioma</th>
+                                        <th>Código</th>
+                                        <th>Arquivo</th>
+                                        <th>Padrão</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>🇧🇷 Português</td>
+                                        <td>pt-BR</td>
+                                        <td><code class="inline">lang/pt-BR.json</code></td>
+                                        <td><span class="tag green">Padrão</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>🇪🇸 Espanhol</td>
+                                        <td>es</td>
+                                        <td><code class="inline">lang/es.json</code></td>
+                                        <td>—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>🇺🇸 Inglês</td>
+                                        <td>en</td>
+                                        <td><code class="inline">lang/en.json</code></td>
+                                        <td>—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h3>Como Funciona</h3>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">JSON</span></div>
+                            <pre><code><span class="comment">// lang/en.json — Exemplo de arquivo de idioma</span>
+{
+  "menu": {
+    "orders": "Orders",
+    "customers": "Customers",
+    "products": "Products",
+    "financial": "Financial",
+    "reports": "Reports"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "new_order": "New Order"
+  },
+  "status": {
+    "pending": "Pending",
+    "in_progress": "In Progress",
+    "completed": "Completed"
+  }
+}</code></pre>
+                        </div>
+
+                        <h2>Moedas</h2>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🇧🇷</div>
+                                <h3>Real Brasileiro (R$)</h3>
+                                <p>Moeda padrão. Permite emissão de NF-e, NFS-e e NFC-e. Formatação: R$1.234,56</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🌎</div>
+                                <h3>Peso ($)</h3>
+                                <p>Para empresas latino-americanas (Argentina, México, Colômbia). Sem emissão de NF.
+                                    Formatação: $1.234,56</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🇺🇸</div>
+                                <h3>Dólar Americano ($)</h3>
+                                <p>Para empresas que operam em dólar (EUA e outros). Sem emissão de NF. Formatação:
+                                    $1,234.56</p>
+                            </div>
+                        </div>
+                        <div class="alert-box danger"><span class="alert-icon">🚨</span>
+                            <p>A moeda e o setor são <strong>imutáveis</strong> após a criação da conta. O idioma
+                                pode
+                                ser alterado a qualquer momento nas Configurações do sistema.</p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ SEGURANÇA ═══ -->
+                    <section id="seguranca" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge red">🔒 Segurança</div>
+                            <h1>Segurança</h1>
+                            <p class="section-desc">Desenvolvimento com foco máximo em segurança. Jamais poderá
+                                acontecer vazamento de dados ou invasão.</p>
+                        </div>
+                        <h2>Autenticação</h2>
+                        <ul>
+                            <li><strong>Senhas</strong> — Hashing com bcrypt (cost 12), política de senhas fortes</li>
+                            <li><strong>2FA</strong> — Autenticação de dois fatores via SMS (Número do Usuário)</li>
+                            <li><strong>JWT</strong> — Tokens com expiração curta, refresh tokens seguros</li>
+                            <li><strong>Rate Limiting de Login</strong> — Bloqueio após 5 tentativas, desbloqueio
+                                progressivo</li>
+                            <li><strong>Sessões</strong> — Armazenadas em Redis, invalidação ao trocar senha</li>
+                        </ul>
+                        <h2>Proteção de Dados</h2>
+                        <ul>
+                            <li><strong>HTTPS obrigatório</strong> — TLS 1.3 em todas as comunicações</li>
+                            <li><strong>Criptografia em repouso</strong> — AES-256 para dados sensíveis</li>
+                            <li><strong>LGPD</strong> — Conformidade com Lei Geral de Proteção de Dados</li>
+                            <li><strong>Backups</strong> — Automáticos, criptografados, armazenados em múltiplas regiões
+                            </li>
+                            <li><strong>Isolamento de dados</strong> — Multi-tenancy com isolamento rigoroso por
+                                empresa_id</li>
+                        </ul>
+                        <h2>Prevenção de Ataques</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Ameaça</th>
+                                        <th>Proteção</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SQL Injection</td>
+                                        <td>Prepared statements obrigatórios, ORM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XSS</td>
+                                        <td>Sanitização de input, Content-Security-Policy, escape de output</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSRF</td>
+                                        <td>Tokens CSRF em todos os formulários</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brute Force</td>
+                                        <td>Rate limiting, CAPTCHA, bloqueio progressivo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DDoS</td>
+                                        <td>CloudFlare WAF, rate limiting por IP</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data Leak</td>
+                                        <td>Logs de auditoria, monitoramento de acessos anômalos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Man-in-the-Middle</td>
+                                        <td>HSTS, Certificate Pinning</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h2>Auditoria</h2>
+                        <p>Todas as ações são registradas em logs de auditoria imutáveis:</p>
+                        <ul>
+                            <li>Quem fez (usuário + IP + User-Agent)</li>
+                            <li>O que fez (ação, tabela, registro)</li>
+                            <li>Quando fez (timestamp UTC)</li>
+                            <li>Valores antes e depois da alteração</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ MOBILE ═══ -->
+                    <section id="mobile" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">📱 Mobile</div>
+                            <h1>Mobile e PWA</h1>
+                            <p class="section-desc">100% responsivo, PWA instalável com modo offline, e app nativo via
+                                WebView para lojas de aplicativos.</p>
+                        </div>
+                        <h2>PWA (Progressive Web App)</h2>
+                        <ul>
+                            <li><strong>Instalável</strong> — Aparece como app na tela inicial do dispositivo</li>
+                            <li><strong>Offline</strong> — Dashboard exibe dados em cache mesmo sem internet, com banner
+                                "Você está offline"</li>
+                            <li><strong>Push Notifications</strong> — Notificações de pedidos, pagamentos e eventos</li>
+                            <li><strong>Service Workers</strong> — Cache inteligente de assets e dados da Home</li>
+                            <li><strong>Manifest.json</strong> — Configuração de ícone, cores, orientação, nome do app
+                            </li>
+                        </ul>
+                        <h2>App Nativo (WebView)</h2>
+                        <p>Apps publicados na <strong>App Store</strong> e <strong>Google Play</strong> usando WebView
+                            que carrega o site do MoneySystem:</p>
+                        <ul>
+                            <li>Wrapper nativo simples com WebView</li>
+                            <li>Push notifications nativas via Firebase</li>
+                            <li>Splash screen com logo MoneySystem (ou marca White Label)</li>
+                            <li>Ícone customizável para plano White Label</li>
+                        </ul>
+                        <h2>Responsividade</h2>
+                        <p>Toda a interface é projetada <strong>mobile-first</strong>:</p>
+                        <ul>
+                            <li>Menu lateral vira drawer com toggle</li>
+                            <li>Tabelas com scroll horizontal</li>
+                            <li>Cards empilham verticalmente</li>
+                            <li>Botões com tamanho mínimo de toque (44px)</li>
+                            <li>Formulários otimizados para teclado mobile</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ INFRAESTRUTURA ═══ -->
+                    <section id="infraestrutura" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge orange">☁️ Infra</div>
+                            <h1>Infraestrutura e Escalabilidade</h1>
+                            <p class="section-desc">Arquitetura preparada para 50.000+ usuários ativos simultâneos, com
+                                cache, CDN e monitoramento.</p>
+                        </div>
+                        <h2>Requisitos de Escala</h2>
+                        <div class="stats-row">
+                            <div class="stat-card">
+                                <div class="stat-value">50k+</div>
+                                <div class="stat-label">Usuários Ativos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">&lt;200ms</div>
+                                <div class="stat-label">Tempo de Resposta</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">99.9%</div>
+                                <div class="stat-label">Uptime SLA</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">24/7</div>
+                                <div class="stat-label">Monitoramento</div>
+                            </div>
+                        </div>
+                        <h2>Estratégia de Cache</h2>
+                        <ul>
+                            <li><strong>Redis</strong> — Cache de sessões, queries frequentes, rate limiting</li>
+                            <li><strong>CDN (CloudFlare)</strong> — Assets estáticos, imagens, CSS/JS</li>
+                            <li><strong>Opcache</strong> — Cache de bytecode PHP</li>
+                            <li><strong>Query Cache</strong> — Resultados de relatórios em cache com TTL</li>
+                        </ul>
+                        <h2>Banco de Dados</h2>
+                        <ul>
+                            <li><strong>Read Replicas</strong> — Réplicas de leitura para distribuir carga</li>
+                            <li><strong>Particionamento</strong> — Tabelas de logs e transações por data</li>
+                            <li><strong>Índices Compostos</strong> — (empresa_id, campo) em todas as tabelas</li>
+                            <li><strong>Connection Pooling</strong> — Gerenciamento eficiente de conexões</li>
+                            <li><strong>Slow Query Log</strong> — Identificação automática de queries lentas</li>
+                        </ul>
+                        <h2>Monitoramento</h2>
+                        <ul>
+                            <li>Métricas de aplicação (response time, error rate, throughput)</li>
+                            <li>Métricas de infraestrutura (CPU, RAM, disco, rede)</li>
+                            <li>Alertas automáticos via Slack/Email para anomalias</li>
+                            <li>Dashboard de health check em tempo real</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ MIGRAÇÃO ═══ -->
+                    <section id="migracao" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge orange">🔀 Infra</div>
+                            <h1>Migração de Dados</h1>
+                            <p class="section-desc">Plano detalhado para transferir dados do banco de dados antigo para
+                                o novo schema v2.</p>
+                        </div>
+                        <h2>Estratégia</h2>
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Análise do Schema Antigo</h3>
+                                    <p>Mapear todas as tabelas, relacionamentos e dados do banco atual.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Mapeamento de Campos</h3>
+                                    <p>Criar correspondência entre campos antigos (PT) e novos (EN), com transformações
+                                        necessárias.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Scripts de Migração</h3>
+                                    <p>Desenvolver scripts PHP/SQL para ETL (Extract, Transform, Load).</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Teste em Staging</h3>
+                                    <p>Executar migração em ambiente de homologação com dados reais criptografados.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h3>Validação</h3>
+                                    <p>Comparar contagens, totais e integridade referencial entre base antiga e nova.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h3>Migração Produção</h3>
+                                    <p>Executar em janela de manutenção com rollback preparado.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert-box warning"><span class="alert-icon">⚠️</span>
+                            <p>A migração será realizada em <strong>janela de manutenção programada</strong>. Os
+                                usuários serão avisados com antecedência via e-mail e banner no sistema.</p>
+                        </div>
+                    </section>
+
+                    <!-- ═══ E-MAILS ═══ -->
+                    <section id="emails" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge purple">📧 Comunicação</div>
+                            <h1>E-mails e Notificações</h1>
+                            <p class="section-desc">Sistema de comunicação multicanal: e-mail transacional, WhatsApp e
+                                notificações in-app.</p>
+                        </div>
+                        <h2>E-mails Transacionais</h2>
+                        <ul>
+                            <li><strong>Boas-vindas</strong> — Ao criar a conta, com guia de início</li>
+                            <li><strong>Fatura mensal</strong> — PDF com detalhes e link de pagamento</li>
+                            <li><strong>Lembretes</strong> — Antes/depois do vencimento</li>
+                            <li><strong>Suspensão</strong> — Aviso de perda de acesso (D+7)</li>
+                            <li><strong>Reativação</strong> — Confirmação de pagamento e reativação</li>
+                            <li><strong>Exclusão</strong> — Avisos progressivos até D+365</li>
+                            <li><strong>Segurança</strong> — Login em novo dispositivo, troca de senha</li>
+                        </ul>
+                        <h2>WhatsApp</h2>
+                        <p>Usado exclusivamente para avisos de inadimplência e exclusão de dados:</p>
+                        <ul>
+                            <li>Aviso de atraso (D+3, D+5)</li>
+                            <li>Suspensão (D+7)</li>
+                            <li>Lembretes mensais</li>
+                            <li>Avisos de exclusão (D+90, D+180, D+330, D+350)</li>
+                        </ul>
+                        <h2>Notificações In-App</h2>
+                        <ul>
+                            <li>Avisos de manutenção programada</li>
+                            <li>Novidades do sistema e atualizações</li>
+                            <li>Alertas de segurança (login suspeito)</li>
+                            <li>Lembretes de eventos do calendário</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ LANÇAMENTO ═══ -->
+                    <section id="lancamento" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">🚀 Lançamento</div>
+                            <h1>Estratégia de Lançamento</h1>
+                            <p class="section-desc">Plano de lançamento com avisos de instabilidade, banner de novidades
+                                e vídeo de apresentação.</p>
+                        </div>
+                        <h2>Pré-Lançamento</h2>
+                        <div class="alert-box warning"><span class="alert-icon">🔧</span>
+                            <p>Na semana do lançamento, será exibido um aviso no sistema: <strong>"Em [datas], poderá
+                                    haver instabilidades no sistema devido à atualização para a nova versão."</strong>
+                            </p>
+                        </div>
+                        <ul>
+                            <li>Banner informativo no topo do Dashboard</li>
+                            <li>E-mail para todos os usuários com cronograma</li>
+                            <li>Página de status do sistema atualizada em tempo real</li>
+                        </ul>
+                        <h2>Pós-Lançamento (Primeiros 7 dias)</h2>
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon blue">🖥️</div>
+                                <div class="card-title">Banner "Cara Nova"</div>
+                            </div>
+                            <div class="card-body">
+                                <p>Nos primeiros 7 dias após o lançamento, o Dashboard exibirá uma <strong>seção
+                                        especial</strong> anunciando que o sistema está de cara nova, com um
+                                    <strong>vídeo profissional</strong> apresentando as novidades e melhorias da versão
+                                    2.0.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon blue">🎉</div>
+                                <div class="card-title">Comemoração</div>
+                            </div>
+                            <div class="card-body">
+                                <p>Todos que participaram do desenvolvimento e convidados, em um lugar especial.</p>
+                            </div>
+                        </div>
+                        <h2>Estratégia GTM</h2>
+                        <ul>
+                            <li><strong>Onboarding guiado</strong> — Tutorial interativo para novos recursos</li>
+                            <li><strong>Base de conhecimento</strong> — Artigos de ajuda atualizados</li>
+                            <li><strong>Suporte reforçado</strong> — Equipe ampliada nos primeiros 30 dias</li>
+                            <li><strong>Feedback</strong> — Formulário de feedback na Home durante 15 dias</li>
+                            <li><strong>Rollback</strong> — Plano de contingência caso problemas críticos surjam</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
