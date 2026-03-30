@@ -1,0 +1,2098 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneySystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f12;
+            --bg-secondary: #18181c;
+            --bg-card: #1e1e24;
+            --bg-hover: #2a2a32;
+            --border: #2d2d35;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a8;
+            --text-muted: #6b6b73;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --success: #22c55e;
+            --success-bg: rgba(34, 197, 94, 0.15);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.15);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.15);
+            --info: #3b82f6;
+            --info-bg: rgba(59, 130, 246, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.2s;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(4px);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            border-radius: 8px;
+            transition: all 0.15s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .dropdown-item i {
+            font-size: 16px;
+            width: 20px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px 14px;
+        }
+
+        .search-box input {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 13px;
+            width: 180px;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .nav-icon:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--danger);
+            border-radius: 50%;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 12px 6px 6px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .user-menu:hover {
+            background: var(--bg-hover);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .user-info {
+            text-align: left;
+        }
+
+        .user-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .user-role {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .greeting h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .greeting p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .date-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .kpi-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .kpi-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .kpi-icon.green {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .kpi-icon.blue {
+            background: var(--info-bg);
+            color: var(--info);
+        }
+
+        .kpi-icon.orange {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .kpi-icon.red {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .kpi-change.positive {
+            color: var(--success);
+        }
+
+        .kpi-change.negative {
+            color: var(--danger);
+        }
+
+        /* Charts Row */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .chart-container {
+            height: 280px;
+        }
+
+        /* Quick Access */
+        .quick-access {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quick-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .quick-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .quick-item i {
+            font-size: 18px;
+            width: 24px;
+        }
+
+        .quick-item span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Bottom Row */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 14px 16px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: var(--bg-hover);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-badge.success {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .status-badge.warning {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .status-badge.info {
+            background: var(--info-bg);
+            color: var(--info);
+        }
+
+        /* Activity Feed */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        .activity-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .activity-text strong {
+            font-weight: 600;
+        }
+
+        .activity-time {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .kpi-card,
+        .card {
+            animation: fadeIn 0.5s ease-out backwards;
+        }
+
+        .kpi-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .kpi-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .kpi-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .kpi-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        /* Calendar */
+        .calendar-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .calendar-header span {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            gap: 2px;
+        }
+
+        .calendar-day:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .calendar-day.other-month {
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .calendar-day.today {
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 6px;
+        }
+
+        .calendar-day.has-event.event-delivery::after {
+            background: var(--success);
+        }
+
+        .calendar-day.has-event.event-payment::after {
+            background: var(--warning);
+        }
+
+        .calendar-day.has-event.event-birthday::after {
+            background: #ec4899;
+        }
+
+        .calendar-day.has-event.event-meeting::after {
+            background: var(--info);
+        }
+
+        .calendar-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .calendar-title h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 4px;
+        }
+
+        .calendar-nav button {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-nav button:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+        }
+
+        .event-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .event-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            padding: 8px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+
+        .event-date .day {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .event-info {
+            flex: 1;
+        }
+
+        .event-info .title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .event-info .desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .event-indicator {
+            width: 4px;
+            border-radius: 2px;
+        }
+
+        .event-indicator.delivery {
+            background: var(--success);
+        }
+
+        .event-indicator.payment {
+            background: var(--warning);
+        }
+
+        .event-indicator.birthday {
+            background: #ec4899;
+        }
+
+        .event-indicator.meeting {
+            background: var(--info);
+        }
+
+        .legend {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .calendar-title .card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .calendar-nav button {
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: var(--text-secondary);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calendar-nav button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            padding: 0.4rem 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .calendar-header span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 0.25rem 0.75rem 0.5rem;
+            gap: 1px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .calendar-day.other-month {
+            color: var(--text-muted);
+        }
+
+        .calendar-day.today {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            color: white !important;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+
+        .calendar-day.event-delivery::after {
+            background: var(--success);
+        }
+
+        .calendar-day.event-payment::after {
+            background: var(--warning);
+        }
+
+        .calendar-day.event-birthday::after {
+            background: #ec4899;
+        }
+
+        .calendar-day.event-meeting::after {
+            background: var(--info);
+        }
+
+        .legend {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+        }
+
+        .event-list {
+            padding: 0.25rem 0;
+            overflow-y: auto;
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            transition: background 0.2s;
+        }
+
+        .event-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-indicator {
+            width: 3px;
+            height: 28px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .event-indicator.delivery {
+            background: var(--success);
+        }
+
+        .event-indicator.payment {
+            background: var(--warning);
+        }
+
+        .event-indicator.birthday {
+            background: #ec4899;
+        }
+
+        .event-indicator.meeting {
+            background: var(--info);
+        }
+
+        .event-date {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 32px;
+            padding: 0.25rem 0.4rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+        }
+
+        .event-date .day {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .event-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .event-info .title {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.1rem;
+        }
+
+        .event-info .desc {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: calc(90vh - 140px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Large Modal */
+        .modal-lg {
+            max-width: 800px;
+        }
+
+        /* Modal Tabs */
+        .modal-tabs {
+            display: flex;
+            gap: 4px;
+            padding: 0 0 16px 0;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-tab {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-tab:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .modal-tab.active {
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Form Sections */
+        .form-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-section-title i {
+            color: var(--accent);
+        }
+
+        /* Checkboxes */
+        .form-checkboxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s;
+        }
+
+        .form-checkbox:hover {
+            color: var(--text-primary);
+        }
+
+        .form-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        /* Textarea */
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        /* Form row with flex */
+        .form-row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <div class="logo">
+                <div class="logo-icon"><i class="ri-money-dollar-circle-fill"></i></div>
+                <span></span>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-item">
+                    <a class="nav-link active"><i class="ri-home-line"></i> Home</a>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-shopping-bag-3-line"></i> Pedidos</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item" onclick="openModal()"><i class="ri-add-circle-line"></i> Novo
+                            Pedido</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-group-line"></i> Clientes</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item" onclick="openModalCliente()"><i class="ri-user-add-line"></i> Novo
+                            Cliente</a>
+                        <a class="dropdown-item"><i class="ri-upload-cloud-line"></i> Importar CSV</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-box-3-line"></i> Produtos</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item"><i class="ri-add-circle-line"></i> Novo Produto</a>                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-tools-line"></i> Serviços</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item"><i class="ri-add-circle-line"></i> Novo Serviço</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-wallet-3-line"></i> Financeiro</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item"><i class="ri-add-line"></i> Nova Receita</a>
+                        <a class="dropdown-item"><i class="ri-subtract-line"></i> Nova Despesa</a>
+                        <a class="dropdown-item"><i class="ri-file-shield-2-line"></i> Notas Fiscais</a>
+                        <a class="dropdown-item"><i class="ri-bank-line"></i> Contas Bancárias</a>
+                        <a class="dropdown-item"><i class="ri-pie-chart-line"></i> DRE</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-bar-chart-box-line"></i> Relatórios</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item"><i class="ri-user-star-line"></i> Clientes</a>
+                        <a class="dropdown-item"><i class="ri-shopping-cart-line"></i> Pedidos</a>
+                        <a class="dropdown-item"><i class="ri-money-dollar-circle-line"></i> Financeiro</a>
+                        <a class="dropdown-item"><i class="ri-team-line"></i> Comissões</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link"><i class="ri-more-2-fill"></i> Outros</a>
+                    <div class="dropdown">
+                        <a class="dropdown-item"><i class="ri-admin-line"></i> AdminPanel</a>
+                        <a class="dropdown-item"><i class="ri-pie-chart-line"></i> DRF</a>
+                        <a class="dropdown-item"><i class="ri-tv-2-line"></i> LivePanel</a>
+                        <a class="dropdown-item"><i class="ri-user-settings-line"></i> Funcionários</a>
+                        <a class="dropdown-item"><i class="ri-shield-check-line"></i> Garantias</a>
+                        <a class="dropdown-item"><i class="ri-folder-3-line"></i> Arquivos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="search-box">
+                <i class="ri-search-line" style="color: var(--text-muted)"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="nav-icon"><i class="ri-notification-3-line"></i><span class="notification-badge"></span></div>
+            <div class="nav-icon"><i class="ri-settings-4-line"></i></div>
+            <div class="user-menu">
+                <div class="user-avatar">LF</div>
+                <div class="user-info">
+                    <div class="user-name">LunarFilm</div>
+                    <div class="user-role">Ney Moraes</div>
+                </div>
+                <i class="ri-arrow-down-s-line" style="color: var(--text-muted)"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="header">
+            <div class="greeting">
+                <h1>Bom dia, Ney! 👋</h1>
+                <p>Aqui está o resumo do seu negócio</p>
+            </div>
+            <div class="header-right">
+                <div class="date-display"><i class="ri-calendar-line"></i> Terça-feira, 21 de Janeiro</div>
+                <div class="weather">☀️ 24°C</div>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Faturamento</span>
+                    <div class="kpi-icon green"><i class="ri-money-dollar-circle-line"></i></div>
+                </div>
+                <div class="kpi-value">R$125.430,50</div>
+                <div class="kpi-change positive"><i class="ri-arrow-up-line"></i> +12.5% vs mês anterior</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Pedidos</span>
+                    <div class="kpi-icon blue"><i class="ri-shopping-bag-line"></i></div>
+                </div>
+                <div class="kpi-value">84</div>
+                <div class="kpi-change positive"><i class="ri-arrow-up-line"></i> +7.2% vs mês anterior</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Clientes</span>
+                    <div class="kpi-icon orange"><i class="ri-user-heart-line"></i></div>
+                </div>
+                <div class="kpi-value">356</div>
+                <div class="kpi-change positive"><i class="ri-arrow-up-line"></i> +4.8% vs mês anterior</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-label">Pendentes</span>
+                    <div class="kpi-icon red"><i class="ri-error-warning-line"></i></div>
+                </div>
+                <div class="kpi-value">R$12.850,45</div>
+                <div class="kpi-change negative"><i class="ri-arrow-up-line"></i> +2.4% vs mês anterior</div>
+            </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="calendar-section">
+            <div class="card">
+                <div class="calendar-title">
+                    <h3 class="card-title"><i class="ri-calendar-2-line"></i> Fevereiro 2026</h3>
+                    <div class="calendar-nav">
+                        <button><i class="ri-arrow-left-s-line"></i></button>
+                        <button><i class="ri-arrow-right-s-line"></i></button>
+                    </div>
+                </div>
+                <div class="calendar-header">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day other-month">26</div>
+                    <div class="calendar-day other-month">27</div>
+                    <div class="calendar-day other-month">28</div>
+                    <div class="calendar-day other-month">29</div>
+                    <div class="calendar-day other-month">30</div>
+                    <div class="calendar-day other-month">31</div>
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <div class="calendar-day has-event event-delivery">3</div>
+                    <div class="calendar-day">4</div>
+                    <div class="calendar-day has-event event-payment">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day has-event event-birthday">10</div>
+                    <div class="calendar-day">11</div>
+                    <div class="calendar-day has-event event-delivery">12</div>
+                    <div class="calendar-day">13</div>
+                    <div class="calendar-day">14</div>
+                    <div class="calendar-day has-event event-meeting">15</div>
+                    <div class="calendar-day">16</div>
+                    <div class="calendar-day">17</div>
+                    <div class="calendar-day">18</div>
+                    <div class="calendar-day">19</div>
+                    <div class="calendar-day has-event event-payment">20</div>
+                    <div class="calendar-day today">21</div>
+                    <div class="calendar-day">22</div>
+                    <div class="calendar-day">23</div>
+                    <div class="calendar-day has-event event-birthday">24</div>
+                    <div class="calendar-day">25</div>
+                    <div class="calendar-day">26</div>
+                    <div class="calendar-day has-event event-delivery">27</div>
+                    <div class="calendar-day">28</div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: var(--success)"></div> Entrega
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: var(--warning)"></div> Pagamento
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: #ec4899"></div> Aniversário
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot" style="background: var(--info)"></div> Reunião
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Próximos Eventos</h3>
+                </div>
+                <div class="event-list">
+                    <div class="event-item">
+                        <div class="event-indicator delivery"></div>
+                        <div class="event-date"><span class="day">3</span><span class="month">Fev</span></div>
+                        <div class="event-info">
+                            <div class="title">Entrega Pedido #1852</div>
+                            <div class="desc">Cliente: João Silva - Adesivos personalizados</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-indicator payment"></div>
+                        <div class="event-date"><span class="day">5</span><span class="month">Fev</span></div>
+                        <div class="event-info">
+                            <div class="title">Vencimento Parcela 2/3</div>
+                            <div class="desc">Cliente: Maria Santos - R$890,00</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-indicator birthday"></div>
+                        <div class="event-date"><span class="day">10</span><span class="month">Fev</span></div>
+                        <div class="event-info">
+                            <div class="title">🎂 Aniversário</div>
+                            <div class="desc">Carlos Oliveira completa 45 anos</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-indicator delivery"></div>
+                        <div class="event-date"><span class="day">12</span><span class="month">Fev</span></div>
+                        <div class="event-info">
+                            <div class="title">Entrega Pedido #1855</div>
+                            <div class="desc">Cliente: Ana Costa - Banner 3x2m</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-indicator meeting"></div>
+                        <div class="event-date"><span class="day">15</span><span class="month">Fev</span></div>
+                        <div class="event-info">
+                            <div class="title">Reunião com Fornecedor</div>
+                            <div class="desc">Negociação de preços - 14:00</div>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-indicator payment"></div>
+                        <div class="event-date"><span class="day">20</span><span class="month">Fev</span></div>
+                        <div class="event-info">
+                            <div class="title">Vencimento DAS MEI</div>
+                            <div class="desc">Pagamento mensal - R$71,00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Faturamento Mensal</h3>
+                    <div class="card-actions">
+                        <button class="btn-icon"><i class="ri-fullscreen-line"></i></button>
+                        <button class="btn-icon"><i class="ri-more-2-fill"></i></button>
+                    </div>
+                </div>
+                <div class="chart-container"><canvas id="revenueChart"></canvas></div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Acesso Rápido</h3>
+                </div>
+                <div class="quick-access">
+                    <div class="quick-item" onclick="openModal()"><i class="ri-add-circle-fill"
+                            style="color: var(--accent)"></i><span>Novo Pedido</span></div>
+                    <div class="quick-item"><i class="ri-user-add-fill" style="color: var(--success)"></i><span>Novo
+                            Cliente</span></div>
+                    <div class="quick-item"><i class="ri-box-3-fill" style="color: var(--warning)"></i><span>Novo
+                            Produto</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="bottom-row">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Últimos Pedidos</h3>
+                    <button class="btn-icon"><i class="ri-more-2-fill"></i></button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Cliente</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#1847</td>
+                                <td>João Silva</td>
+                                <td>R$2.450,00</td>
+                                <td><span class="status-badge success">Faturado</span></td>
+                            </tr>
+                            <tr>
+                                <td>#1846</td>
+                                <td>Maria Santos</td>
+                                <td>R$890,00</td>
+                                <td><span class="status-badge warning">Pendente</span></td>
+                            </tr>
+                            <tr>
+                                <td>#1845</td>
+                                <td>Carlos Oliveira</td>
+                                <td>R$3.200,00</td>
+                                <td><span class="status-badge info">Em Andamento</span></td>
+                            </tr>
+                            <tr>
+                                <td>#1844</td>
+                                <td>Ana Costa</td>
+                                <td>R$1.560,00</td>
+                                <td><span class="status-badge success">Faturado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Atividade Recente</h3>
+                    <button class="btn-icon"><i class="ri-more-2-fill"></i></button>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background: var(--success-bg); color: var(--success)"><i
+                                class="ri-check-line"></i></div>
+                        <div class="activity-content">
+                            <div class="activity-text"><strong>Pedido #1847</strong> foi faturado</div>
+                            <div class="activity-time">Há 5 minutos</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background: var(--info-bg); color: var(--info)"><i
+                                class="ri-user-add-line"></i></div>
+                        <div class="activity-content">
+                            <div class="activity-text">Novo cliente <strong>Pedro Ferreira</strong> cadastrado</div>
+                            <div class="activity-time">Há 16 minutos</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background: var(--warning-bg); color: var(--warning)"><i
+                                class="ri-file-text-line"></i></div>
+                        <div class="activity-content">
+                            <div class="activity-text"><strong>NF-e 4521</strong> emitida com sucesso</div>
+                            <div class="activity-time">Há 32 minutos</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7"><i
+                                class="ri-money-dollar-circle-line"></i></div>
+                        <div class="activity-content">
+                            <div class="activity-text">Pagamento de <strong>R$1.200,00</strong> confirmado</div>
+                            <div class="activity-time">Há 1 hora</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Novo Pedido -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="ri-shopping-bag-3-line"></i> Novo Pedido</h3>
+                <button class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Cliente *</label>
+                    <input type="text" class="form-input" placeholder="Buscar cliente...">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Data do Pedido</label>
+                        <input type="date" class="form-input" value="2026-01-21">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Previsão de Entrega</label>
+                        <input type="date" class="form-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Descrição</label>
+                    <input type="text" class="form-input" placeholder="Descrição do pedido...">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Origem</label>
+                        <select class="form-input">
+                            <option>Balcão</option>
+                            <option>WhatsApp</option>
+                            <option>Telefone</option>
+                            <option>Site</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select class="form-input">
+                            <option>Aberto</option>
+                            <option>Em Andamento</option>
+                            <option>Orçamento</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary"><i class="ri-check-line"></i> Criar Pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo Cliente -->
+    <div class="modal-overlay" id="modalClienteOverlay">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="ri-user-add-line"></i> Novo Cliente</h3>
+                <button class="modal-close" onclick="closeModalCliente()"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <!-- Tabs -->
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="dados">
+                        <i class="ri-user-line"></i> Dados Pessoais
+                    </button>
+                    <button class="modal-tab" data-tab="contato">
+                        <i class="ri-phone-line"></i> Contato
+                    </button>
+                    <button class="modal-tab" data-tab="endereco">
+                        <i class="ri-map-pin-line"></i> Endereço
+                    </button>
+                    <button class="modal-tab" data-tab="fiscal">
+                        <i class="ri-file-list-3-line"></i> Fiscal
+                    </button>
+                </div>
+
+                <!-- Tab: Dados Pessoais -->
+                <div class="tab-content active" id="tab-dados">
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-user-line"></i> Identificação</div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 2">
+                                <label class="form-label">Nome Completo / Razão Social *</label>
+                                <input type="text" class="form-input" placeholder="Digite o nome do cliente...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tipo</label>
+                                <select class="form-input" id="tipoCliente">
+                                    <option value="pf">Pessoa Física</option>
+                                    <option value="pj">Pessoa Jurídica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" id="labelDocumento">CPF</label>
+                                <input type="text" class="form-input" id="inputDocumento" placeholder="000.000.000-00">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">RG / IE</label>
+                                <input type="text" class="form-input" placeholder="Documento secundário">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Data de Nascimento</label>
+                                <input type="date" class="form-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-settings-3-line"></i> Configurações</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Status</label>
+                                <select class="form-input">
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ID Personalizado</label>
+                                <input type="text" class="form-input" placeholder="Código interno">
+                            </div>
+                        </div>
+                        <div class="form-checkboxes">
+                            <label class="form-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Fornecedor
+                            </label>
+                            <label class="form-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Dealer/Revendedor
+                            </label>
+                            <label class="form-checkbox">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                Loja Oficial
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Contato -->
+                <div class="tab-content" id="tab-contato">
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-phone-line"></i> Telefones</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Telefone Principal</label>
+                                <input type="tel" class="form-input" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-mail-line"></i> Email e Web</div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 2">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" placeholder="cliente@email.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Observações</label>
+                            <textarea class="form-input form-textarea" rows="3"
+                                placeholder="Anotações sobre o cliente..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Endereço -->
+                <div class="tab-content" id="tab-endereco">
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-map-pin-line"></i> Endereço Principal</div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1">
+                                <label class="form-label">CEP</label>
+                                <input type="text" class="form-input" placeholder="00000-000">
+                            </div>
+                            <div class="form-group" style="flex: 3">
+                                <label class="form-label">Logradouro</label>
+                                <input type="text" class="form-input" placeholder="Rua, Avenida...">
+                            </div>
+                            <div class="form-group" style="flex: 0.5">
+                                <label class="form-label">Nº</label>
+                                <input type="text" class="form-input" placeholder="123">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Complemento</label>
+                                <input type="text" class="form-input" placeholder="Apto, Sala, Bloco...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Bairro</label>
+                                <input type="text" class="form-input" placeholder="Nome do bairro">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 2">
+                                <label class="form-label">Cidade</label>
+                                <input type="text" class="form-input" placeholder="Cidade">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">UF</label>
+                                <select class="form-input">
+                                    <option value="">Selecione</option>
+                                    <option>AC</option>
+                                    <option>AL</option>
+                                    <option>AP</option>
+                                    <option>AM</option>
+                                    <option>BA</option>
+                                    <option>CE</option>
+                                    <option>DF</option>
+                                    <option>ES</option>
+                                    <option>GO</option>
+                                    <option>MA</option>
+                                    <option>MT</option>
+                                    <option>MS</option>
+                                    <option>MG</option>
+                                    <option>PA</option>
+                                    <option>PB</option>
+                                    <option>PR</option>
+                                    <option>PE</option>
+                                    <option>PI</option>
+                                    <option>RJ</option>
+                                    <option>RN</option>
+                                    <option>RS</option>
+                                    <option>RO</option>
+                                    <option>RR</option>
+                                    <option>SC</option>
+                                    <option>SP</option>
+                                    <option>SE</option>
+                                    <option>TO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Fiscal -->
+                <div class="tab-content" id="tab-fiscal">
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-government-line"></i> Dados Fiscais</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Inscrição Estadual</label>
+                                <input type="text" class="form-input" placeholder="IE">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Inscrição Municipal</label>
+                                <input type="text" class="form-input" placeholder="IM">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Contribuinte ICMS</label>
+                                <select class="form-input">
+                                    <option value="1">Contribuinte</option>
+                                    <option value="2">Isento</option>
+                                    <option value="9">Não Contribuinte</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">SUFRAMA</label>
+                                <input type="text" class="form-input" placeholder="Código SUFRAMA">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-section-title"><i class="ri-bank-card-line"></i> Dados Bancários</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Banco</label>
+                                <input type="text" class="form-input" placeholder="Nome do banco">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Agência</label>
+                                <input type="text" class="form-input" placeholder="0000">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Conta</label>
+                                <input type="text" class="form-input" placeholder="00000-0">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Chave PIX</label>
+                            <input type="text" class="form-input" placeholder="CPF, CNPJ, Email, Telefone ou Aleatória">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModalCliente()">Cancelar</button>
+                <button class="btn btn-primary"><i class="ri-check-line"></i> Cadastrar Cliente</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Revenue Chart
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 280);
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Faturamento',
+                    data: [65000, 78000, 82000, 75000, 95000, 110000, 98000, 115000, 108000, 125000, 135000, 125430],
+                    borderColor: '#6366f1',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#6366f1',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 0,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#6b6b73' } },
+                    y: { grid: { color: '#2d2d35' }, ticks: { color: '#6b6b73', callback: v => 'R$' + (v / 1000) + 'k' } }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+
+        // Modal Functions - Pedido
+        function openModal() { document.getElementById('modalOverlay').classList.add('active'); }
+        function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+        // Removed: click outside to close (to prevent data loss)
+
+        // Modal Functions - Cliente
+        function openModalCliente() { document.getElementById('modalClienteOverlay').classList.add('active'); }
+        function closeModalCliente() { document.getElementById('modalClienteOverlay').classList.remove('active'); }
+
+        // Tab switching
+        document.querySelectorAll('.modal-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.dataset.tab;
+
+                // Remove active from all tabs and contents
+                document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                // Add active to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById('tab-' + tabId).classList.add('active');
+            });
+        });
+
+        // Toggle CPF/CNPJ based on client type
+        document.getElementById('tipoCliente')?.addEventListener('change', function () {
+            const label = document.getElementById('labelDocumento');
+            const input = document.getElementById('inputDocumento');
+            if (this.value === 'pj') {
+                label.textContent = 'CNPJ';
+                input.placeholder = '00.000.000/0000-00';
+            } else {
+                label.textContent = 'CPF';
+                input.placeholder = '000.000.000-00';
+            }
+        });
+    </script>
+</body>
+
+</html>
