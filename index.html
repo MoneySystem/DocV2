@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneySystem — Documentação de Desenvolvimento</title>
-    <meta name="description" content="Documentação completa do MoneySystem ERP/CRM brasileiro.">
+    <meta name="description" content="Documentação completa do MoneySystem ERP/CRM.">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -16,7 +16,6 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
-                    <div class="logo-icon">M$</div>
                     <div class="logo-text">
                         <h1>MoneySystem</h1>
                         <span>Documentação v2.0</span>
@@ -99,6 +98,8 @@
                                 class="nav-label">Inadimplência</span></div>
                         <div class="nav-item" data-section="drf"><span class="nav-icon">👤</span><span
                                 class="nav-label">DRF Pessoal</span></div>
+                        <a href="afiliados.html" class="nav-item nav-item-external"><span
+                                class="nav-icon">🤝</span><span class="nav-label">Programa de Afiliados</span></a>
                     </div>
                 </div>
                 <!-- API -->
@@ -155,6 +156,8 @@
                     <div class="nav-items">
                         <div class="nav-item" data-section="emails"><span class="nav-icon">📧</span><span
                                 class="nav-label">E-mails e Notificações</span></div>
+                        <div class="nav-item" data-section="atendimento"><span class="nav-icon">💬</span><span
+                                class="nav-label">Atendimento</span></div>
                     </div>
                 </div>
                 <!-- LANÇAMENTO -->
@@ -205,14 +208,14 @@
                         <div class="section-hero">
                             <div class="section-badge blue">📖 Início</div>
                             <h1>Visão Geral do MoneySystem</h1>
-                            <p class="section-desc">Sistema ERP/CRM brasileiro completo, projetado para pequenas e
+                            <p class="section-desc">Sistema ERP/CRM completo, projetado para pequenas e
                                 médias empresas. Multi-idioma (PT/ES/EN), multi-moeda (BRL/Peso/USD), com foco em
                                 segurança,
                                 escalabilidade e experiência mobile.</p>
                         </div>
 
                         <p>O <strong>MoneySystem</strong> é um sistema ERP/CRM completo desenvolvido em PHP, voltado
-                            para empresas brasileiras e latino-americanas. Ele unifica gestão de pedidos, clientes,
+                            para empresas. Ele unifica gestão de pedidos, clientes,
                             produtos, financeiro, emissão de notas fiscais e relatórios em uma única plataforma segura e
                             escalável.</p>
 
@@ -255,7 +258,7 @@
                             setor da empresa:</p>
                         <div class="sector-list">
                             <div class="sector-item"><span class="sector-icon">🖨️</span> Gráfica</div>
-                            <div class="sector-item"><span class="sector-icon">🚗</span> Película Automotiva</div>
+                            <div class="sector-item"><span class="sector-icon">🚗</span> Automotivo</div>
                             <div class="sector-item"><span class="sector-icon">🔧</span> Mecânica</div>
                             <div class="sector-item"><span class="sector-icon">📋</span> Outro</div>
                         </div>
@@ -264,6 +267,376 @@
                             <span class="alert-icon">⚠️</span>
                             <p>O setor selecionado na criação da conta <strong>não poderá ser alterado</strong>
                                 posteriormente. Essa escolha determina personalizações no sistema.</p>
+                        </div>
+
+                        <div class="sector-planning-block" data-sector-planner>
+                            <div class="sector-planning-tabs" role="tablist" aria-label="Planejamento por setor">
+                                <button type="button" id="tab-plan-grafica" class="sector-plan-tab sector-plan-tab--grafica"
+                                    role="tab" aria-selected="false" aria-controls="sector-plan-grafica"
+                                    data-plan="grafica">🖨️ Gráfica</button>
+                                <button type="button" id="tab-plan-automotivo"
+                                    class="sector-plan-tab sector-plan-tab--automotivo active" role="tab"
+                                    aria-selected="true" aria-controls="sector-plan-automotivo" data-plan="automotivo">🚗
+                                    Automotivo</button>
+                            </div>
+                            <div class="sector-plan-panels">
+                                <div id="sector-plan-grafica" class="sector-plan-panel" data-plan-panel="grafica"
+                                    role="tabpanel" aria-labelledby="tab-plan-grafica">
+                                    <p class="automotivo-doc-lead">Visão de <strong>produto</strong> para o perfil
+                                        <strong>Gráfica</strong> no cadastro da empresa: impressão rápida, digital,
+                                        grande formato, brindes e comunicação visual. <strong>Vale quando o setor é
+                                            Gráfica</strong> — o sistema deve priorizar especificação técnica do job,
+                                        provas, arquivos, produção e rastreio de prazo, sem tratar pedido como «caixa
+                                        genérica».</p>
+
+                                    <h3 class="automotivo-doc-h">1. Como o perfil Gráfica se reflete no produto</h3>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Onde</th>
+                                                    <th>Comportamento esperado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Cadastro da empresa</td>
+                                                    <td>Setor <strong>Gráfica</strong> escolhido na criação da conta
+                                                        (inalterável depois)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Orçamento e pedido</td>
+                                                    <td>Campos e fluxos voltados a <strong>especificação do trabalho</strong>
+                                                        (medidas, material, cores, acabamento, tiragem), não só nome e
+                                                        preço</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Produção</td>
+                                                    <td>Status e responsáveis alinhados à realidade da gráfica (arte,
+                                                        impressão, acabamento, conferência)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3 class="automotivo-doc-h">2. Escopo funcional de referência</h3>
+                                    <h4 class="automotivo-doc-h4">2.1 Ficha técnica por item (orçamento / pedido)</h4>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Dimensão</th>
+                                                    <th>Exemplos de uso</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Formato fechado e aberto</strong></td>
+                                                    <td>Cartão, folder, livreto — largura × altura em mm ou cm</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Substrato / material</strong></td>
+                                                    <td>Papel offset, couché, kraft, vinil, lona, PS, etc.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Gramatura ou espessura</strong></td>
+                                                    <td>Quando aplicável ao material escolhido</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Cores e perfil</strong></td>
+                                                    <td>CMYK, Pantone, branco especial, verniz localizado</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Acabamento</strong></td>
+                                                    <td>Verniz UV, laminação fosca/brilho, corte especial, vinco,
+                                                        wire-o, espiral</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Tiragem e excedentes</strong></td>
+                                                    <td>Quantidade contratada; política de sobra (tolerância)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h4 class="automotivo-doc-h4">2.2 Arquivos, provas e aprovação</h4>
+                                    <ul>
+                                        <li>Anexos por <strong>item</strong> ou por <strong>pedido</strong>, com tamanho
+                                            adequado ao fluxo real (PDF, pacote compactado quando necessário)</li>
+                                        <li>Estados legíveis: aguardando arte, em análise técnica, prova enviada,
+                                            <strong>aprovada</strong> (com data e responsável)</li>
+                                        <li>Checklist opcional para o cliente interno: sangria, conversão de fonte,
+                                            perfil de cor, marcas de corte</li>
+                                    </ul>
+
+                                    <h4 class="automotivo-doc-h4">2.3 Impressão do orçamento (layout Gráfica)</h4>
+                                    <ul>
+                                        <li>PDF ou impresso com <strong>colunas técnicas</strong> (medidas, papel,
+                                            cores, acabamento, tiragem)</li>
+                                        <li>Resumo de prazo combinado ou data prevista de entrega quando já negociada
+                                        </li>
+                                        <li>Referência a anexos ou código interno do job para a produção achar o pacote
+                                            certo</li>
+                                    </ul>
+
+                                    <h4 class="automotivo-doc-h4">2.4 Fluxo de produção (visão leve)</h4>
+                                    <p>Status que conversem com a operação — exemplos: <strong>pré-impressão</strong>,
+                                        <strong>impressão</strong>, <strong>acabamento</strong>, <strong>conferência</strong>,
+                                        <strong>pronto para retirada / envio</strong>. Deve ser possível filtrar a fila
+                                        por etapa e por prazo.</p>
+
+                                    <h4 class="automotivo-doc-h4">2.5 Estoque e consumo (visão gráfica)</h4>
+                                    <ul>
+                                        <li>Papéis, bobinas, chapas, tintas e insumos tratados com <strong>unidade
+                                                coerente</strong> (folha, m², kg, rolo)</li>
+                                        <li>Onde fizer sentido, <strong>baixa estimada</strong> ao reservar material para
+                                            o job ou ao fechar o pedido — alinhado à política da empresa na v2</li>
+                                    </ul>
+
+                                    <h3 class="automotivo-doc-h">3. Visão de mercado e oportunidade</h3>
+                                    <h4 class="automotivo-doc-h4">3.1 Dores comuns</h4>
+                                    <ul>
+                                        <li>Pedido sem especificação → retrabalho e briga de «não estava no orçamento»
+                                        </li>
+                                        <li>Prova informal (WhatsApp) sem registro → disputa de cor e formato</li>
+                                        <li>Prazo prometido sem encaixe na <strong>capacidade</strong> da máquina ou
+                                            do acabamento</li>
+                                        <li>Desperdício de chapa / metro por falta de visão de <strong>otimização</strong>
+                                            (fase avançada)</li>
+                                    </ul>
+                                    <h4 class="automotivo-doc-h4">3.2 Proposta de diferenciação</h4>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Conceito</th>
+                                                    <th>Em uma frase</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Job padronizado + variáveis</strong></td>
+                                                    <td>Templates por tipo de produto (cartão, banner, adesivo) com
+                                                        campos obrigatórios</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Repetir pedido</strong></td>
+                                                    <td>Clonar job anterior com um clique, ajustando só tiragem ou data
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Portal ou link de aprovação</strong></td>
+                                                    <td>Cliente aprova prova com carimbo de data (fase 2, se priorizado)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Calculadora de área</strong></td>
+                                                    <td>m² ou linear automático a partir das medidas do item</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3 class="automotivo-doc-h">4. Lacunas típicas a endereçar no desenho da v2</h3>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Tema</th>
+                                                    <th>Observação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Imposição / nesting</td>
+                                                    <td>Integração profunda costuma ficar para ferramentas RIP ou ERPs
+                                                        especializados; definir até onde o MoneySystem calcula vs só
+                                                        registra</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Plotter / mesa de corte</td>
+                                                    <td>Exportação de lista de cortes ou integração futura com drivers
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Contratos e provas legais</td>
+                                                    <td>Termo de aprovação de arte vinculado ao pedido</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div id="sector-plan-automotivo" class="sector-plan-panel active"
+                                    data-plan-panel="automotivo" role="tabpanel" aria-labelledby="tab-plan-automotivo">
+                                    <p class="automotivo-doc-lead">Visão de <strong>produto</strong> para o perfil
+                                        <strong>Automotivo</strong> no cadastro da empresa: escopo funcional desejado, o que pode
+                                        ser transversal a outros setores e a oportunidade de mercado (insumos, receita de
+                                        serviço, «cliente = carro»). <strong>Vale quando o setor da empresa é Automotivo</strong>
+                                        — esse perfil deve acionar telas e fluxos específicos (veículo, película/PPF, impressão e
+                                        checklist, entre outros).</p>
+
+                                    <h3 class="automotivo-doc-h">1. Escopo funcional de referência (perfil Automotivo)</h3>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Campo</th>
+                                                    <th>Observação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Marca / modelo / ano</strong></td>
+                                                    <td>Texto livre (ex.: Hyundai Creta 2025)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Placa</strong></td>
+                                                    <td>Deve ser fácil de buscar e reutilizar no histórico</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Chassi</strong></td>
+                                                    <td>Disponível na abertura do pedido e editável depois, sem lacunas
+                                                        entre orçamento e OS</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h4 class="automotivo-doc-h4">1.1 Película e PPF — área de aplicação por item</h4>
+                                    <p>No <strong>orçamento</strong> com perfil Automotivo, ao incluir produto, deve existir
+                                        <strong>área de aplicação</strong> por linha:</p>
+                                    <ul>
+                                        <li><strong>Película:</strong> lateral traseira, para-brisa, teto solar, completo</li>
+                                        <li><strong>PPF:</strong> capô, para-choque dianteiro, retrovisores, colunas, maçanetas,
+                                            soleiras, lateral</li>
+                                    </ul>
+                                    <p>A lista de itens deve destacar a <strong>área</strong> (por exemplo com indicadores
+                                        visuais distintos para PPF e película). A <strong>impressão / PDF do orçamento</strong>
+                                        no layout automotivo deve reutilizar essas áreas (lista ou diagrama, conforme
+                                        configuração).</p>
+
+                                    <h4 class="automotivo-doc-h4">1.2 Impressão do orçamento (layout automotivo)</h4>
+                                    <ul>
+                                        <li>Layout próprio para orçamentos automotivos</li>
+                                        <li>Destaque para placa, modelo e chassi quando preenchidos</li>
+                                        <li>Respeitar as áreas de aplicação definidas nos itens</li>
+                                        <li>Na tela de visualização do orçamento, atalho claro para essa impressão quando o
+                                            contexto for Automotivo</li>
+                                    </ul>
+
+                                    <h4 class="automotivo-doc-h4">1.3 Checklist de fotos (aba Anexos)</h4>
+                                    <p>Na <strong>edição do pedido</strong>, anexos exibem alerta com checklist: externas, internas,
+                                        detalhes (riscos, vidros), documentação (placa, chassi, KM, chaves). Objetivo: proteção
+                                        da loja e do cliente — alinhado a película/PPF.</p>
+
+                                    <h4 class="automotivo-doc-h4">1.4 Busca e histórico por placa</h4>
+                                    <ul>
+                                        <li><strong>Listagem de pedidos:</strong> a busca deve considerar placa, chassi e
+                                            marca/modelo</li>
+                                        <li><strong>Autocomplete por placa:</strong> ao digitar a placa, sugerir pedidos recentes
+                                            com rótulo claro (ex.: número do pedido, cliente e placa) e permitir preencher cliente
+                                            e dados do veículo quando fizer sentido no fluxo</li>
+                                    </ul>
+                                    <p>A <strong>placa</strong> como chave de busca liga histórico de pedidos ao titular
+                                        cadastrado (ideia «cliente = carro» em parte).</p>
+
+                                    <h3 class="automotivo-doc-h">2. Visão de mercado e oportunidade</h3>
+                                    <h4 class="automotivo-doc-h4">2.1 Dor do nicho</h4>
+                                    <ul>
+                                        <li>Estoque fino para <strong>peças inteiras</strong> (lâmpada, som)</li>
+                                        <li><strong>Insumos líquidos</strong> (shampoo, cera, galões): «estoque invisível» —
+                                            consumo por serviço não medido</li>
+                                    </ul>
+                                    <h4 class="automotivo-doc-h4">2.2 Proposta de diferenciação</h4>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Conceito</th>
+                                                    <th>Em uma frase</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Composição de serviço</strong> (receita / ficha técnica)</td>
+                                                    <td>Serviço vendido puxa consumo estimado de insumos (ml, g, aplicações)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Unidade fracionada</strong></td>
+                                                    <td>Cadastro e estoque em ml / L / g, não só unidade</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Baixa no pedido</strong></td>
+                                                    <td>Ao lançar o serviço, baixa insumos em segundo plano</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Relatórios</strong></td>
+                                                    <td>Quanto rende o galão; lavagens estimadas restantes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>UX «cliente = carro»</strong></td>
+                                                    <td>Busca por placa; evolução possível para entidade Veículo</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3 class="automotivo-doc-h">3. Lacunas</h3>
+                                    <div class="table-wrapper">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Desejado</th>
+                                                    <th>Observação</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>«Receita» do serviço: serviço → insumos → quantidade consumida</td>
+                                                    <td>Precisa de modelo de dados e telas; hoje, em referências de mercado,
+                                                        costuma não existir como entidade de primeira classe</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Baixa automática de estoque de produto ao vender serviço</td>
+                                                    <td>Serviço no pedido não «explode» sozinho em consumo de insumos sem regra de
+                                                        produto definida</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Estoque em ml / L / g como caso de uso principal</td>
+                                                    <td>Exige unidade e precisão no cadastro de produtos, regras de arredondamento
+                                                        e UX claras</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Veículo como entidade separada do cliente</td>
+                                                    <td>Referência comum: dados só no pedido; histórico por placa sem «ficha do
+                                                        carro» única</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Frota no cadastro do cliente (vários carros)</td>
+                                                    <td>Hoje, em muitos sistemas, o veículo é digitado de novo a cada pedido</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3 class="automotivo-doc-h">4. Assinaturas de lavagem e frota por cliente</h3>
+                                    <p>Ideias complementares à «receita de insumos»; tratá-las como <strong>evolução de produto
+                                            própria</strong> (cadastro, consumo de créditos, financeiro).</p>
+                                    <p><strong>Assinatura mensal por carro ou cliente:</strong> mensalidade com direito a X
+                                        lavagens ou serviços no período; envolve plano de assinatura do <em>cliente final</em>,
+                                        vínculo com cliente e opcionalmente veículo, contagem de usos, regras na abertura do pedido
+                                        (crédito x avulso), renovação e relatórios. <em>Nota:</em> em impressos automotivos,
+                                        «assinatura» pode aparecer só como <strong>linha para assinatura física</strong>
+                                        (cliente/técnico) — não confundir com plano recorrente no sistema.</p>
+                                    <p><strong>Vários veículos no cadastro:</strong> no cliente, lista de veículos (apelido,
+                                        modelo, placa, cor, observações); no pedido, escolher qual veículo preenche placa e modelo e
+                                        mantém rastreio.</p>
+                                    <p>Na modelagem, prever entidades do tipo cadastro de veículos do cliente, assinaturas e uso
+                                        por período, conforme prioridade de negócio.</p>
+
+                                </div>
+                            </div>
                         </div>
 
                         <h2>Stack Tecnológico</h2>
@@ -557,7 +930,7 @@
     address_country VARCHAR(3)      DEFAULT 'BRA',
 
     <span class="comment">-- Configurações do sistema</span>
-    sector          VARCHAR(50)     NOT NULL,              <span class="comment">-- grafica|pelicula|mecanica|outro</span>
+    sector          VARCHAR(50)     NOT NULL,              <span class="comment">-- grafica|automotivo|mecanica|outro</span>
     currency        CHAR(3)         NOT NULL DEFAULT 'BRL',<span class="comment">-- BRL | ARS | USD</span>
     language        VARCHAR(5)      NOT NULL DEFAULT 'pt-BR',
     timezone        VARCHAR(50)     NOT NULL DEFAULT 'America/Sao_Paulo',
@@ -632,14 +1005,14 @@
                             <div class="timeline-step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h3>Fase 2 — Módulos Core (Mês 2-3)</h3>
+                                    <h3>Fase 2 — Módulos Core (Mês 2)</h3>
                                     <p>Pedidos, Clientes, Produtos, Serviços, Dashboard, Calendário de eventos.</p>
                                 </div>
                             </div>
                             <div class="timeline-step">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
-                                    <h3>Fase 3 — Financeiro e NF (Mês 4-5)</h3>
+                                    <h3>Fase 3 — Financeiro e NF (Mês 3)</h3>
                                     <p>Módulo financeiro, DRE, contas a pagar/receber, emissão de NF-e/NFS-e/NFC-e
                                         direto com SEFAZ. (Contratar um dev nessa fase especialista em SEFAZ)</p>
                                 </div>
@@ -647,14 +1020,14 @@
                             <div class="timeline-step">
                                 <div class="step-number">4</div>
                                 <div class="step-content">
-                                    <h3>Fase 4 — Integrações e API (Mês 6-7)</h3>
-                                    <p>API REST pública, integrações com ERPs (Tiny, Bling), RD Station, webhooks.</p>
+                                    <h3>Fase 4 — Integrações e API (Mês 4)</h3>
+                                    <p>API REST pública, integrações com ERPs (Tiny, Bling), Asaas, RD Station, webhooks.</p>
                                 </div>
                             </div>
                             <div class="timeline-step">
                                 <div class="step-number">5</div>
                                 <div class="step-content">
-                                    <h3>Fase 5 — White Label e Planos (Mês 8)</h3>
+                                    <h3>Fase 5 — White Label e Planos (Mês 5)</h3>
                                     <p>Sistema de planos pós-pago, cobrança automática, White Label, armazenamento por
                                         plano.</p>
                                 </div>
@@ -662,7 +1035,7 @@
                             <div class="timeline-step">
                                 <div class="step-number">6</div>
                                 <div class="step-content">
-                                    <h3>Fase 6 — Migração e Testes (Mês 9)</h3>
+                                    <h3>Fase 6 — Migração e Testes (Mês 6)</h3>
                                     <p>Migração do banco antigo, testes de carga 50k+ usuários, testes de segurança,
                                         pentest.</p>
                                 </div>
@@ -670,7 +1043,7 @@
                             <div class="timeline-step">
                                 <div class="step-number">7</div>
                                 <div class="step-content">
-                                    <h3>Fase 7 — Beta Fechado (Mês 10)</h3>
+                                    <h3>Fase 7 — Beta Fechado (Mês 7)</h3>
                                     <p>Deploy em <code class="inline">beta.moneysystem.com.br</code> para empresas
                                         selecionadas testarem o sistema. Coleta de feedback, correção de bugs e
                                         validação em ambiente real durante 1 mês.</p>
@@ -679,7 +1052,7 @@
                             <div class="timeline-step">
                                 <div class="step-number">8</div>
                                 <div class="step-content">
-                                    <h3>Fase 8 — Lançamento v2.0 (Mês 11)</h3>
+                                    <h3>Fase 8 — Lançamento v2.0 (Mês 8)</h3>
                                     <p>Deploy oficial para todos os usuários, aviso de instabilidades, banner "cara
                                         nova" nos primeiros 7 dias, vídeo de apresentação e correção de bugs.</p>
                                 </div>
@@ -687,8 +1060,8 @@
                             <div class="timeline-step">
                                 <div class="step-number">9</div>
                                 <div class="step-content">
-                                    <h3>Fase 9 — v2.1 Pós-Lançamento (Mês 12+)</h3>
-                                    <p>Integrações bancárias (BB, Itaú, Bradesco, Inter), PWA com Service Workers, modo
+                                    <h3>Fase 9 — v2.1 Pós-Lançamento (Mês 9+)</h3>
+                                    <p>Integrações bancárias (BB, Itaú, Bradesco, Inter), Integração com SEFAZ, PWA com Service Workers, modo
                                         offline, app via WebView para App Store e Google Play.</p>
                                 </div>
                             </div>
@@ -781,7 +1154,7 @@
                                 alterar</strong>.</p>
                         <div class="sector-list">
                             <div class="sector-item"><span class="sector-icon">🖨️</span> Gráfica</div>
-                            <div class="sector-item"><span class="sector-icon">🚗</span> Película Automotiva</div>
+                            <div class="sector-item"><span class="sector-icon">🚗</span> Automotivo</div>
                             <div class="sector-item"><span class="sector-icon">🔧</span> Mecânica</div>
                             <div class="sector-item"><span class="sector-icon">📋</span> Outro</div>
                         </div>
@@ -839,13 +1212,14 @@
                         </div>
 
                         <h2>Referência Visual</h2>
-                        <div class="screenshot-wrapper">
-                            <img src="assets/images/dashboard.png" alt="Dashboard MoneySystem">
-                        </div>
-                        <p class="screenshot-caption">Dashboard do MoneySystem — design dark mode com cards informativos
-                        </p>
+                        <a href="dashboard.html" class="screenshot-preview-link" target="_blank" rel="noopener noreferrer">
+                            <div class="screenshot-wrapper">
+                                <img src="assets/images/dashboard.png" alt="Dashboard MoneySystem">
+                            </div>
+                            <p class="screenshot-caption">Dashboard do MoneySystem — clique aqui para Live Preview</p>
+                        </a>
 
-                        <h2>Componentes do Dashboard</h2>
+                        <h2>Componentes do Dashboard (Conforme Permissões)</h2>
                         <div class="feature-grid">
                             <div class="feature-card">
                                 <div class="feature-icon">💵</div>
@@ -874,7 +1248,7 @@
                             <div class="feature-card">
                                 <div class="feature-icon">⚡</div>
                                 <h3>Acesso Rápido</h3>
-                                <p>Botões de atalho: Novo Pedido, Novo Cliente, Novo Produto.</p>
+                                <p>Botões de atalho: Novo Pedido, Novo Cliente, Novo Produto. Também poder logar em várias contas e fazer troca rápida.</p>
                             </div>
                             <div class="feature-card">
                                 <div class="feature-icon">🕐</div>
@@ -1091,8 +1465,10 @@
                         <div class="section-hero">
                             <div class="section-badge green">📄 Módulo</div>
                             <h1>Nota Fiscal</h1>
-                            <p class="section-desc">Emissão direta de NF-e, NFS-e e NFC-e sem intermediário, comunicando
-                                diretamente com a SEFAZ.</p>
+                            <p class="section-desc">Objetivo: emissão direta de NF-e, NFS-e e NFC-e com a SEFAZ, sem
+                                intermediário.</p>
+                            <p class="section-desc">Na fase inicial poderá ser utilizado um intermediário; após o
+                                lançamento, a plataforma evoluirá para emissão direta.</p>
                         </div>
                         <div class="alert-box warning"><span class="alert-icon">⚠️</span>
                             <p>A emissão de Nota Fiscal está disponível <strong>apenas para contas em Real Brasileiro
@@ -1206,22 +1582,22 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Essencial (R$240)</td>
+                                        <td>Essencial</td>
                                         <td>3</td>
                                         <td>2 GB</td>
                                     </tr>
                                     <tr>
-                                        <td>Profissional (R$350)</td>
+                                        <td>Profissional</td>
                                         <td>8</td>
                                         <td>10 GB</td>
                                     </tr>
                                     <tr>
-                                        <td>Enterprise (R$800)</td>
+                                        <td>Enterprise</td>
                                         <td>25</td>
                                         <td>30 GB</td>
                                     </tr>
                                     <tr>
-                                        <td>White Label (R$1.200)</td>
+                                        <td>White Label</td>
                                         <td>Ilimitado</td>
                                         <td>50 GB + extra</td>
                                     </tr>
@@ -1274,12 +1650,19 @@
                             <div class="section-badge purple">💎 Planos</div>
                             <h1>Planos e Preços</h1>
                             <p class="section-desc">4 planos para atender desde micro empresas até organizações com
-                                filiais e marca própria. <strong>7 dias grátis</strong> para todas as novas contas.</p>
+                                filiais e marca própria. <strong>7 dias grátis</strong> para todas as novas contas.
+                                Preços de referência em <strong>BRL</strong> (base de cobrança no Brasil),
+                                <strong>USD</strong> e <strong>ARS</strong> (peso argentino), aproximados por taxa de
+                                câmbio — o valor faturado segue a moeda da conta no sistema.</p>
                         </div>
                         <div class="plans-grid">
                             <div class="plan-card">
                                 <div class="plan-name">Essencial</div>
-                                <div class="plan-price">R$240<span>/mês</span></div>
+                                <div class="plan-price-stack">
+                                    <div class="plan-price plan-price-primary">R$&nbsp;240<span>/mês</span></div>
+                                    <div class="plan-price-alt" title="Referência ~5,5 BRL/USD">US$&nbsp;45<span>/mês</span></div>
+                                    <div class="plan-price-alt" title="Referência ~200 ARS/BRL">ARS&nbsp;48.000<span>/mês</span></div>
+                                </div>
                                 <div class="plan-period">Pós-pago</div>
                                 <ul class="plan-features">
                                     <li>3 usuários</li>
@@ -1297,7 +1680,11 @@
                             <div class="plan-card featured">
                                 <div class="plan-popular">Popular</div>
                                 <div class="plan-name">Profissional</div>
-                                <div class="plan-price">R$350<span>/mês</span></div>
+                                <div class="plan-price-stack">
+                                    <div class="plan-price plan-price-primary">R$&nbsp;350<span>/mês</span></div>
+                                    <div class="plan-price-alt">US$&nbsp;65<span>/mês</span></div>
+                                    <div class="plan-price-alt">ARS&nbsp;70.000<span>/mês</span></div>
+                                </div>
                                 <div class="plan-period">Pós-pago</div>
                                 <ul class="plan-features">
                                     <li>8 usuários</li>
@@ -1314,7 +1701,11 @@
                             </div>
                             <div class="plan-card">
                                 <div class="plan-name">Enterprise</div>
-                                <div class="plan-price">R$800<span>/mês</span></div>
+                                <div class="plan-price-stack">
+                                    <div class="plan-price plan-price-primary">R$&nbsp;800<span>/mês</span></div>
+                                    <div class="plan-price-alt">US$&nbsp;140<span>/mês</span></div>
+                                    <div class="plan-price-alt">ARS&nbsp;160.000<span>/mês</span></div>
+                                </div>
                                 <div class="plan-period">Pós-pago</div>
                                 <ul class="plan-features">
                                     <li>25 usuários</li>
@@ -1331,11 +1722,15 @@
                             </div>
                             <div class="plan-card">
                                 <div class="plan-name">White Label</div>
-                                <div class="plan-price">R$1.200<span>/mês</span></div>
+                                <div class="plan-price-stack">
+                                    <div class="plan-price plan-price-primary">R$&nbsp;1.200<span>/mês</span></div>
+                                    <div class="plan-price-alt">US$&nbsp;210<span>/mês</span></div>
+                                    <div class="plan-price-alt">ARS&nbsp;240.000<span>/mês</span></div>
+                                </div>
                                 <div class="plan-period">Empresa principal · Pós-pago</div>
                                 <ul class="plan-features">
                                     <li>Usuários ilimitados</li>
-                                    <li>50 GB + R$2,50/GB extra</li>
+                                    <li>50 GB + R$2,50/GB extra (~US$0,45 · ~ARS&nbsp;500/GB)</li>
                                     <li>Todos os módulos</li>
                                     <li>Financeiro + DRE</li>
                                     <li>PDV</li>
@@ -1343,9 +1738,16 @@
                                     <li>NF-e, NFS-e, NFC-e</li>
                                     <li>API REST completa</li>
                                     <li>Integrações bancárias</li>
-                                    <li>Filiais: +R$300/mês cada</li>
+                                    <li>Filiais: +R$300/mês cada (~US$55 · ~ARS&nbsp;60.000)</li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="alert-box info">
+                            <span class="alert-icon">💱</span>
+                            <p><strong>Referência cambial usada na documentação:</strong> ~5,5 BRL por US$ e ~200 ARS por
+                                R$ — valores arredondados para leitura. Na prática, o sistema pode exibir
+                                <strong>MXN</strong> (peso mexicano) ou outras moedas conforme o módulo de idiomas e a
+                                tabela comercial vigente; reajustes seguem contrato e política de preços.</p>
                         </div>
                         <h2>Comparativo Completo</h2>
                         <div class="table-wrapper">
@@ -2267,8 +2669,9 @@ Content-Type: application/json
                             <li><strong>Exclusão</strong> — Avisos progressivos até D+365</li>
                             <li><strong>Segurança</strong> — Login em novo dispositivo, troca de senha</li>
                         </ul>
-                        <h2>WhatsApp</h2>
-                        <p>Usado exclusivamente para avisos de inadimplência e exclusão de dados:</p>
+                        <h2>WhatsApp (mensagens transacionais)</h2>
+                        <p>Canal automatizado para ciclo de cobrança e vida da assinatura — distinto do
+                            <strong>WhatsApp de suporte humano</strong> descrito na seção <strong>Atendimento</strong>:</p>
                         <ul>
                             <li>Aviso de atraso (D+3, D+5)</li>
                             <li>Suspensão (D+7)</li>
@@ -2281,6 +2684,127 @@ Content-Type: application/json
                             <li>Novidades do sistema e atualizações</li>
                             <li>Alertas de segurança (login suspeito)</li>
                             <li>Lembretes de eventos do calendário</li>
+                        </ul>
+                    </section>
+
+                    <!-- ═══ ATENDIMENTO ═══ -->
+                    <section id="atendimento" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge cyan">💬 Suporte</div>
+                            <h1>Atendimento ao Cliente</h1>
+                            <p class="section-desc">Dois canais oficiais — <strong>WhatsApp MoneySystem</strong> e
+                                <strong>tickets dentro do sistema</strong> — para atender assinantes no Brasil e no
+                                exterior, com fila única para a equipe e horário definido no fuso de São Paulo.</p>
+                        </div>
+
+                        <h2>Horário de atendimento humano</h2>
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-icon cyan">🕐</div>
+                                <div class="card-title">Segunda a sexta · Horário de Brasília</div>
+                            </div>
+                            <div class="card-body">
+                                <p>Atendimento presencial pela equipe (WhatsApp e tickets) das <strong>8h30 às
+                                        18h</strong>, em <strong>horário de São Paulo</strong>
+                                    (<code class="inline">America/Sao_Paulo</code>), em <strong>dias úteis</strong>
+                                    (segunda a sexta-feira, exceto feriados nacionais divulgados no site ou no sistema).
+                                </p>
+                                <p>Fora desse período, mensagens e novos tickets continuam registrados; a resposta ocorre
+                                    no próximo dia útil, na ordem de chegada e prioridade.</p>
+                            </div>
+                        </div>
+                        <div class="alert-box info">
+                            <span class="alert-icon">🌍</span>
+                            <p>Clientes em outros fusos veem o horário convertido na interface quando aplicável; a
+                                referência operacional da equipe é sempre <strong>BRT/SP</strong>.</p>
+                        </div>
+
+                        <h2>Canais para o cliente</h2>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <h3>WhatsApp MoneySystem</h3>
+                                <p>Número oficial divulgado no site institucional, e-mail de boas-vindas e área logada.
+                                    Indicado para dúvidas rápidas, envio de prints e conversa em tempo quase real
+                                    dentro do expediente.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🎫</div>
+                                <h3>Tickets no sistema</h3>
+                                <p>Abertura pelo painel (usuário logado): assunto, descrição, prioridade sugerida e
+                                    anexos. Ideal para <strong>clientes internacionais</strong>, demandas que precisam
+                                    de rastreio, histórico por conta e resposta assíncrona sem depender de estar no
+                                    celular.</p>
+                            </div>
+                        </div>
+
+                        <h2>Planejamento do fluxo (funcionário)</h2>
+                        <p>A equipe opera a partir de uma visão unificada: tudo que entra pelo WhatsApp ou por ticket
+                            vira um <strong>atendimento registrado</strong>, para métricas, qualidade e continuidade.</p>
+                        <div class="aff-steps">
+                            <article class="aff-step">
+                                <div class="aff-step-num">1</div>
+                                <div class="aff-step-body">
+                                    <h3>Triagem e registro</h3>
+                                    <p>No início do turno (8h30), o atendente abre a fila de <strong>tickets
+                                            abertos</strong> e a caixa de <strong>conversas WhatsApp</strong> atribuídas
+                                        ou na fila geral. Cada contato novo no WhatsApp deve ser vinculado à
+                                        <strong>conta do cliente</strong> (e-mail ou CNPJ/ID) assim que identificado.</p>
+                                </div>
+                            </article>
+                            <article class="aff-step">
+                                <div class="aff-step-num">2</div>
+                                <div class="aff-step-body">
+                                    <h3>Classificar e responder</h3>
+                                    <p>Categorizar: comercial, faturamento, bug, dúvida de uso, integração/API. Resposta
+                                        objetiva no mesmo canal (WhatsApp ou ticket). Se a demanda for longa ou exigir
+                                        análise técnica, <strong>criar ou mover para ticket</strong> e enviar o link ou
+                                        número do protocolo no WhatsApp para o cliente acompanhar.</p>
+                                </div>
+                            </article>
+                            <article class="aff-step">
+                                <div class="aff-step-num">3</div>
+                                <div class="aff-step-body">
+                                    <h3>Internacional e idioma</h3>
+                                    <p>Priorizar <strong>ticket</strong> quando o cliente estiver em fuso muito
+                                        diferente ou preferir ES/EN: o histórico fica no sistema e as notificações por
+                                        e-mail reduzem perda de contexto. Mensagens podem ser respondidas no idioma da
+                                        conta, quando a equipe tiver cobertura.</p>
+                                </div>
+                            </article>
+                            <article class="aff-step">
+                                <div class="aff-step-num">4</div>
+                                <div class="aff-step-body">
+                                    <h3>Encerramento e escalação</h3>
+                                    <p>Marcar ticket como resolvido após confirmação ou período de inatividade definido
+                                        em política interna. Escalação para N2/N3 (produto ou engenharia) dentro do
+                                        ticket, mantendo o cliente informado no mesmo protocolo.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <h2>Tickets — comportamento esperado no sistema</h2>
+                        <ul>
+                            <li><strong>Abertura</strong> — Menu Ajuda / Suporte ou ícone dedicado; campos mínimos:
+                                categoria, título, descrição; anexos opcionais (prints, XML, logs autorizados).</li>
+                            <li><strong>Notificações</strong> — E-mail (e opcionalmente push) a cada resposta da equipe,
+                                para quem não está no fuso de SP.</li>
+                            <li><strong>SLA interno</strong> — Primeira resposta em horário comercial conforme fila;
+                                urgências (ex.: indisponibilidade do sistema) com fila prioritária.</li>
+                            <li><strong>Auditoria</strong> — Histórico por conta e por usuário que abriu o chamado,
+                                visível para administradores da assinatura quando aplicável.</li>
+                        </ul>
+
+                        <h2>WhatsApp — boas práticas operacionais</h2>
+                        <ul>
+                            <li>Usar <strong>modelos aprovados</strong> para mensagens repetitivas (horário, link da
+                                documentação, como abrir ticket).</li>
+                            <li>Não tratar dados sensíveis sem necessidade; direcionar para área logada quando possível.
+                            </li>
+                            <li>Antes das <strong>18h</strong>, avisar se a conversa ficará pendente até o próximo dia
+                                útil.</li>
+                            <li>Separar tecnicamente, quando possível, o <strong>número de suporte</strong> das
+                                automações de cobrança descritas em E-mails e Notificações.</li>
                         </ul>
                     </section>
 

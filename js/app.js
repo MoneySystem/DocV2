@@ -49,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   navItems.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+      if (item.tagName === 'A' && item.getAttribute('href')) {
+        return;
+      }
       const sectionId = item.dataset.section;
       if (sectionId) navigateTo(sectionId);
     });
@@ -142,9 +145,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ─── Planejamento por setor (Gráfica / Automotivo) — Visão Geral ─── */
+  const sectorPlanner = document.querySelector('[data-sector-planner]');
+  if (sectorPlanner) {
+    const planTabs = sectorPlanner.querySelectorAll('.sector-plan-tab');
+    const planPanels = sectorPlanner.querySelectorAll('.sector-plan-panel');
+
+    function activateSectorPlan(plan) {
+      planTabs.forEach((tab) => {
+        const on = tab.dataset.plan === plan;
+        tab.classList.toggle('active', on);
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      planPanels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.planPanel === plan);
+      });
+    }
+
+    planTabs.forEach((tab) => {
+      tab.addEventListener('click', () => activateSectorPlan(tab.dataset.plan));
+    });
+  }
+
   /* ─── Hash Navigation ─── */
   const hash = window.location.hash.slice(1);
-  if (hash && document.getElementById(hash)) {
+  const hashEl = hash ? document.getElementById(hash) : null;
+  if (hashEl?.classList.contains('doc-section')) {
     navigateTo(hash);
   } else {
     navigateTo('visao-geral');

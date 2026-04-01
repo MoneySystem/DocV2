@@ -358,6 +358,14 @@ code {
   font-weight: 600;
 }
 
+a.nav-item {
+  text-decoration: none;
+}
+
+a.nav-item:hover {
+  text-decoration: none;
+}
+
 /* Sidebar footer */
 .sidebar-footer {
   padding: 16px 20px;
@@ -985,6 +993,39 @@ th.highlight, td.highlight {
   margin-bottom: 4px;
 }
 
+.plan-card .plan-price-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 10px 0 4px;
+}
+
+.plan-card .plan-price-stack .plan-price {
+  margin: 0;
+}
+
+.plan-card .plan-price-stack .plan-price.plan-price-primary {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+}
+
+.plan-card .plan-price-alt {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--text-secondary);
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+
+.plan-card .plan-price-alt span {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
 .plan-card .plan-price {
   font-size: 32px;
   font-weight: 800;
@@ -1213,6 +1254,16 @@ th.highlight, td.highlight {
 }
 
 /* ─── Screenshot ─── */
+.screenshot-preview-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.screenshot-preview-link:hover .screenshot-caption {
+  color: var(--accent-blue);
+}
+
 .screenshot-wrapper {
   margin: 32px 0;
   border-radius: var(--radius-xl);
@@ -1463,4 +1514,675 @@ th.highlight, td.highlight {
   .integration-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Página — Programa de Afiliados (afiliados.html)
+   ═══════════════════════════════════════════════════════════════ */
+
+body.page-afiliados {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: 100vh;
+}
+
+.page-afiliados .aff-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgba(10, 14, 23, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.page-afiliados .aff-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.page-afiliados .aff-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-afiliados .aff-brand:hover {
+  text-decoration: none;
+}
+
+.page-afiliados .aff-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  box-shadow: var(--shadow-glow-green);
+  flex-shrink: 0;
+}
+
+.page-afiliados .aff-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.page-afiliados .aff-brand-text strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.page-afiliados .aff-brand-text small {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.page-afiliados .aff-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px 18px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.page-afiliados .aff-header-nav a {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.page-afiliados .aff-header-nav a:hover {
+  color: var(--accent-green);
+  text-decoration: none;
+}
+
+.page-afiliados .aff-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.page-afiliados .aff-btn:hover {
+  text-decoration: none;
+}
+
+.page-afiliados .aff-btn-primary {
+  background: var(--gradient-green);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.25);
+}
+
+.page-afiliados .aff-btn-primary:hover {
+  filter: brightness(1.08);
+  color: #fff;
+}
+
+.page-afiliados .aff-btn-ghost {
+  background: transparent;
+  border-color: var(--border-secondary);
+  color: var(--text-secondary);
+}
+
+.page-afiliados .aff-btn-ghost:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.page-afiliados .aff-btn-lg {
+  padding: 14px 28px;
+  font-size: 14px;
+}
+
+.page-afiliados .aff-hero {
+  position: relative;
+  padding: 56px 24px 72px;
+  overflow: hidden;
+}
+
+.page-afiliados .aff-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(34, 197, 94, 0.18), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 50%, rgba(59, 130, 246, 0.08), transparent 50%),
+    radial-gradient(ellipse 40% 35% at 0% 80%, rgba(168, 85, 247, 0.06), transparent 45%);
+  pointer-events: none;
+}
+
+.page-afiliados .aff-hero-inner {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-afiliados .aff-hero-inner .section-badge {
+  margin-bottom: 20px;
+}
+
+.page-afiliados .aff-hero-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.page-afiliados .aff-hero-accent {
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-afiliados .aff-hero-lead {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.page-afiliados .aff-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.page-afiliados .aff-trust-strip {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.page-afiliados .aff-trust-strip li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-afiliados .aff-trust-icon {
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+.page-afiliados .aff-section {
+  padding: 0 24px 64px;
+}
+
+.page-afiliados .aff-section.content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-afiliados .aff-section-intro {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 28px;
+  margin-top: -8px;
+}
+
+.page-afiliados .aff-metrics {
+  padding: 32px 24px 48px;
+  border-top: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+}
+
+.page-afiliados .aff-metrics-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .page-afiliados .aff-metrics-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+}
+
+.page-afiliados .aff-metric {
+  text-align: center;
+}
+
+.page-afiliados .aff-metric-value {
+  display: block;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  background: var(--gradient-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.page-afiliados .aff-metric-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 260px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Passos numerados — afiliados.html e seções da documentação */
+.aff-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aff-step {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.aff-step:hover {
+  border-color: rgba(34, 197, 94, 0.35);
+  box-shadow: var(--shadow-md);
+}
+
+.aff-step-num {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: var(--accent-green);
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.aff-step-body h3 {
+  font-size: 17px;
+  margin: 0 0 10px;
+  color: var(--text-primary);
+}
+
+.aff-step-body p {
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.page-afiliados .aff-timeline-card {
+  margin-top: 28px;
+  padding: 28px;
+  background: linear-gradient(165deg, var(--bg-card) 0%, var(--bg-tertiary) 100%);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.page-afiliados .aff-timeline-header {
+  margin-bottom: 24px;
+}
+
+.page-afiliados .aff-timeline-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--accent-cyan);
+  margin-bottom: 8px;
+}
+
+.page-afiliados .aff-timeline-header h3 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.page-afiliados .aff-timeline-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: 16px 0 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.page-afiliados .aff-timeline-node {
+  flex: 1;
+  min-width: 36px;
+  max-width: 52px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.page-afiliados .aff-timeline-node abbr {
+  text-decoration: none;
+  border: none;
+}
+
+.page-afiliados .aff-timeline-node-end {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: var(--accent-green);
+}
+
+.page-afiliados .aff-timeline-notes {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.page-afiliados .aff-timeline-notes li {
+  margin-bottom: 10px;
+}
+
+.page-afiliados .aff-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .page-afiliados .aff-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-afiliados .aff-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.page-afiliados .aff-faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.page-afiliados .aff-faq-item summary {
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.page-afiliados .aff-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.page-afiliados .aff-faq-item summary::after {
+  content: '+';
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--accent-green);
+  flex-shrink: 0;
+}
+
+.page-afiliados .aff-faq-item[open] summary::after {
+  content: '−';
+}
+
+.page-afiliados .aff-faq-item p {
+  margin: 0;
+  padding: 0 20px 18px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.page-afiliados .aff-cta-block {
+  padding: 64px 24px;
+  background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border-top: 1px solid var(--border-primary);
+}
+
+.page-afiliados .aff-cta-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-afiliados .aff-cta-inner h2 {
+  margin-top: 0;
+  border: none;
+  padding-bottom: 0;
+}
+
+.page-afiliados .aff-cta-inner p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.page-afiliados .aff-footer {
+  padding: 24px;
+  border-top: 1px solid var(--border-primary);
+  background: var(--bg-sidebar);
+}
+
+.page-afiliados .aff-footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.page-afiliados .aff-footer-inner a {
+  color: var(--text-tertiary);
+}
+
+.page-afiliados .aff-footer-inner a:hover {
+  color: var(--accent-green);
+}
+
+@media (max-width: 640px) {
+  .page-afiliados .aff-header-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-afiliados .aff-header-nav {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .page-afiliados .aff-header .aff-btn-primary {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ─── Planejamento por setor: Gráfica / Automotivo (Visão Geral) ─── */
+.sector-planning-block {
+  margin: 40px 0 48px;
+  padding: 24px 24px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.sector-planning-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.sector-plan-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast),
+    box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.sector-plan-tab:hover {
+  color: var(--text-primary);
+  border-color: var(--border-secondary);
+}
+
+.sector-plan-tab:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.sector-plan-tab.active {
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--shadow-md);
+}
+
+.sector-plan-tab--grafica.active {
+  background: var(--gradient-purple);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+}
+
+.sector-plan-tab--automotivo.active {
+  background: var(--gradient-orange);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+}
+
+.sector-plan-panel {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.sector-plan-panel.active {
+  display: block;
+}
+
+.automotivo-doc-lead {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.automotivo-doc-h {
+  margin: 28px 0 14px;
+  font-size: 1.15rem;
+  font-weight: 650;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.automotivo-doc-h:first-of-type {
+  margin-top: 0;
+}
+
+.automotivo-doc-h4 {
+  margin: 18px 0 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-orange);
+}
+
+.sector-plan-panel[data-plan-panel="grafica"] .automotivo-doc-h4 {
+  color: #c084fc;
+}
+
+.sector-planning-block .table-wrapper {
+  margin: 14px 0;
+}
+
+.sector-planning-block ul,
+.sector-planning-block ol {
+  margin: 10px 0 14px 1.25rem;
+}
+
+.automotivo-doc-ol {
+  padding-left: 1.1rem;
+}
+
+.automotivo-doc-ol li {
+  margin-bottom: 8px;
 }
