@@ -982,6 +982,56 @@
                                     class="inline">id</code> numérico.
                             </p>
                         </div>
+
+                        <h3 id="admin-plataforma">Área administrativa da plataforma (<code
+                                class="inline">/admin</code>)</h3>
+                        <p>A equipe MoneySystem acessa <strong><code
+                                    class="inline">https://moneysystem.com.br/admin</code></strong>. A primeira tela é <strong>login</strong> (usuário e senha), sem
+                            misturar com o fluxo das empresas clientes.</p>
+                        <ul>
+                            <li><strong>CEOs</strong> — perfil com visão global (clientes,
+                                suporte, operações, o que for definido no produto).</li>
+                            <li><strong>Funcionários</strong> — mesmo painel <code
+                                    class="inline">/admin</code>, mas só enxerga e altera o que as permissões do perfil
+                                permitirem.</li>
+                        </ul>
+                        <p><strong>Onde fica no banco (otimizado e seguro)</strong> — <em>não</em> usar as tabelas de
+                            usuários das empresas (<code class="inline">company_id</code>). Manter <strong>conjunto
+                                separado</strong> só para quem opera a plataforma:</p>
+                        <ul>
+                            <li><strong>Tabela dedicada</strong> — ex.: <code class="inline">platform_admin_users</code>
+                                (poucos registros, consulta por login só no momento da autenticação).</li>
+                            <li><strong>Senha</strong> — apenas hash forte (<strong>Argon2id</strong> ou
+                                <strong>bcrypt</strong>), nunca texto puro; custo de hash configurável.</li>
+                            <li><strong>Papel</strong> — coluna <code class="inline">role</code> ou FK para
+                                <code class="inline">platform_roles</code>; permissões granulares de atendente em tabela
+                                de junção (<code class="inline">platform_admin_permissions</code>) ou JSON validado na
+                                aplicação, conforme complexidade.</li>
+                            <li><strong>Índices</strong> — <code class="inline">UNIQUE</code> em
+                                <code class="inline">username</code> (ou e-mail de login) para lookup O(1) no sign-in.
+                            </li>
+                            <li><strong>Sessão</strong> — cookie HTTP-only / servidor (Redis), TTL curto; rate limit e
+                                auditoria em ações sensíveis (qual admin acessou qual tenant).</li>
+                        </ul>
+                        <div class="code-block">
+                            <div class="code-block-header"><span class="code-lang">SQL</span></div>
+                            <pre><code>CREATE TABLE platform_admin_users (
+    id              BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    uuid            CHAR(36)        NOT NULL UNIQUE,
+    username        VARCHAR(64)     NOT NULL UNIQUE,
+    email           VARCHAR(255)    NOT NULL UNIQUE,
+    password_hash   VARCHAR(255)    NOT NULL,
+    role            VARCHAR(32)     NOT NULL,           <span class="comment">-- ex.: owner | support</span>
+    is_active       TINYINT(1)      NOT NULL DEFAULT 1,
+    last_login_at   TIMESTAMP       NULL DEFAULT NULL,
+    created_at      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    INDEX idx_platform_admin_users_active (is_active, role)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;</code></pre>
+                        </div>
+                        <p>Esse desenho mantém o painel interno <strong>isolado</strong> dos dados multi-tenant, com
+                            superfície de ataque menor e modelo de permissões claro.</p>
                     </section>
 
                     <!-- ═══ ROADMAP ═══ -->
@@ -1215,6 +1265,9 @@
                         <a href="dashboard.html" class="screenshot-preview-link" target="_blank" rel="noopener noreferrer">
                             <div class="screenshot-wrapper">
                                 <img src="assets/images/dashboard.png" alt="Dashboard MoneySystem">
+                            </div>
+                            <div class="screenshot-wrapper">
+                                <img src="assets/images/login.png" alt="Dashboard MoneySystem">
                             </div>
                             <p class="screenshot-caption">Dashboard do MoneySystem — clique aqui para Live Preview</p>
                         </a>
@@ -2692,9 +2745,85 @@ Content-Type: application/json
                         <div class="section-hero">
                             <div class="section-badge cyan">💬 Suporte</div>
                             <h1>Atendimento ao Cliente</h1>
-                            <p class="section-desc">Dois canais oficiais — <strong>WhatsApp MoneySystem</strong> e
+                            <p class="section-desc">Três canais oficiais — <strong>Chat de Suporte no sistema</strong>
+                                (IA + humano), <strong>WhatsApp MoneySystem</strong> e
                                 <strong>tickets dentro do sistema</strong> — para atender assinantes no Brasil e no
                                 exterior, com fila única para a equipe e horário definido no fuso de São Paulo.</p>
+                        </div>
+
+                        <h2>Chat de Suporte no Sistema (IA + humano)</h2>
+                        <p>Primeira linha de atendimento dentro do produto. Aberto por qualquer usuário logado pelo
+                            <strong>ícone de suporte na barra superior</strong> (ao lado de Configurações) ou pelo item
+                            <strong>Ajuda</strong> no menu <em>Outros</em>. Disponível <strong>24/7</strong>, com
+                            resposta imediata da IA e encaminhamento humano em horário comercial.</p>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🤖</div>
+                                <h3>Assistente por IA</h3>
+                                <p>Responde com base na <strong>documentação oficial</strong> do MoneySystem (pedidos,
+                                    clientes, financeiro, NF-e, integrações). Estratégia recomendada: <strong>RAG</strong>
+                                    (embeddings sobre esta documentação) + modelo barato (Groq, OpenRouter ou Ollama
+                                    self-hosted). O painel está pronto no front — basta apontar para o endpoint.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📱</div>
+                                <h3>Atalho para WhatsApp</h3>
+                                <p>Dentro do próprio painel há um chip <strong>“Atendente (WhatsApp)”</strong> que abre
+                                    o número oficial com mensagem pré-preenchida. Usado quando a IA não resolveu, ou
+                                    quando o cliente prefere falar com pessoa.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">📚</div>
+                                <h3>Artigos da Central</h3>
+                                <p>Chip <strong>“Artigos”</strong> leva à <code class="inline">/ajuda</code> em
+                                    <strong>moneysystem.com.br</strong>. As respostas da IA também podem citar artigos
+                                    como fonte, incentivando leitura auto-atendida.</p>
+                            </div>
+                        </div>
+
+                        <h3>Recursos do painel</h3>
+                        <ul>
+                            <li><strong>Persistência da conversa</strong> — histórico salvo em
+                                <code class="inline">localStorage</code> por sessão, limitado a 40 mensagens; sobrevive
+                                a recarregar a página.</li>
+                            <li><strong>Indicador de digitando</strong> e bloqueio do botão enviar enquanto aguarda
+                                resposta.</li>
+                            <li><strong>Aborto automático</strong> de requisições pendentes ao iniciar nova conversa
+                                (<code class="inline">AbortController</code>).</li>
+                            <li><strong>Links auto-detectados</strong> nas respostas da IA, abertos em nova aba com
+                                <code class="inline">rel="noopener noreferrer"</code>.</li>
+                            <li><strong>Estado de erro</strong> visível (bolha vermelha) se a API cair, com sugestão de
+                                abrir o WhatsApp.</li>
+                            <li><strong>Disclaimer</strong> fixo: <em>“Respostas geradas por IA podem conter erros. Em
+                                    caso de dúvida, fale com um atendente.”</em></li>
+                            <li><strong>Acessibilidade</strong> — <code class="inline">aria-live="polite"</code> na
+                                lista de mensagens, <code class="inline">focus-visible</code> nos botões, fechamento por
+                                <code class="inline">Esc</code>.</li>
+                            <li><strong>Offline (PWA)</strong> — banner fino na parte superior sinaliza quando o
+                                navegador perde conexão; nessas condições, o chip do WhatsApp continua funcional.</li>
+                        </ul>
+
+                        <h3>Contrato com o backend</h3>
+                        <p>Quando o backend de IA estiver disponível, basta preencher
+                            <code class="inline">SUPPORT_CONFIG.apiEndpoint</code> no dashboard. Payload esperado:</p>
+                        <pre><code>POST /api/support/chat
+{
+  "sessionId": "uuid-v4",
+  "messages": [
+    { "role": "user",      "content": "Como emito uma NF-e?" },
+    { "role": "assistant", "content": "..." }
+  ],
+  "question": "texto atual do usuário"
+}
+
+// resposta
+{ "answer": "texto final da IA", "sources": ["url-do-artigo-1"] }</code></pre>
+                        <div class="alert-box info">
+                            <span class="alert-icon">💡</span>
+                            <p>A IA não substitui o humano: ao detectar intenção de <strong>falar com atendente</strong>,
+                                cobrança, cancelamento ou bug crítico, a resposta deve recomendar ativamente o
+                                <strong>WhatsApp</strong> ou a abertura de <strong>ticket</strong>. Escalação é sempre
+                                opção visível do usuário.</p>
                         </div>
 
                         <h2>Horário de atendimento humano</h2>
@@ -2722,6 +2851,13 @@ Content-Type: application/json
                         <h2>Canais para o cliente</h2>
                         <div class="feature-grid">
                             <div class="feature-card">
+                                <div class="feature-icon">💬</div>
+                                <h3>Chat no sistema (IA + humano)</h3>
+                                <p>Primeiro ponto de contato dentro do painel, 24/7. IA responde dúvidas comuns com base
+                                    na documentação; em um clique, o cliente salta para WhatsApp humano ou para a
+                                    Central de Artigos.</p>
+                            </div>
+                            <div class="feature-card">
                                 <div class="feature-icon">📱</div>
                                 <h3>WhatsApp MoneySystem</h3>
                                 <p>Número oficial divulgado no site institucional, e-mail de boas-vindas e área logada.
@@ -2747,9 +2883,11 @@ Content-Type: application/json
                                 <div class="aff-step-body">
                                     <h3>Triagem e registro</h3>
                                     <p>No início do turno (8h30), o atendente abre a fila de <strong>tickets
-                                            abertos</strong> e a caixa de <strong>conversas WhatsApp</strong> atribuídas
-                                        ou na fila geral. Cada contato novo no WhatsApp deve ser vinculado à
-                                        <strong>conta do cliente</strong> (e-mail ou CNPJ/ID) assim que identificado.</p>
+                                            abertos</strong>, a caixa de <strong>conversas WhatsApp</strong> atribuídas
+                                        ou na fila geral e as <strong>escalações do chat com IA</strong> (quando o
+                                        cliente pediu humano ou a IA marcou a conversa como sensível). Cada contato
+                                        novo no WhatsApp deve ser vinculado à <strong>conta do cliente</strong> (e-mail
+                                        ou CNPJ/ID) assim que identificado.</p>
                                 </div>
                             </article>
                             <article class="aff-step">

@@ -17,25 +17,26 @@
         }
 
         :root {
-            --bg-primary: #0f0f12;
-            --bg-secondary: #18181c;
-            --bg-card: #1e1e24;
-            --bg-hover: #2a2a32;
-            --border: #2d2d35;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a8;
-            --text-muted: #6b6b73;
-            --accent: #6366f1;
-            --accent-hover: #818cf8;
-            --accent-glow: rgba(99, 102, 241, 0.3);
-            --success: #22c55e;
-            --success-bg: rgba(34, 197, 94, 0.15);
-            --warning: #f59e0b;
-            --warning-bg: rgba(245, 158, 11, 0.15);
-            --danger: #ef4444;
-            --danger-bg: rgba(239, 68, 68, 0.15);
-            --info: #3b82f6;
-            --info-bg: rgba(59, 130, 246, 0.15);
+            --bg-primary: #f4f7f5;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-hover: #ecfdf5;
+            --border: #e2e8e4;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --accent: #059669;
+            --accent-2: #10b981;
+            --accent-hover: #34d399;
+            --accent-glow: rgba(5, 150, 105, 0.22);
+            --success: #16a34a;
+            --success-bg: rgba(22, 163, 74, 0.12);
+            --warning: #d97706;
+            --warning-bg: rgba(245, 158, 11, 0.12);
+            --danger: #dc2626;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --info: #2563eb;
+            --info-bg: rgba(59, 130, 246, 0.1);
         }
 
         body {
@@ -74,15 +75,11 @@
             font-weight: 700;
         }
 
-        .logo-icon {
-            width: 36px;
+        .logo-img {
             height: 36px;
-            background: linear-gradient(135deg, var(--accent), #a855f7);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .nav-menu {
@@ -131,7 +128,7 @@
             visibility: hidden;
             transform: translateY(10px);
             transition: all 0.2s;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
         }
 
         .nav-item:hover .dropdown {
@@ -219,31 +216,492 @@
             border-radius: 50%;
         }
 
+        .user-menu-wrap {
+            position: relative;
+        }
+
         .user-menu {
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 6px 12px 6px 6px;
             background: var(--bg-card);
+            border: 1px solid transparent;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .user-menu:hover {
+        .user-menu:hover,
+        .user-menu-wrap.open .user-menu {
             background: var(--bg-hover);
+            border-color: var(--border);
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 260px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: all 0.2s;
+            z-index: 200;
+        }
+
+        .user-menu-wrap.open .account-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .account-dropdown-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            padding: 6px 10px 8px;
+        }
+
+        .account-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            cursor: pointer;
+            text-align: left;
+            font: inherit;
+            color: var(--text-primary);
+            transition: background 0.15s;
+        }
+
+        .account-option:hover {
+            background: var(--bg-hover);
+        }
+
+        .account-option.active {
+            background: var(--bg-hover);
+        }
+
+        .account-option .user-avatar {
+            flex-shrink: 0;
+        }
+
+        .account-option-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .account-company {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .account-user {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .account-check {
+            font-size: 18px;
+            color: var(--accent);
+            opacity: 0;
+            flex-shrink: 0;
+        }
+
+        .account-option.active .account-check {
+            opacity: 1;
+        }
+
+        .account-add {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            padding: 10px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .account-add:hover {
+            background: var(--bg-hover);
+        }
+
+        .offline-banner {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 6px 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .offline-banner.visible {
+            display: flex;
+        }
+
+        .offline-banner i {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        button.nav-icon {
+            appearance: none;
+            border: none;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            font: inherit;
+        }
+
+        /* Suporte (chat + atalhos) */
+        .support-panel {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 100%;
+            max-width: 380px;
+            max-height: min(560px, calc(100vh - 100px));
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
+            display: flex;
+            flex-direction: column;
+            z-index: 950;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px) scale(0.98);
+            transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+        }
+
+        .support-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .support-panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .support-panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .support-panel-title i {
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .support-panel-title h2 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.25;
+        }
+
+        .support-panel-title span {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .support-panel-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .support-icon-btn {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .support-icon-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .support-icon-btn:focus-visible,
+        .nav-icon-btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .support-panel-close {
+            width: 36px;
+            height: 36px;
+            font-size: 20px;
+        }
+
+        .support-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .support-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .support-chip:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .support-chip i {
+            font-size: 14px;
+        }
+
+        .support-chip--wa:hover {
+            color: #128c7e;
+            border-color: rgba(18, 140, 126, 0.35);
+        }
+
+        .support-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 200px;
+            max-height: 320px;
+        }
+
+        .support-msg {
+            display: flex;
+            flex-direction: column;
+            max-width: 92%;
+        }
+
+        .support-msg--user {
+            align-self: flex-end;
+        }
+
+        .support-msg--bot {
+            align-self: flex-start;
+        }
+
+        .support-msg-bubble {
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .support-msg--user .support-msg-bubble {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .support-msg--bot .support-msg-bubble {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border-bottom-left-radius: 4px;
+        }
+
+        .support-msg-meta {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            padding: 0 4px;
+        }
+
+        .support-msg--user .support-msg-meta {
+            text-align: right;
+        }
+
+        .support-msg-bubble a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .support-msg--bot .support-msg-bubble a {
+            color: var(--accent);
+        }
+
+        .support-msg--error .support-msg-bubble {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .support-typing {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 14px;
+        }
+
+        .support-typing span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            animation: support-dot 1.2s infinite ease-in-out;
+        }
+
+        .support-typing span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .support-typing span:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes support-dot {
+
+            0%,
+            80%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            40% {
+                transform: translateY(-3px);
+                opacity: 1;
+            }
+        }
+
+        .support-disclaimer {
+            font-size: 10.5px;
+            line-height: 1.4;
+            color: var(--text-muted);
+            padding: 0 16px 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .support-send[disabled] {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .support-input-row {
+            display: flex;
+            gap: 8px;
+            padding: 12px 14px 14px;
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .support-input-row input {
+            flex: 1;
+            min-width: 0;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: inherit;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .support-input-row input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .support-send {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .support-send:hover {
+            opacity: 0.92;
+        }
+
+        @media (max-width: 480px) {
+            .support-panel {
+                right: 12px;
+                left: 12px;
+                bottom: 12px;
+                max-width: none;
+            }
         }
 
         .user-avatar {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
             font-size: 13px;
+            color: #fff;
         }
 
         .user-info {
@@ -331,7 +789,7 @@
         .kpi-card:hover {
             transform: translateY(-4px);
             border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+            box-shadow: 0 20px 40px rgba(5, 150, 105, 0.12);
         }
 
         .kpi-header {
@@ -867,7 +1325,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.6rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border);
         }
 
         .calendar-title .card-title {
@@ -882,7 +1340,7 @@
         }
 
         .calendar-nav button {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-hover);
             border: none;
             color: var(--text-secondary);
             width: 28px;
@@ -893,7 +1351,7 @@
         }
 
         .calendar-nav button:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--border);
             color: var(--text-primary);
         }
 
@@ -902,7 +1360,7 @@
             grid-template-columns: repeat(7, 1fr);
             text-align: center;
             padding: 0.4rem 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border);
         }
 
         .calendar-header span {
@@ -933,7 +1391,7 @@
         }
 
         .calendar-day:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--bg-hover);
         }
 
         .calendar-day.other-month {
@@ -941,10 +1399,10 @@
         }
 
         .calendar-day.today {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
             color: white !important;
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(5, 150, 105, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
         }
 
         .calendar-day.has-event::after {
@@ -976,7 +1434,7 @@
             display: flex;
             gap: 0.75rem;
             padding: 0.5rem 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border);
             flex-wrap: wrap;
         }
 
@@ -998,12 +1456,12 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.5rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--border);
             transition: background 0.2s;
         }
 
         .event-item:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-hover);
         }
 
         .event-item:last-child {
@@ -1039,7 +1497,7 @@
             align-items: center;
             min-width: 32px;
             padding: 0.25rem 0.4rem;
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--bg-primary);
             border-radius: 6px;
         }
 
@@ -1198,7 +1656,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), #a855f7);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
             color: white;
         }
 
@@ -1256,7 +1714,7 @@
         }
 
         .modal-tab.active {
-            background: linear-gradient(135deg, var(--accent), #a855f7);
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
             color: white;
         }
 
@@ -1269,9 +1727,57 @@
             animation: fadeIn 0.3s ease;
         }
 
+        /* Segmented Control (Tipo de pedido / Natureza) */
+        .segmented {
+            display: inline-flex;
+            padding: 4px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            gap: 2px;
+            width: 100%;
+        }
+
+        .segmented button {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 12px;
+            border: none;
+            border-radius: 9px;
+            background: transparent;
+            color: var(--text-secondary);
+            font: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .segmented button:hover:not(.active) {
+            color: var(--text-primary);
+        }
+
+        .segmented button.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+            font-weight: 600;
+        }
+
+        .segmented button.active i {
+            color: var(--accent);
+        }
+
+        .segmented button i {
+            font-size: 15px;
+        }
+
         /* Form Sections */
         .form-section {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-primary);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 20px;
@@ -1294,34 +1800,65 @@
             color: var(--accent);
         }
 
-        /* Checkboxes */
+        /* Chip Checkboxes (multi-select em estilo de pill) */
         .form-checkboxes {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 8px;
             margin-top: 8px;
         }
 
         .form-checkbox {
-            display: flex;
+            position: relative;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            font-size: 13px;
+            gap: 8px;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--bg-primary);
             color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             user-select: none;
-            transition: color 0.2s;
+            transition: all 0.15s;
+        }
+
+        .form-checkbox i {
+            font-size: 15px;
+            line-height: 1;
         }
 
         .form-checkbox:hover {
+            border-color: var(--accent);
             color: var(--text-primary);
+            background: var(--bg-card);
         }
 
         .form-checkbox input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--accent);
-            cursor: pointer;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+        }
+
+        .form-checkbox:has(input[type="checkbox"]:checked) {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-weight: 600;
+            box-shadow: 0 1px 2px rgba(5, 150, 105, 0.08);
+        }
+
+        .form-checkbox:has(input[type="checkbox"]:checked) i {
+            color: var(--accent);
+        }
+
+        .form-checkbox:focus-within {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* Textarea */
@@ -1348,8 +1885,7 @@
     <nav class="navbar">
         <div class="nav-left">
             <div class="logo">
-                <div class="logo-icon"><i class="ri-money-dollar-circle-fill"></i></div>
-                <span></span>
+                <img class="logo-img" src="https://moneysystem.com.br/logo-help.svg" alt="Money System">
             </div>
             <div class="nav-menu">
                 <div class="nav-item">
@@ -1393,17 +1929,10 @@
                 </div>
                 <div class="nav-item">
                     <a class="nav-link"><i class="ri-bar-chart-box-line"></i> Relatórios</a>
-                    <div class="dropdown">
-                        <a class="dropdown-item"><i class="ri-user-star-line"></i> Clientes</a>
-                        <a class="dropdown-item"><i class="ri-shopping-cart-line"></i> Pedidos</a>
-                        <a class="dropdown-item"><i class="ri-money-dollar-circle-line"></i> Financeiro</a>
-                        <a class="dropdown-item"><i class="ri-team-line"></i> Comissões</a>
-                    </div>
                 </div>
                 <div class="nav-item">
                     <a class="nav-link"><i class="ri-more-2-fill"></i> Outros</a>
                     <div class="dropdown">
-                        <a class="dropdown-item"><i class="ri-admin-line"></i> AdminPanel</a>
                         <a class="dropdown-item"><i class="ri-pie-chart-line"></i> DRF</a>
                         <a class="dropdown-item"><i class="ri-tv-2-line"></i> LivePanel</a>
                         <a class="dropdown-item"><i class="ri-user-settings-line"></i> Funcionários</a>
@@ -1419,27 +1948,69 @@
                 <input type="text" placeholder="Buscar...">
             </div>
             <div class="nav-icon"><i class="ri-notification-3-line"></i><span class="notification-badge"></span></div>
-            <div class="nav-icon"><i class="ri-settings-4-line"></i></div>
-            <div class="user-menu">
-                <div class="user-avatar">LF</div>
-                <div class="user-info">
-                    <div class="user-name">LunarFilm</div>
-                    <div class="user-role">Ney Moraes</div>
+            <button type="button" class="nav-icon nav-icon-btn" onclick="openSupportChat()"
+                title="Suporte" aria-label="Abrir suporte e ajuda"><i class="ri-customer-service-2-line"></i></button>
+            <button type="button" class="nav-icon nav-icon-btn" title="Configurações" aria-label="Configurações"><i
+                    class="ri-settings-4-line"></i></button>
+            <div class="user-menu-wrap" id="userMenuWrap">
+                <div class="user-menu" id="userMenuBtn" role="button" tabindex="0" aria-expanded="false"
+                    aria-haspopup="true" aria-controls="accountDropdown">
+                    <div class="user-avatar" id="userAvatar">LF</div>
+                    <div class="user-info">
+                        <div class="user-name" id="userCompany">LunarFilm</div>
+                        <div class="user-role" id="userPerson">Ney Moraes</div>
+                    </div>
+                    <i class="ri-arrow-down-s-line" style="color: var(--text-muted)"></i>
                 </div>
-                <i class="ri-arrow-down-s-line" style="color: var(--text-muted)"></i>
+                <div class="account-dropdown" id="accountDropdown" role="menu" aria-label="Trocar de conta">
+                    <div class="account-dropdown-label">Suas contas</div>
+                    <button type="button" class="account-option active" role="menuitem" data-id="lunarfilm"
+                        data-company="LunarFilm" data-person="Ney Moraes" data-initials="LF">
+                        <div class="user-avatar">LF</div>
+                        <div class="account-option-info">
+                            <span class="account-company">LunarFilm</span>
+                            <span class="account-user">Ney Moraes</span>
+                        </div>
+                        <i class="ri-check-line account-check" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="account-option" role="menuitem" data-id="grafica-sul"
+                        data-company="Gráfica Sul" data-person="Ana Paula" data-initials="GS">
+                        <div class="user-avatar">GS</div>
+                        <div class="account-option-info">
+                            <span class="account-company">Gráfica Sul</span>
+                            <span class="account-user">Ana Paula</span>
+                        </div>
+                        <i class="ri-check-line account-check" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="account-option" role="menuitem" data-id="tech-solutions"
+                        data-company="Tech Solutions ME" data-person="Carlos Lima" data-initials="TS">
+                        <div class="user-avatar">TS</div>
+                        <div class="account-option-info">
+                            <span class="account-company">Tech Solutions ME</span>
+                            <span class="account-user">Carlos Lima</span>
+                        </div>
+                        <i class="ri-check-line account-check" aria-hidden="true"></i>
+                    </button>
+                    <a href="#" class="account-add" role="menuitem"><i class="ri-add-line"></i> Adicionar conta</a>
+                </div>
             </div>
         </div>
     </nav>
+
+    <div id="offlineBanner" class="offline-banner">
+        <i class="ri-wifi-off-line" aria-hidden="true"></i>
+        <span>Você está offline. Os dados exibidos podem estar em cache e desatualizados.</span>
+    </div>
 
     <!-- Main Content -->
     <main class="main">
         <div class="header">
             <div class="greeting">
-                <h1>Bom dia, Ney! 👋</h1>
+                <h1 id="greetingTitle">Olá, Ney! 👋</h1>
                 <p>Aqui está o resumo do seu negócio</p>
             </div>
             <div class="header-right">
-                <div class="date-display"><i class="ri-calendar-line"></i> Terça-feira, 21 de Julho</div>
+                <div class="date-display" id="dateDisplay"><i class="ri-calendar-line"></i> <span>—</span></div>
                 <div class="weather">☀️ 24°C</div>
             </div>
         </div>
@@ -1620,8 +2191,8 @@
                 <div class="quick-access">
                     <div class="quick-item" onclick="openModal()"><i class="ri-add-circle-fill"
                             style="color: var(--accent)"></i><span>Novo Pedido</span></div>
-                    <div class="quick-item"><i class="ri-user-add-fill" style="color: var(--success)"></i><span>Novo
-                            Cliente</span></div>
+                    <div class="quick-item" onclick="openModalCliente()"><i class="ri-user-add-fill"
+                            style="color: var(--success)"></i><span>Novo Cliente</span></div>
                     <div class="quick-item"><i class="ri-box-3-fill" style="color: var(--warning)"></i><span>Novo
                             Produto</span></div>
                 </div>
@@ -1705,7 +2276,7 @@
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7"><i
+                        <div class="activity-icon" style="background: rgba(5, 150, 105, 0.12); color: var(--accent)"><i
                                 class="ri-money-dollar-circle-line"></i></div>
                         <div class="activity-content">
                             <div class="activity-text">Pagamento de <strong>R$1.200,00</strong> confirmado</div>
@@ -1721,13 +2292,34 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div class="modal-header">
-                <h3 class="modal-title"><i class="ri-shopping-bag-3-line"></i> Novo Pedido</h3>
+                <h3 class="modal-title"><i class="ri-shopping-bag-3-line" id="iconPedido"></i> <span
+                        id="pedidoTitulo">Novo Pedido de Venda</span></h3>
                 <button class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></button>
             </div>
             <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tipo *</label>
+                        <div class="segmented" id="pedidoTipo" role="tablist" aria-label="Tipo do pedido">
+                            <button type="button" class="active" data-value="venda" role="tab"
+                                aria-selected="true"><i class="ri-arrow-up-circle-line"></i> Venda</button>
+                            <button type="button" data-value="compra" role="tab" aria-selected="false"><i
+                                    class="ri-arrow-down-circle-line"></i> Compra</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Natureza *</label>
+                        <div class="segmented" id="pedidoNatureza" role="tablist" aria-label="Natureza">
+                            <button type="button" class="active" data-value="pedido" role="tab"
+                                aria-selected="true"><i class="ri-file-list-3-line"></i> Pedido</button>
+                            <button type="button" data-value="orcamento" role="tab" aria-selected="false"><i
+                                    class="ri-price-tag-3-line"></i> Orçamento</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <label class="form-label">Cliente *</label>
-                    <input type="text" class="form-input" placeholder="Buscar cliente...">
+                    <label class="form-label" id="labelContraparte">Cliente *</label>
+                    <input type="text" class="form-input" id="inputContraparte" placeholder="Buscar cliente...">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -1735,7 +2327,7 @@
                         <input type="date" class="form-input" value="2026-01-21">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Previsão de Entrega</label>
+                        <label class="form-label" id="labelPrazo">Previsão de Entrega</label>
                         <input type="date" class="form-input">
                     </div>
                 </div>
@@ -1746,7 +2338,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label">Origem</label>
-                        <select class="form-input">
+                        <select class="form-input" id="selectOrigem">
                             <option>Balcão</option>
                             <option>WhatsApp</option>
                             <option>Telefone</option>
@@ -1755,17 +2347,16 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Status</label>
-                        <select class="form-input">
+                        <select class="form-input" id="selectStatus">
                             <option>Aberto</option>
                             <option>Em Andamento</option>
-                            <option>Orçamento</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                <button class="btn btn-primary"><i class="ri-check-line"></i> Criar Pedido</button>
+                <button class="btn btn-primary" id="btnCriarPedido"><i class="ri-check-line"></i> Criar Pedido</button>
             </div>
         </div>
     </div>
@@ -1845,18 +2436,18 @@
                         <div class="form-checkboxes">
                             <label class="form-checkbox">
                                 <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Fornecedor
+                                <i class="ri-truck-line" aria-hidden="true"></i>
+                                <span>Fornecedor</span>
                             </label>
                             <label class="form-checkbox">
                                 <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Dealer/Revendedor
+                                <i class="ri-user-star-line" aria-hidden="true"></i>
+                                <span>Dealer/Revendedor</span>
                             </label>
                             <label class="form-checkbox">
                                 <input type="checkbox">
-                                <span class="checkmark"></span>
-                                Loja Oficial
+                                <i class="ri-store-2-line" aria-hidden="true"></i>
+                                <span>Loja Oficial</span>
                             </label>
                         </div>
                     </div>
@@ -2018,26 +2609,93 @@
         </div>
     </div>
 
-    <script>
-        // Revenue Chart
-        const ctx = document.getElementById('revenueChart').getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, 0, 280);
-        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
-        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+    <!-- Painel Suporte (IA + WhatsApp + artigos — ligar backend depois) -->
+    <div id="supportPanel" class="support-panel" role="dialog" aria-labelledby="supportPanelHeading" aria-modal="false">
+        <div class="support-panel-header">
+            <div class="support-panel-title">
+                <i class="ri-chat-3-line" aria-hidden="true"></i>
+                <div>
+                    <h2 id="supportPanelHeading">Suporte MoneySystem</h2>
+                </div>
+            </div>
+            <div class="support-panel-actions">
+                <button type="button" class="support-icon-btn" id="supportResetBtn" title="Nova conversa"
+                    aria-label="Iniciar nova conversa"><i class="ri-refresh-line"></i></button>
+                <button type="button" class="support-icon-btn support-panel-close" onclick="closeSupportChat()"
+                    aria-label="Fechar suporte"><i class="ri-close-line"></i></button>
+            </div>
+        </div>
+        <div class="support-quick-actions">
+            <a class="support-chip support-chip--wa" id="supportWhatsAppLink" href="#" target="_blank"
+                rel="noopener noreferrer"><i class="ri-whatsapp-line"></i> Atendente (WhatsApp)</a>
+            <a class="support-chip" href="https://moneysystem.com.br/ajuda" target="_blank" rel="noopener noreferrer"><i
+                    class="ri-file-list-3-line"></i> Artigos</a>
+        </div>
+        <div class="support-messages" id="supportMessages" aria-live="polite" aria-atomic="false"></div>
+        <form class="support-input-row" id="supportForm" autocomplete="off">
+            <input type="text" id="supportInput" placeholder="Descreva sua dúvida…" maxlength="2000"
+                aria-label="Mensagem para o assistente">
+            <button type="submit" class="support-send" id="supportSendBtn" aria-label="Enviar"><i
+                    class="ri-send-plane-fill"></i></button>
+        </form>
+        <p class="support-disclaimer">IA pode conter erros. Se necessário, fale com um atendente.</p>
+    </div>
 
-        new Chart(ctx, {
+    <script>
+        // Saudação + data dinâmicas
+        (function () {
+            const titleEl = document.getElementById('greetingTitle');
+            const dateEl = document.getElementById('dateDisplay').querySelector('span');
+
+            function greetingPrefix(h) {
+                if (h < 12) return 'Bom dia';
+                if (h < 18) return 'Boa tarde';
+                return 'Boa noite';
+            }
+
+            function firstName(full) {
+                return (full || '').trim().split(/\s+/)[0] || '';
+            }
+
+            window.updateGreeting = function (personName) {
+                const hour = new Date().getHours();
+                const name = firstName(personName || document.getElementById('userPerson').textContent);
+                titleEl.textContent = greetingPrefix(hour) + ', ' + name + '! 👋';
+            };
+
+            (function setDate() {
+                const fmt = new Intl.DateTimeFormat('pt-BR', {
+                    weekday: 'long', day: 'numeric', month: 'long'
+                });
+                const txt = fmt.format(new Date());
+                dateEl.textContent = txt.charAt(0).toUpperCase() + txt.slice(1);
+            })();
+
+            updateGreeting();
+        })();
+
+        // Revenue Chart (com guard caso o canvas não exista em outra tela)
+        const chartEl = document.getElementById('revenueChart');
+        const ctx = chartEl ? chartEl.getContext('2d') : null;
+        const gradient = ctx ? ctx.createLinearGradient(0, 0, 0, 280) : null;
+        if (gradient) {
+            gradient.addColorStop(0, 'rgba(5, 150, 105, 0.22)');
+            gradient.addColorStop(1, 'rgba(5, 150, 105, 0)');
+        }
+
+        if (ctx) new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                 datasets: [{
                     label: 'Faturamento',
                     data: [65000, 78000, 82000, 75000, 95000, 110000, 98000, 115000, 108000, 125000, 135000, 125430],
-                    borderColor: '#6366f1',
+                    borderColor: '#059669',
                     backgroundColor: gradient,
                     borderWidth: 3,
                     fill: true,
                     tension: 0.4,
-                    pointBackgroundColor: '#6366f1',
+                    pointBackgroundColor: '#059669',
                     pointBorderColor: '#fff',
                     pointBorderWidth: 2,
                     pointRadius: 0,
@@ -2049,8 +2707,8 @@
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    x: { grid: { display: false }, ticks: { color: '#6b6b73' } },
-                    y: { grid: { color: '#2d2d35' }, ticks: { color: '#6b6b73', callback: v => 'R$' + (v / 1000) + 'k' } }
+                    x: { grid: { display: false }, ticks: { color: '#64748b' } },
+                    y: { grid: { color: '#e2e8e4' }, ticks: { color: '#64748b', callback: v => 'R$' + (v / 1000) + 'k' } }
                 },
                 interaction: { intersect: false, mode: 'index' }
             }
@@ -2059,6 +2717,63 @@
         // Modal Functions - Pedido
         function openModal() { document.getElementById('modalOverlay').classList.add('active'); }
         function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+
+        // Modal Novo Pedido — Tipo (Venda/Compra) e Natureza (Pedido/Orçamento)
+        (function () {
+            const tipoGroup = document.getElementById('pedidoTipo');
+            const natGroup = document.getElementById('pedidoNatureza');
+            const titulo = document.getElementById('pedidoTitulo');
+            const iconPedido = document.getElementById('iconPedido');
+            const labelContraparte = document.getElementById('labelContraparte');
+            const inputContraparte = document.getElementById('inputContraparte');
+            const labelPrazo = document.getElementById('labelPrazo');
+            const btnCriar = document.getElementById('btnCriarPedido');
+
+            function selectedOf(group) {
+                const active = group.querySelector('button.active');
+                return active ? active.dataset.value : null;
+            }
+
+            function bindGroup(group) {
+                group.querySelectorAll('button').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        group.querySelectorAll('button').forEach(b => {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-selected', 'false');
+                        });
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-selected', 'true');
+                        syncLabels();
+                    });
+                });
+            }
+
+            function syncLabels() {
+                const tipo = selectedOf(tipoGroup);
+                const nat = selectedOf(natGroup);
+
+                const isCompra = tipo === 'compra';
+                const isOrcamento = nat === 'orcamento';
+
+                labelContraparte.textContent = (isCompra ? 'Fornecedor' : 'Cliente') + ' *';
+                inputContraparte.placeholder = 'Buscar ' + (isCompra ? 'fornecedor' : 'cliente') + '...';
+
+                labelPrazo.textContent = isCompra ? 'Previsão de Recebimento' : 'Previsão de Entrega';
+
+                iconPedido.className = isOrcamento
+                    ? 'ri-price-tag-3-line'
+                    : (isCompra ? 'ri-inbox-archive-line' : 'ri-shopping-bag-3-line');
+
+                const natLabel = isOrcamento ? 'Orçamento' : 'Pedido';
+                const tipoLabel = isCompra ? 'Compra' : 'Venda';
+                titulo.textContent = 'Novo ' + natLabel + ' de ' + tipoLabel;
+                btnCriar.lastChild.nodeValue = ' Criar ' + natLabel;
+            }
+
+            bindGroup(tipoGroup);
+            bindGroup(natGroup);
+            syncLabels();
+        })();
         // Removed: click outside to close (to prevent data loss)
 
         // Modal Functions - Cliente
@@ -2092,6 +2807,308 @@
                 input.placeholder = '000.000.000-00';
             }
         });
+
+        // Troca rápida de contas (perfil)
+        (function () {
+            const wrap = document.getElementById('userMenuWrap');
+            const btn = document.getElementById('userMenuBtn');
+            const dropdown = document.getElementById('accountDropdown');
+            const companyEl = document.getElementById('userCompany');
+            const personEl = document.getElementById('userPerson');
+            const avatarEl = document.getElementById('userAvatar');
+
+            function setOpen(open) {
+                wrap.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+
+            function toggleMenu() {
+                setOpen(!wrap.classList.contains('open'));
+            }
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            btn.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleMenu();
+                }
+                if (e.key === 'Escape') setOpen(false);
+            });
+
+            document.addEventListener('click', function () {
+                setOpen(false);
+            });
+
+            wrap.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+
+            dropdown.querySelectorAll('.account-option').forEach(function (opt) {
+                opt.addEventListener('click', function () {
+                    dropdown.querySelectorAll('.account-option').forEach(function (o) {
+                        o.classList.remove('active');
+                    });
+                    opt.classList.add('active');
+                    companyEl.textContent = opt.dataset.company;
+                    personEl.textContent = opt.dataset.person;
+                    avatarEl.textContent = opt.dataset.initials;
+                    if (typeof window.updateGreeting === 'function') {
+                        window.updateGreeting(opt.dataset.person);
+                    }
+                    setOpen(false);
+                });
+            });
+
+            dropdown.querySelector('.account-add')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                setOpen(false);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') setOpen(false);
+            });
+        })();
+
+        // Aviso discreto — offline (PWA / rede)
+        (function () {
+            const banner = document.getElementById('offlineBanner');
+            function sync() {
+                banner.classList.toggle('visible', !navigator.onLine);
+            }
+            window.addEventListener('online', sync);
+            window.addEventListener('offline', sync);
+            sync();
+        })();
+
+        // Painel de suporte (IA + WhatsApp + artigos) — pronto para produção
+        (function () {
+            // Config — idealmente vem do servidor / .env do app
+            const SUPPORT_CONFIG = {
+                whatsapp: '5511999999999',
+                articlesUrl: 'https://moneysystem.com.br/ajuda',
+                apiEndpoint: null, // ex.: '/api/support/chat' — quando nulo, usa eco de demonstração
+                storageKey: 'ms_support_chat_v1',
+                maxHistory: 40,
+                greeting: 'Olá! Sou o assistente do MoneySystem. Posso ajudar com pedidos, clientes, financeiro, NF-e e o restante do sistema. No que posso ajudar?'
+            };
+
+            const panel = document.getElementById('supportPanel');
+            const messagesEl = document.getElementById('supportMessages');
+            const form = document.getElementById('supportForm');
+            const input = document.getElementById('supportInput');
+            const sendBtn = document.getElementById('supportSendBtn');
+            const resetBtn = document.getElementById('supportResetBtn');
+            const waLink = document.getElementById('supportWhatsAppLink');
+
+            let history = [];
+            let sessionId = null;
+            let inFlight = null;
+
+            function uuid() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    const r = Math.random() * 16 | 0;
+                    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+
+            function load() {
+                try {
+                    const raw = localStorage.getItem(SUPPORT_CONFIG.storageKey);
+                    if (!raw) return null;
+                    const data = JSON.parse(raw);
+                    if (data && Array.isArray(data.messages)) return data;
+                } catch (_) { /* ignore */ }
+                return null;
+            }
+
+            function save() {
+                try {
+                    localStorage.setItem(SUPPORT_CONFIG.storageKey, JSON.stringify({
+                        version: 1,
+                        sessionId: sessionId,
+                        messages: history.slice(-SUPPORT_CONFIG.maxHistory)
+                    }));
+                } catch (_) { /* storage cheio / privado */ }
+            }
+
+            function buildWhatsAppUrl(prefill) {
+                const text = encodeURIComponent(prefill || 'Olá! Preciso de ajuda com o MoneySystem.');
+                return 'https://wa.me/' + SUPPORT_CONFIG.whatsapp + '?text=' + text;
+            }
+
+            // Converte texto com URLs em DOM seguro (sem innerHTML)
+            function textToNodes(text) {
+                const frag = document.createDocumentFragment();
+                const regex = /\bhttps?:\/\/[^\s<>"')]+/g;
+                let lastIndex = 0, match;
+                while ((match = regex.exec(text)) !== null) {
+                    if (match.index > lastIndex) {
+                        frag.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+                    }
+                    const a = document.createElement('a');
+                    a.href = match[0];
+                    a.textContent = match[0];
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    frag.appendChild(a);
+                    lastIndex = match.index + match[0].length;
+                }
+                if (lastIndex < text.length) {
+                    frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+                }
+                return frag;
+            }
+
+            function renderMessage(msg) {
+                const wrap = document.createElement('div');
+                wrap.className = 'support-msg support-msg--' + msg.role + (msg.error ? ' support-msg--error' : '');
+                const bubble = document.createElement('div');
+                bubble.className = 'support-msg-bubble';
+                bubble.appendChild(textToNodes(msg.text));
+                const meta = document.createElement('div');
+                meta.className = 'support-msg-meta';
+                meta.textContent = msg.role === 'user' ? 'Você' : 'Assistente';
+                wrap.appendChild(bubble);
+                wrap.appendChild(meta);
+                messagesEl.appendChild(wrap);
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+            }
+
+            function addMessage(role, text, opts) {
+                const msg = { role: role, text: text, ts: Date.now() };
+                if (opts && opts.error) msg.error = true;
+                history.push(msg);
+                if (history.length > SUPPORT_CONFIG.maxHistory) history.shift();
+                renderMessage(msg);
+                save();
+            }
+
+            function showTyping() {
+                let el = document.getElementById('supportTyping');
+                if (el) return el;
+                el = document.createElement('div');
+                el.id = 'supportTyping';
+                el.className = 'support-msg support-msg--bot';
+                el.innerHTML = '<div class="support-msg-bubble support-typing" aria-label="Assistente digitando"><span></span><span></span><span></span></div>';
+                messagesEl.appendChild(el);
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+                return el;
+            }
+
+            function hideTyping() {
+                const el = document.getElementById('supportTyping');
+                if (el) el.remove();
+            }
+
+            function setBusy(busy) {
+                sendBtn.disabled = busy;
+                sendBtn.setAttribute('aria-busy', busy ? 'true' : 'false');
+            }
+
+            function rebuildFromHistory() {
+                messagesEl.innerHTML = '';
+                if (history.length === 0) {
+                    addMessage('bot', SUPPORT_CONFIG.greeting);
+                } else {
+                    history.forEach(renderMessage);
+                }
+            }
+
+            function resetConversation() {
+                if (inFlight) { inFlight.abort(); inFlight = null; }
+                history = [];
+                sessionId = uuid();
+                save();
+                rebuildFromHistory();
+                input.focus();
+            }
+
+            async function askAssistant(question) {
+                const endpoint = SUPPORT_CONFIG.apiEndpoint;
+                if (!endpoint) {
+                    // Modo demonstração (enquanto o backend não está ligado)
+                    await new Promise(r => setTimeout(r, 450));
+                    return 'Modo demonstração ativo. Conecte o backend em SUPPORT_CONFIG.apiEndpoint para respostas reais baseadas na documentação. Artigos: ' + SUPPORT_CONFIG.articlesUrl;
+                }
+                const ctrl = new AbortController();
+                inFlight = ctrl;
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'same-origin',
+                    signal: ctrl.signal,
+                    body: JSON.stringify({
+                        sessionId: sessionId,
+                        messages: history.slice(-10).map(m => ({ role: m.role === 'bot' ? 'assistant' : 'user', content: m.text })),
+                        question: question
+                    })
+                });
+                inFlight = null;
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                return (data && (data.answer || data.text)) || 'Desculpe, não consegui gerar uma resposta agora.';
+            }
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const q = input.value.trim();
+                if (!q || sendBtn.disabled) return;
+                addMessage('user', q);
+                input.value = '';
+                setBusy(true);
+                showTyping();
+                try {
+                    const answer = await askAssistant(q);
+                    hideTyping();
+                    addMessage('bot', answer);
+                } catch (err) {
+                    hideTyping();
+                    if (err.name === 'AbortError') return;
+                    addMessage('bot',
+                        'Não consegui falar com o suporte agora. Verifique sua conexão e tente novamente, ou fale direto com um atendente pelo WhatsApp.',
+                        { error: true });
+                } finally {
+                    setBusy(false);
+                }
+            });
+
+            resetBtn.addEventListener('click', function () {
+                if (history.length === 0 || confirm('Iniciar uma nova conversa e apagar o histórico atual?')) {
+                    resetConversation();
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && panel.classList.contains('open')) closeSupportChat();
+            });
+
+            window.openSupportChat = function () {
+                waLink.href = buildWhatsAppUrl();
+                panel.classList.add('open');
+                setTimeout(function () { input.focus(); }, 120);
+            };
+
+            window.closeSupportChat = function () {
+                panel.classList.remove('open');
+            };
+
+            // Bootstrap: restaurar histórico ou abrir com saudação
+            (function init() {
+                const saved = load();
+                if (saved) {
+                    history = saved.messages.slice(-SUPPORT_CONFIG.maxHistory);
+                    sessionId = saved.sessionId || uuid();
+                } else {
+                    sessionId = uuid();
+                }
+                rebuildFromHistory();
+            })();
+        })();
     </script>
 </body>
 

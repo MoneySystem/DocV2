@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const noResults = document.querySelector('.no-results');
 
   /* ─── Navigation ─── */
-  function navigateTo(sectionId) {
+  function navigateTo(sectionId, options = {}) {
+    const anchorId = options.anchorId || null;
+
     // Hide all sections
     sections.forEach(s => s.classList.remove('active'));
 
@@ -37,15 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hide no results
     if (noResults) noResults.classList.remove('show');
 
-    // Scroll content to top
     const contentArea = document.querySelector('.content-area');
-    if (contentArea) contentArea.scrollTop = 0;
+    if (contentArea) {
+      if (anchorId) {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(anchorId);
+          if (el) el.scrollIntoView({ block: 'start' });
+        });
+      } else {
+        contentArea.scrollTop = 0;
+      }
+    }
 
     // Close mobile sidebar
     closeSidebar();
 
-    // Update URL hash
-    history.replaceState(null, '', `#${sectionId}`);
+    // Update URL hash (âncora compartilhável para subseções)
+    history.replaceState(null, '', anchorId ? `#${anchorId}` : `#${sectionId}`);
   }
 
   navItems.forEach(item => {
@@ -55,6 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       const sectionId = item.dataset.section;
       if (sectionId) navigateTo(sectionId);
+    });
+  });
+
+  document.querySelectorAll('a.internal-link[data-section]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const sectionId = a.dataset.section;
+      const anchor = a.dataset.anchor;
+      if (sectionId) navigateTo(sectionId, anchor ? { anchorId: anchor } : {});
     });
   });
 
@@ -172,6 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const hashEl = hash ? document.getElementById(hash) : null;
   if (hashEl?.classList.contains('doc-section')) {
     navigateTo(hash);
+  } else if (hashEl?.closest?.('.doc-section')) {
+    const section = hashEl.closest('.doc-section');
+    navigateTo(section.id, { anchorId: hash });
   } else {
     navigateTo('visao-geral');
   }
