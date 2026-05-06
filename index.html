@@ -74,6 +74,8 @@
                                 class="nav-label">Nota Fiscal</span></div>
                         <div class="nav-item" data-section="relatorios"><span class="nav-icon">📈</span><span
                                 class="nav-label">Relatórios</span></div>
+                        <div class="nav-item" data-section="importacao"><span class="nav-icon">📤</span><span
+                                class="nav-label">Importação</span></div>
                     </div>
                 </div>
                 <!-- GESTÃO -->
@@ -621,19 +623,19 @@
                                     </div>
 
                                     <h3 class="automotivo-doc-h">4. Assinaturas de lavagem e frota por cliente</h3>
-                                    <p>Ideias complementares à «receita de insumos»; tratá-las como <strong>evolução de produto
-                                            própria</strong> (cadastro, consumo de créditos, financeiro).</p>
-                                    <p><strong>Assinatura mensal por carro ou cliente:</strong> mensalidade com direito a X
-                                        lavagens ou serviços no período; envolve plano de assinatura do <em>cliente final</em>,
-                                        vínculo com cliente e opcionalmente veículo, contagem de usos, regras na abertura do pedido
-                                        (crédito x avulso), renovação e relatórios. <em>Nota:</em> em impressos automotivos,
-                                        «assinatura» pode aparecer só como <strong>linha para assinatura física</strong>
-                                        (cliente/técnico) — não confundir com plano recorrente no sistema.</p>
-                                    <p><strong>Vários veículos no cadastro:</strong> no cliente, lista de veículos (apelido,
-                                        modelo, placa, cor, observações); no pedido, escolher qual veículo preenche placa e modelo e
-                                        mantém rastreio.</p>
-                                    <p>Na modelagem, prever entidades do tipo cadastro de veículos do cliente, assinaturas e uso
-                                        por período, conforme prioridade de negócio.</p>
+                                    <p>Lojas podem criar assinaturas para serviços recorrentes, como lavagens de carro. Ao criar uma assinatura, seleciona-se o cliente, o serviço, a quantidade por mês que o cliente terá direito, se é acumulativo ou não, e se deseja integrar com o Asaas para cobrança automática.</p>
+                                    <h4 class="automotivo-doc-h4">4.1 Criação de Assinatura</h4>
+                                    <ul>
+                                        <li><strong>Seleção do Cliente:</strong> Escolher o cliente que contratará a assinatura.</li>
+                                        <li><strong>Serviço:</strong> Selecionar o serviço oferecido (ex.: lavagem completa).</li>
+                                        <li><strong>Quantidade por Mês:</strong> Definir quantas vezes o cliente pode usar o serviço mensalmente.</li>
+                                        <li><strong>Acumulativo:</strong> Se os créditos não utilizados acumulam para o próximo mês ou expiram.</li>
+                                        <li><strong>Integração com Asaas:</strong> Opção para integrar com o Asaas para cobrança recorrente.</li>
+                                    </ul>
+                                    <h4 class="automotivo-doc-h4">4.2 Integração com Asaas</h4>
+                                    <p>Se integrada, quando o cliente paga via link enviado por email, a assinatura é ativada automaticamente. Para lojas de lavagem de carro, quando o cliente utiliza o serviço, a loja registra uma baixa no sistema, controlando assim os assinantes ativos.</p>
+                                    <p><strong>Vários veículos no cadastro:</strong> no cliente, lista de veículos (apelido, modelo, placa, cor, observações); no pedido, escolher qual veículo preenche placa e modelo e mantém rastreio.</p>
+                                    <p>Na modelagem, prever entidades do tipo cadastro de veículos do cliente, assinaturas e uso por período, conforme prioridade de negócio.</p>
 
                                 </div>
                             </div>
@@ -1405,7 +1407,7 @@
                         <ul>
                             <li>Busca por nome, CPF/CNPJ, e-mail ou telefone</li>
                             <li>Filtros por estado, cidade, valor total gasto</li>
-                            <li>Importação de clientes via CSV/Excel</li>
+                            <li>Importação de clientes via CSV</li>
                             <li>Exportação da base de clientes</li>
                             <li>Aniversariantes do mês no calendário do Dashboard</li>
                         </ul>
@@ -1417,7 +1419,7 @@
                             <div class="section-badge green">🏷️ Módulo</div>
                             <h1>Produtos</h1>
                             <p class="section-desc">Cadastro e gestão de produtos com controle de estoque, tributação e
-                                importação via XML.</p>
+                                importação via CSV.</p>
                         </div>
                         <h2>Campos do Produto</h2>
                         <ul>
@@ -1613,6 +1615,52 @@
                             <li><strong>Comissões</strong> — Valores devidos por funcionário por período</li>
                             <li><strong>NF-e</strong> — Notas emitidas, canceladas, valores totais</li>
                         </ul>
+                    </section>
+
+                    <!-- ═══ IMPORTAÇÃO ═══ -->
+                    <section id="importacao" class="doc-section content">
+                        <div class="section-hero">
+                            <div class="section-badge green">📤 Módulo</div>
+                            <h1>Importação de Dados</h1>
+                            <p class="section-desc">Tela de importação para clientes, financeiro, produtos e pedidos via CSV, com mapeamento de colunas e preview.</p>
+                        </div>
+                        <h2>Funcionalidades</h2>
+                        <p>Ao abrir a tela de importação, o usuário seleciona o tipo de dados a importar: <strong>Clientes</strong>, <strong>Financeiro</strong>, <strong>Produtos</strong> ou <strong>Pedidos</strong>.</p>
+                        <div class="timeline">
+                            <div class="timeline-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>Seleção do Tipo</h3>
+                                    <p>Escolher entre Clientes, Financeiro, Produtos ou Pedidos.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>Upload do CSV</h3>
+                                    <p>Fazer upload do arquivo CSV. O sistema identifica automaticamente as colunas.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>Mapeamento de Colunas</h3>
+                                    <p>Para cada coluna do CSV, selecionar o que ela representa (ex.: para Clientes, nome, telefone, etc.).</p>
+                                </div>
+                            </div>
+                            <div class="timeline-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3>Preview</h3>
+                                    <p>Visualizar até 10 exemplos de como os dados ficarão após a importação para verificar se está correto.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Exemplo de Mapeamento</h2>
+                        <p>Para <strong>Clientes</strong>, as colunas possíveis incluem: Nome, Telefone, Email, CPF/CNPJ, Endereço, etc.</p>
+                        <p>Para <strong>Produtos</strong>: Nome, Código, Preço, Estoque, etc.</p>
+                        <p>Para <strong>Financeiro</strong>: Data, Valor, Descrição, Tipo (Receita/Despesa), etc.</p>
+                        <p>Para <strong>Pedidos</strong>: Cliente, Produtos, Quantidade, Valor, Data, etc.</p>
                     </section>
 
                     <!-- ═══ USUÁRIOS ═══ -->
